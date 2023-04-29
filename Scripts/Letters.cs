@@ -5,6 +5,7 @@ using AnttiStarter.Animations;
 using Godot;
 using AnttiStarter.Extensions;
 using AnttiStarter.SceneChanger;
+using AnttiStarter.Utils;
 
 namespace Scripts;
 
@@ -187,11 +188,12 @@ public partial class Letters : Node2D
 
     private void SpawnLetter(int index, bool isBread)
     {
+        var makeBread = isBread || index > 4 && Rng.Value < 0.1f;
         var prefab = letters[index];
         var letter = prefab.Instantiate() as Letter;
         letter.Position += Vector2.Zero.RandomOffset(25f);
-        letter!.Modulate = isBread ? breadColor :  colors.Random();
-        letter.IsBread = isBread;
+        letter!.Modulate = makeBread ? breadColor :  colors.Random();
+        letter.IsBread = makeBread;
         letter.ringBell += RingBell;
         ingredients.Add(letter);
         spawn.AddChild(letter);
