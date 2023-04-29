@@ -25,6 +25,11 @@ public partial class Hand : StaticBody2D
         FindAndAttach();
     }
 
+    public void Release()
+    {
+        pin.NodeB = null;
+    }
+
     private void FindAndAttach()
     {
         var spaceState = GetWorld2D().DirectSpaceState;

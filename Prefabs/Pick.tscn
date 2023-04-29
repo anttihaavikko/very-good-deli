@@ -36,6 +36,7 @@ text = "PICK"
 script = ExtResource("4_2fapc")
 direction = Vector2(2.08165e-12, -15)
 speed = 0.2
+randomOffset = true
 
 [node name="TextureRect" type="TextureRect" parent="Node2D"]
 offset_left = 19.0

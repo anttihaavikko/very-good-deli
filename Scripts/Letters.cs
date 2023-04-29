@@ -24,6 +24,7 @@ public partial class Letters : Node2D
     [Export] private Appearer nextButton;
     [Export] private Bell bell;
     [Export] private RichTextLabel scoreLabel;
+    [Export] private Hand hand;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
@@ -60,6 +61,7 @@ public partial class Letters : Node2D
     public void RingBell()
     {
         bell.Ring();
+        hand.Release();
     }
 
     private static int GetIndex(string letter)
