@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=40 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
 [ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="2_j874t"]
@@ -29,6 +29,13 @@
 [ext_resource type="PackedScene" uid="uid://vgeq1nvnbmtc" path="res://Letters/R.tscn" id="21_mq8lr"]
 [ext_resource type="Texture2D" uid="uid://di18udd5nx1u2" path="res://Sprites/bell.png" id="22_2bcov"]
 [ext_resource type="PackedScene" uid="uid://fg40v455a7m7" path="res://Letters/S.tscn" id="22_5k8cv"]
+[ext_resource type="PackedScene" uid="uid://ccvv0xbfs16mn" path="res://Letters/T.tscn" id="24_70vfp"]
+[ext_resource type="PackedScene" uid="uid://b3qjy8lewu8eb" path="res://Letters/U.tscn" id="25_wonye"]
+[ext_resource type="PackedScene" uid="uid://bmkqdq820wbf3" path="res://Letters/V.tscn" id="26_rbvx0"]
+[ext_resource type="PackedScene" uid="uid://dvhstcfon2k74" path="res://Letters/W.tscn" id="27_pb723"]
+[ext_resource type="PackedScene" uid="uid://bk2sxykx21xdg" path="res://Letters/X.tscn" id="28_f4d0n"]
+[ext_resource type="PackedScene" uid="uid://cvvkuhcaaujhw" path="res://Letters/Y.tscn" id="29_teune"]
+[ext_resource type="PackedScene" uid="uid://b27afihhnnbgc" path="res://Letters/Z.tscn" id="30_4ypvt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihbhw"]
 size = Vector2(0.658793, 69.3985)
@@ -39,6 +46,12 @@ size = Vector2(0.658793, 69.3985)
 size = Vector2(8.71129, 8.38046)
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.517647, 0.733333, 0.878431, 1)
+position = Vector2(1356.6, 469.6)
+scale = Vector2(1461.7, 1098.2)
+texture = ExtResource("1_qofwn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1195, 345)
@@ -82,10 +95,10 @@ softness = 2.0
 
 [node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger")]
 script = ExtResource("4_57g0e")
-letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds"), ExtResource("8_gp5py"), ExtResource("9_4e1wc"), ExtResource("10_tw725"), ExtResource("11_6m062"), ExtResource("12_ludwc"), ExtResource("13_3sqmj"), ExtResource("14_kiraw"), ExtResource("15_fwo0e"), ExtResource("16_lnyqm"), ExtResource("17_qwyo6"), ExtResource("18_f0b65"), ExtResource("19_6fw2v"), ExtResource("20_msf06"), ExtResource("21_mq8lr"), ExtResource("22_5k8cv")])
+letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds"), ExtResource("8_gp5py"), ExtResource("9_4e1wc"), ExtResource("10_tw725"), ExtResource("11_6m062"), ExtResource("12_ludwc"), ExtResource("13_3sqmj"), ExtResource("14_kiraw"), ExtResource("15_fwo0e"), ExtResource("16_lnyqm"), ExtResource("17_qwyo6"), ExtResource("18_f0b65"), ExtResource("19_6fw2v"), ExtResource("20_msf06"), ExtResource("21_mq8lr"), ExtResource("22_5k8cv"), ExtResource("24_70vfp"), ExtResource("25_wonye"), ExtResource("26_rbvx0"), ExtResource("27_pb723"), ExtResource("28_f4d0n"), ExtResource("29_teune"), ExtResource("30_4ypvt")])
 spawn = NodePath("Spawn")
 sceneChanger = NodePath("../Scene Changer")
-colors = PackedColorArray(0.504683, 0.281368, 0.164125, 1, 1, 0.513726, 0.447059, 1, 1, 0.282353, 0.219608, 1, 0, 0.752941, 0, 1, 1, 1, 0.223529, 1)
+colors = PackedColorArray(0.815686, 0.556863, 0.321569, 1, 1, 0.513726, 0.447059, 1, 1, 0.282353, 0.219608, 1, 0, 0.752941, 0, 1, 1, 1, 0.223529, 1)
 
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
@@ -137,7 +150,7 @@ scale = Vector2(0.373257, 0.373257)
 texture = ExtResource("22_2bcov")
 
 [node name="Table" type="StaticBody2D" parent="."]
-modulate = Color(0.772549, 0.498039, 0.364706, 1)
+modulate = Color(0.894118, 0.729412, 0.627451, 1)
 position = Vector2(529, 1137)
 scale = Vector2(381, 97.25)
 

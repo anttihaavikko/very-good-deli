@@ -1,17 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgtm1oom5aq5r"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://c2l0a86c5nxsc" path="res://Letters/Material.tres" id="1_hfllu"]
 [ext_resource type="Script" path="res://Scripts/Letter.cs" id="1_mdny3"]
 [ext_resource type="Texture2D" uid="uid://bbc8uydtmt1ui" path="res://Sprites/g.png" id="2_rb28k"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n5cq3"]
-friction = 0.5
-bounce = 0.2
-absorbent = true
 
 [node name="Letter G" type="RigidBody2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 mass = 3.0
-physics_material_override = SubResource("PhysicsMaterial_n5cq3")
+physics_material_override = ExtResource("1_hfllu")
 continuous_cd = 2
 can_sleep = false
 script = ExtResource("1_mdny3")

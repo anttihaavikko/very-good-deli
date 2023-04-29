@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Very Good Deli"
 run/main_scene="res://Scenes/Main.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
@@ -24,3 +24,7 @@ window/size/resizable=false
 [dotnet]
 
 project/assembly_name="Very Good Deli"
+
+[physics]
+
+2d/default_gravity_vector=Vector2(2.08165e-12, 1.5)
