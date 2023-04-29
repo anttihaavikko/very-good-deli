@@ -14,6 +14,7 @@ public partial class Picks : Node2D
     
     public override void _Ready()
     {
+        Input.MouseMode = Input.MouseModeEnum.Visible;
         SetupPick(pick1);
         SetupPick(pick2);
         SetupPick(pick3);

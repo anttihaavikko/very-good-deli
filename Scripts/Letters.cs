@@ -36,6 +36,8 @@ public partial class Letters : Node2D
 
     public override void _Ready()
     {
+        Input.MouseMode = Input.MouseModeEnum.Hidden;
+            
         UpdateScore();
         
         var word = State.Word ?? wordDictionary.GetRandomWord(2 + State.Level);
@@ -187,6 +189,7 @@ public partial class Letters : Node2D
     {
         var prefab = letters[index];
         var letter = prefab.Instantiate() as Letter;
+        letter.Position += Vector2.Zero.RandomOffset(25f);
         letter!.Modulate = isBread ? breadColor :  colors.Random();
         letter.IsBread = isBread;
         letter.ringBell += RingBell;
