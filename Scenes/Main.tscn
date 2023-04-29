@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=44 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
 [ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="2_j874t"]
@@ -36,7 +36,10 @@
 [ext_resource type="PackedScene" uid="uid://bk2sxykx21xdg" path="res://Letters/X.tscn" id="28_f4d0n"]
 [ext_resource type="PackedScene" uid="uid://cvvkuhcaaujhw" path="res://Letters/Y.tscn" id="29_teune"]
 [ext_resource type="PackedScene" uid="uid://b27afihhnnbgc" path="res://Letters/Z.tscn" id="30_4ypvt"]
+[ext_resource type="PackedScene" uid="uid://ha72pwhfdhsb" path="res://Prefabs/Spacer.tscn" id="32_lidel"]
 [ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="37_7pnho"]
+[ext_resource type="PackedScene" uid="uid://bd1nep58v5p1v" path="res://Prefabs/EvaluationRow.tscn" id="37_taigo"]
+[ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="38_mrn7r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihbhw"]
 size = Vector2(0.658793, 69.3985)
@@ -55,7 +58,7 @@ scale = Vector2(1461.7, 1098.2)
 texture = ExtResource("1_qofwn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1195, 345)
+position = Vector2(1130, 122)
 zoom = Vector2(0.48, 0.48)
 
 [node name="Wall" type="StaticBody2D" parent="."]
@@ -67,7 +70,7 @@ position = Vector2(-1.66273, -3.85604)
 shape = SubResource("RectangleShape2D_ihbhw")
 
 [node name="Wall2" type="StaticBody2D" parent="."]
-position = Vector2(3138, 1134)
+position = Vector2(3036, 1134)
 scale = Vector2(381, 97.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
@@ -94,7 +97,7 @@ texture = ExtResource("4_dtkrh")
 node_a = NodePath("..")
 softness = 2.0
 
-[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary")]
+[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer")]
 script = ExtResource("4_57g0e")
 letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds"), ExtResource("8_gp5py"), ExtResource("9_4e1wc"), ExtResource("10_tw725"), ExtResource("11_6m062"), ExtResource("12_ludwc"), ExtResource("13_3sqmj"), ExtResource("14_kiraw"), ExtResource("15_fwo0e"), ExtResource("16_lnyqm"), ExtResource("17_qwyo6"), ExtResource("18_f0b65"), ExtResource("19_6fw2v"), ExtResource("20_msf06"), ExtResource("21_mq8lr"), ExtResource("22_5k8cv"), ExtResource("24_70vfp"), ExtResource("25_wonye"), ExtResource("26_rbvx0"), ExtResource("27_pb723"), ExtResource("28_f4d0n"), ExtResource("29_teune"), ExtResource("30_4ypvt")])
 spawn = NodePath("Spawn")
@@ -102,6 +105,10 @@ sceneChanger = NodePath("../Scene Changer")
 colors = PackedColorArray(1, 0.513726, 0.447059, 1, 1, 0.282353, 0.219608, 1, 0, 0.752941, 0, 1, 1, 1, 0.223529, 1)
 breadColor = Color(0.815686, 0.556863, 0.321569, 1)
 wordDictionary = NodePath("../Dictionary")
+paper = NodePath("../CanvasLayer/Evaluation Paper")
+evaluationRow = ExtResource("37_taigo")
+evaluationContainer = NodePath("../CanvasLayer/Evaluation Paper/VBoxContainer")
+spacer = ExtResource("32_lidel")
 
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
@@ -171,6 +178,26 @@ modulate = Color(0, 0, 0, 1)
 position = Vector2(2.37008, -1.94087)
 scale = Vector2(2.18504, 0.0295629)
 texture = ExtResource("1_qofwn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Evaluation Paper" type="ColorRect" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 13.0
+offset_right = 666.0
+offset_bottom = 683.0
+script = ExtResource("38_mrn7r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Evaluation Paper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = -42.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Scene Changer" parent="." instance=ExtResource("9_vqoue")]
 

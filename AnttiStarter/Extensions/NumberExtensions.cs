@@ -14,10 +14,10 @@ namespace AnttiStarter.Extensions
             return value.ToString("#,0", nfi);
         }
 
-        // public static string WithSign(this int value)
-        // {
-        //     return TextUtils.NumberWithSign(value);
-        // }
+        public static string WithSign(this int value)
+        {
+            return value >= 0 ? $"+{value}" : value.ToString();
+        }
         
         public static float Remap(this float value, float valueRangeMin, float valueRangeMax, float newRangeMin, float newRangeMax)
         {

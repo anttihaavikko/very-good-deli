@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://ha72pwhfdhsb"]
+
+[node name="Spacer" type="ColorRect"]
+custom_minimum_size = Vector2(2.08165e-12, 50)
