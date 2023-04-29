@@ -37,6 +37,7 @@ public partial class Letters : Node2D
     public bool Waiting { get; set; }
 
     public bool TimeOver => timeLeft <= 0;
+    public bool Evaluating => evaluating;
 
     private GameState State => GetNode<GameState>("/root/GameState");
 
@@ -111,6 +112,7 @@ public partial class Letters : Node2D
 
     public void Evaluate()
     {
+        Input.MouseMode = Input.MouseModeEnum.Visible;
         paper.Toggle();
         
         var tween = GetTree().CreateTween();

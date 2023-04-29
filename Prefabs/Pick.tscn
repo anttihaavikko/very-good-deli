@@ -82,6 +82,7 @@ offset_right = 328.0
 offset_bottom = 245.0
 
 [node name="Head" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.886275, 0.87451, 1)
 position = Vector2(176, 355)
 scale = Vector2(0.480486, 0.480486)
 texture = ExtResource("5_re7i5")
