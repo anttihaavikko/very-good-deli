@@ -8,7 +8,7 @@
 position = Vector2(2.08165e-12, 2.08165e-12)
 mass = 3.0
 physics_material_override = ExtResource("1_q3q4r")
-continuous_cd = 2
+continuous_cd = 1
 max_contacts_reported = 5
 contact_monitor = true
 can_sleep = false
