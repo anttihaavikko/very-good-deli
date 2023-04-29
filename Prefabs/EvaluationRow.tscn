@@ -7,6 +7,8 @@
 
 [node name="Evaluation Row" type="ColorRect" node_paths=PackedStringArray("titleLabel", "valueLabel", "changeLabel")]
 custom_minimum_size = Vector2(2.08165e-12, 100)
+offset_right = 500.0
+offset_bottom = 175.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("1_iuk2d")
 titleLabel = NodePath("Control/Title")
@@ -33,6 +35,8 @@ offset_bottom = 27.0
 pivot_offset = Vector2(60, 30)
 theme = ExtResource("3_q45d0")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_idfxw")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
@@ -58,6 +62,8 @@ offset_bottom = 40.0
 pivot_offset = Vector2(50, 30)
 theme = ExtResource("3_q45d0")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_idfxw")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
@@ -83,6 +89,8 @@ offset_bottom = 33.0
 pivot_offset = Vector2(240, 30)
 theme = ExtResource("3_q45d0")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("3_idfxw")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true

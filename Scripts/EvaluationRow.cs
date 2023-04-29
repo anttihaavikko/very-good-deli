@@ -9,8 +9,8 @@ public partial class EvaluationRow : Control
 	
 	public void Setup(string title, string value, string change)
 	{
-		titleLabel.Text = title;
-		valueLabel.Text = value;
-		changeLabel.Text = $"[right]{change}[/right]";
+		titleLabel.Text = $" {title}";
+		valueLabel.Text = $" {value}";
+		changeLabel.Text = $"[right]{change}[/right] ";
 	}
 }

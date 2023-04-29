@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=54 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
 [ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="2_j874t"]
@@ -42,6 +42,7 @@
 [ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="37_7pnho"]
 [ext_resource type="PackedScene" uid="uid://bd1nep58v5p1v" path="res://Prefabs/EvaluationRow.tscn" id="37_taigo"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="38_mrn7r"]
+[ext_resource type="Texture2D" uid="uid://bborbmaow43sl" path="res://Sprites/paper-lines.png" id="39_5yhhd"]
 [ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="40_mawly"]
 [ext_resource type="Texture2D" uid="uid://77w4dsvglf63" path="res://Sprites/hand-open.png" id="42_l8nyf"]
 [ext_resource type="Script" path="res://AnttiStarter/Visuals/InverseKinematicsLine.cs" id="44_m0qxs"]
@@ -221,9 +222,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -325.0
-offset_top = -365.5
+offset_top = -411.0
 offset_right = 325.0
-offset_bottom = 365.5
+offset_bottom = 383.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(325, 350)
@@ -241,24 +242,212 @@ offset_right = -42.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 3.0
+offset_right = -183.67
+offset_bottom = -637.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("39_5yhhd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 74.5
+offset_right = -183.67
+offset_bottom = -565.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("39_5yhhd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 145.5
+offset_right = -183.67
+offset_bottom = -494.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("39_5yhhd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 218.5
+offset_right = -182.67
+offset_bottom = -421.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("39_5yhhd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 289.5
+offset_right = -182.67
+offset_bottom = -350.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("39_5yhhd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 362.5
+offset_right = -182.67
+offset_bottom = -277.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("39_5yhhd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 433.5
+offset_right = -182.67
+offset_bottom = -206.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("39_5yhhd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect8" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 503.5
+offset_right = -182.67
+offset_bottom = -136.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("39_5yhhd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect9" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 574.5
+offset_right = -182.67
+offset_bottom = -65.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("39_5yhhd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect10" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 645.5
+offset_right = -182.67
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("39_5yhhd")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="Time Left" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 18.0
 offset_top = 15.0
 offset_right = 418.0
 offset_bottom = 102.0
 theme = ExtResource("40_mawly")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
 theme_override_font_sizes/normal_font_size = 50
 text = "1:23"
 
 [node name="Score" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 449.0
 offset_top = -5.0
-offset_right = 1061.0
+offset_right = 1070.0
 offset_bottom = 210.0
 theme = ExtResource("40_mawly")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
-text = "[right]0[/right]"
+text = "[right]0[/right] "
 
 [node name="Next Wrap" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -368,6 +557,10 @@ offset_top = -106.0
 offset_right = 119.0
 offset_bottom = 115.0
 theme = ExtResource("40_mawly")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/normal_font_size = 175
 text = "0"
 

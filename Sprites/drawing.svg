@@ -66,9 +66,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.12374369"
-     inkscape:cx="22486.429"
-     inkscape:cy="3398.6249"
+     inkscape:zoom="0.0875"
+     inkscape:cx="22267.662"
+     inkscape:cy="-2608.3147"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -353,6 +353,22 @@
        d="M 6041.0264,351.2564 C 6063.043,147.03336 5855.314,282.87205 5726.7176,302.07882"
        id="path1110-9"
        sodipodi:nodetypes="cc"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <rect
+       style="fill:none;stroke:none;stroke-width:13;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:52.9134;paint-order:stroke fill markers"
+       id="rect1164"
+       width="1967.1036"
+       height="350.65762"
+       x="5105.917"
+       y="-1522.3673"
+       ry="22.85709"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:20;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 5134.4284,-1206.5 H 7036.4047"
+       id="path1166"
        inkscape:export-xdpi="93"
        inkscape:export-ydpi="93" />
   </g>

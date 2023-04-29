@@ -55,7 +55,7 @@ public partial class Letters : Node2D
 
     private void UpdateScore()
     {
-        scoreLabel.Text = $"[right]{State.Score}[/right]";
+        scoreLabel.Text = $"[right]{State.Score}[/right] ";
     }
 
     public void RingBell()
