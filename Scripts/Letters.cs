@@ -49,7 +49,7 @@ public partial class Letters : Node2D
         var word = State.Word ?? wordDictionary.GetRandomWord(2 + State.Level);
         var mod = Mathf.Pow(0.9f, State.Level - 1);
         timeLeft = word.Length * mod * 20f;
-        
+
         GD.Print($"Word is {word}");
         
         var idx = 0;
@@ -220,7 +220,8 @@ public partial class Letters : Node2D
         var prefab = letters[index];
         var letter = prefab.Instantiate() as Letter;
         spawn.AddChild(letter);
-        letter!.Position += Vector2.Zero.RandomOffset(0f) + Vector2.Up * count * 50f;
+        letter!.Position += Vector2.Zero.RandomOffset(25f);
+        letter.ResetSpot = spawn.GlobalPosition;
         letter.Modulate = makeBread ? breadColor : colors.Random();
         letter.IsBread = makeBread;
         letter.ringBell += RingBell;

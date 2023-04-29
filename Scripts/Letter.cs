@@ -59,4 +59,13 @@ public partial class Letter : RigidBody2D
     {
         return polygon.Polygon.Max(p => GlobalPosition.Y + ToGlobal(p).Y);
     }
+
+    public override void _Process(double delta)
+    {
+        if (GlobalPosition.Y is > 2000 or < -2500)
+        {
+            GD.Print($"Reset {Name}");
+            GlobalPosition = ResetSpot;
+        } 
+    }
 }
