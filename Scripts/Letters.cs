@@ -27,12 +27,16 @@ public partial class Letters : Node2D
     [Export] private RichTextLabel scoreLabel;
     [Export] private Hand hand;
     [Export] private Control paperRotator;
+    [Export] private LifeDisplay lifeDisplay;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
     private float timeLeft = 120f;
+    private bool over;
     
     public bool Waiting { get; set; }
+
+    public bool TimeOver => timeLeft <= 0;
 
     private GameState State => GetNode<GameState>("/root/GameState");
 
@@ -85,6 +89,13 @@ public partial class Letters : Node2D
             timeLeft = Mathf.Max(timeLeft - (float)delta, 0);
             var seconds = Mathf.RoundToInt(timeLeft);
             levelTimer.Text = $"{Mathf.FloorToInt(seconds / 60f)}:{seconds % 60:00}";
+
+            if (timeLeft <= 0 && !over)
+            {
+                over = true;
+                hand.Release();
+                bell.Ring();
+            }
         }
         
         if (Input.IsKeyPressed(Key.N))
@@ -139,6 +150,8 @@ public partial class Letters : Node2D
         {
             ShowEvaluationRow("Missing ingredients", missing.ToString(), (-penalty).ToString(), rowDelay * 4);
             totalDelay += rowDelay;
+            lifeDisplay.Lose(missing);
+            State.Lives -= missing;
         }
         
         ShowEvaluationRow("Total", "", total.ToString(), rowDelay * 4 + totalDelay, true);
@@ -186,8 +199,14 @@ public partial class Letters : Node2D
 
             if (addSpacer)
             {
-                nextButton.Toggle();
                 UpdateScore();
+                if (State.Lives <= 0)
+                {
+                    ShowEvaluationRow("You're fired...", "", "", 1f);
+                    return;
+                }
+                
+                nextButton.Toggle();
             }
         };
         

@@ -48,7 +48,7 @@ public partial class Appearer : Node
         }
     }
 
-    public void Toggle(bool state)
+    public void Toggle(bool state, float delay = 0f)
     {
         if (shown == state) return;
         
@@ -58,6 +58,7 @@ public partial class Appearer : Node
 
         tween.TweenProperty(this, "scale", shown ? size : closedSize, shown ? showDuration : hideDuration)
             .SetTrans(shown ? showTransition : hideTransition)
+            .SetDelay(delay)
             .SetEase(Tween.EaseType.Out);
     }
 

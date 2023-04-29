@@ -66,9 +66,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.061871843"
-     inkscape:cx="28360.902"
-     inkscape:cy="2715.7752"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="17784.894"
+     inkscape:cy="-164.48741"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -390,6 +390,22 @@
        cx="8733.499"
        cy="1322.4688"
        r="273.68399"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <circle
+       style="fill:none;stroke:none;stroke-width:12;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:113.386;paint-order:stroke fill markers"
+       id="path1217"
+       cx="4795.2773"
+       cy="-101.52332"
+       r="33.313854"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <circle
+       style="fill:none;stroke:#ffffff;stroke-width:12;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:113.386;paint-order:stroke fill markers"
+       id="path1217-32"
+       cx="4459.4453"
+       cy="-74.087112"
+       r="33.313854"
        inkscape:export-xdpi="93"
        inkscape:export-ydpi="93" />
   </g>

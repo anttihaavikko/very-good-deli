@@ -16,6 +16,7 @@ public partial class Hand : StaticBody2D
     [Export] private Line2D grabLine;
     [Export] private Texture2D handOpen, handGrab;
     [Export] private Sprite2D sprite;
+    [Export] private Letters letters;
 
     private Vector2 offset;
     private Node2D grabbed;
@@ -27,6 +28,7 @@ public partial class Hand : StaticBody2D
 
     public override void _Input(InputEvent @event)
     {
+        if (letters.TimeOver) return;
         if (@event is not InputEventMouseButton mouseEvent) return;
         if (mouseEvent.ButtonIndex != MouseButton.Left) return;
 
