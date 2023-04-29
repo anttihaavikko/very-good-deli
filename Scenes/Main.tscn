@@ -97,7 +97,7 @@ texture = ExtResource("4_dtkrh")
 node_a = NodePath("..")
 softness = 2.0
 
-[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer")]
+[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer")]
 script = ExtResource("4_57g0e")
 letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds"), ExtResource("8_gp5py"), ExtResource("9_4e1wc"), ExtResource("10_tw725"), ExtResource("11_6m062"), ExtResource("12_ludwc"), ExtResource("13_3sqmj"), ExtResource("14_kiraw"), ExtResource("15_fwo0e"), ExtResource("16_lnyqm"), ExtResource("17_qwyo6"), ExtResource("18_f0b65"), ExtResource("19_6fw2v"), ExtResource("20_msf06"), ExtResource("21_mq8lr"), ExtResource("22_5k8cv"), ExtResource("24_70vfp"), ExtResource("25_wonye"), ExtResource("26_rbvx0"), ExtResource("27_pb723"), ExtResource("28_f4d0n"), ExtResource("29_teune"), ExtResource("30_4ypvt")])
 spawn = NodePath("Spawn")
@@ -109,6 +109,7 @@ paper = NodePath("../CanvasLayer/Evaluation Paper")
 evaluationRow = ExtResource("37_taigo")
 evaluationContainer = NodePath("../CanvasLayer/Evaluation Paper/VBoxContainer")
 spacer = ExtResource("32_lidel")
+levelTimer = NodePath("../CanvasLayer/Time Left")
 
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
@@ -208,7 +209,16 @@ offset_right = -42.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Time Left" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 418.0
+offset_bottom = 101.0
+theme_override_font_sizes/normal_font_size = 50
+text = "1:23"
+
 [node name="Scene Changer" parent="." instance=ExtResource("9_vqoue")]
 
 [node name="Dictionary" type="Node2D" parent="."]
 script = ExtResource("37_7pnho")
+fileName = "res://enwords.txt"

@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://d28beajmtnmv4"]
+
+[ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_h4pmr"]
+[ext_resource type="Script" path="res://Scripts/Picks.cs" id="1_tr313"]
+[ext_resource type="PackedScene" uid="uid://7ambpmmfn7n0" path="res://Prefabs/Pick.tscn" id="2_xr6tp"]
+[ext_resource type="PackedScene" uid="uid://bi7sraec865yr" path="res://AnttiStarter/SceneChanger/SceneChanger.tscn" id="3_3d4qj"]
+[ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="4_w0b2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2q2b4"]
+size = Vector2(8.71129, 8.38046)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("pick1", "pick2", "pick3", "wordDictionary", "adjectives", "sceneChanger")]
+script = ExtResource("1_tr313")
+pick1 = NodePath("Pick")
+pick2 = NodePath("Pick2")
+pick3 = NodePath("Pick3")
+wordDictionary = NodePath("Dictionary")
+adjectives = NodePath("Adjectives")
+sceneChanger = NodePath("Scene Changer")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.517647, 0.733333, 0.878431, 1)
+position = Vector2(532.4, 344.4)
+scale = Vector2(1461.7, 1098.2)
+texture = ExtResource("1_h4pmr")
+
+[node name="Table" type="StaticBody2D" parent="."]
+modulate = Color(0.894118, 0.729412, 0.627451, 1)
+position = Vector2(-295.2, 1011.8)
+scale = Vector2(381, 97.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
+position = Vector2(2.36352, 2.18509)
+shape = SubResource("RectangleShape2D_2q2b4")
+
+[node name="Square" type="Sprite2D" parent="Table"]
+position = Vector2(2.37008, 2.18252)
+scale = Vector2(2.18504, 2.09126)
+texture = ExtResource("1_h4pmr")
+
+[node name="Border" type="Sprite2D" parent="Table"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(2.37008, -1.94087)
+scale = Vector2(2.18504, 0.0295629)
+texture = ExtResource("1_h4pmr")
+
+[node name="Pick" parent="." instance=ExtResource("2_xr6tp")]
+offset_left = 15.0
+offset_top = 263.0
+offset_right = 365.0
+offset_bottom = 823.0
+
+[node name="Pick2" parent="." instance=ExtResource("2_xr6tp")]
+offset_left = 366.0
+offset_top = 263.0
+offset_right = 716.0
+offset_bottom = 823.0
+
+[node name="Pick3" parent="." instance=ExtResource("2_xr6tp")]
+offset_left = 715.0
+offset_top = 263.0
+offset_right = 1065.0
+offset_bottom = 823.0
+
+[node name="Scene Changer" parent="." instance=ExtResource("3_3d4qj")]
+
+[node name="Dictionary" type="Node2D" parent="."]
+script = ExtResource("4_w0b2h")
+fileName = "res://enwords.txt"
+
+[node name="Adjectives" type="Node2D" parent="."]
+script = ExtResource("4_w0b2h")
+fileName = "res://adjectives.txt"

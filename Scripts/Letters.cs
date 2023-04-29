@@ -20,13 +20,19 @@ public partial class Letters : Node2D
     [Export] private PackedScene evaluationRow;
     [Export] private Control evaluationContainer;
     [Export] private PackedScene spacer;
+    [Export] private RichTextLabel levelTimer;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
+    private float timeLeft = 120f;
+
+    private GameState State => GetNode<GameState>("/root/GameState");
 
     public override void _Ready()
     {
-        var word = wordDictionary.GetRandomWord(4);
+        var word = State.Word ?? wordDictionary.GetRandomWord(2 + State.Level);
+        timeLeft = word.Length * 15f;
+        
         GD.Print($"Word is {word}");
         
         var idx = 0;
@@ -45,9 +51,16 @@ public partial class Letters : Node2D
 
     public override void _Process(double delta)
     {
-        if (Input.IsKeyPressed(Key.R))
+        if (!evaluating)
         {
-            sceneChanger.ChangeScene("Main");
+            timeLeft = Mathf.Max(timeLeft - (float)delta, 0);
+            var seconds = Mathf.RoundToInt(timeLeft);
+            levelTimer.Text = $"{Mathf.FloorToInt(seconds / 60f)}:{seconds % 60:00}";
+        }
+        
+        if (Input.IsKeyPressed(Key.N))
+        {
+            sceneChanger.ChangeScene("res://Scenes/WordPick.tscn");
         }
         
         if (Input.IsKeyPressed(Key.E) && !evaluating)
@@ -70,11 +83,12 @@ public partial class Letters : Node2D
         breadness += bottom.IsBread ? 0.5f : 0;
 
         var rowDelay = 1.3f;
-        var amount = 123;
+        var amount = 123 * State.Level;
         var breadnessBonus = Mathf.RoundToInt(breadness * amount);
         var missing = ingredients.Any(i => i.OnPlate) ? ingredients.Count(i => !i.IsOk) : ingredients.Count;
         var penalty = Mathf.RoundToInt(1f * missing / ingredients.Count * amount) * 2;
         var heightBonus = height * 3;
+        var timeBonus = Mathf.RoundToInt(timeLeft);
         var total = Mathf.Max(0, amount + breadnessBonus + heightBonus - penalty);
         
         var totalDelay = 0f;
@@ -82,7 +96,7 @@ public partial class Letters : Node2D
         ShowEvaluationRow("Base price", "BASIC", amount.WithSign(), 0.1f);
         ShowEvaluationRow("Breadness", AsPercent(breadness), breadnessBonus.WithSign(), rowDelay * 1);
         ShowEvaluationRow("Height", height + " cm", heightBonus.WithSign(), rowDelay * 2);
-        ShowEvaluationRow("Time left", height + " s", heightBonus.WithSign(), rowDelay * 3);
+        ShowEvaluationRow("Time left", timeBonus + " s", timeBonus.WithSign(), rowDelay * 3);
 
         if (penalty > 0)
         {
