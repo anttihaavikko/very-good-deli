@@ -13,6 +13,7 @@ max_contacts_reported = 5
 contact_monitor = true
 can_sleep = false
 script = ExtResource("2_5qxvm")
+score = 16
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)

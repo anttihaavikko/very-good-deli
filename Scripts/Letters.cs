@@ -83,7 +83,7 @@ public partial class Letters : Node2D
         breadness += bottom.IsBread ? 0.5f : 0;
 
         var rowDelay = 1.3f;
-        var amount = 123 * State.Level;
+        var amount = ingredients.Sum(i => i.Score) * State.Level;
         var breadnessBonus = Mathf.RoundToInt(breadness * amount);
         var missing = ingredients.Any(i => i.OnPlate) ? ingredients.Count(i => !i.IsOk) : ingredients.Count;
         var penalty = Mathf.RoundToInt(1f * missing / ingredients.Count * amount) * 2;
@@ -93,7 +93,7 @@ public partial class Letters : Node2D
         
         var totalDelay = 0f;
         
-        ShowEvaluationRow("Base price", "BASIC", amount.WithSign(), 0.1f);
+        ShowEvaluationRow("Base price", GetDesc(), amount.WithSign(), 0.1f);
         ShowEvaluationRow("Breadness", AsPercent(breadness), breadnessBonus.WithSign(), rowDelay * 1);
         ShowEvaluationRow("Height", height + " cm", heightBonus.WithSign(), rowDelay * 2);
         ShowEvaluationRow("Time left", timeBonus + " s", timeBonus.WithSign(), rowDelay * 3);
@@ -105,6 +105,19 @@ public partial class Letters : Node2D
         }
         
         ShowEvaluationRow("Total", "", total.ToString(), rowDelay * 4 + totalDelay, true);
+    }
+
+    private string GetDesc()
+    {
+        var lvl = State.Level;
+        if (lvl > 7) return "GOD-TIER";
+        if (lvl > 6) return "LUXURIOUS";
+        if (lvl > 5) return "DECADENT";
+        if (lvl > 4) return "ARTISAN";
+        if (lvl > 3) return "NICE";
+        if (lvl > 2) return "DECENT";
+        if (lvl > 1) return "BASIC";
+        return "ENTRY LEVEL";
     }
 
     private string AsMulti(float value)

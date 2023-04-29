@@ -25,6 +25,7 @@ public partial class Picks : Node2D
         pick.Setup(word.ToUpper(), Rng.Value < 0.2f ? adjectives.GetRandomWord() : null);
         pick.onPick += () =>
         {
+            State.Level++;
             State.Word = word;
             sceneChanger.ChangeScene("res://Scenes/Main.tscn");
         };

@@ -6,6 +6,8 @@ namespace Scripts;
 
 public partial class Letter : RigidBody2D
 {
+    [Export] private int score = 10;
+    
     private CollisionPolygon2D polygon;
     private readonly List<Node> touches = new();
     
@@ -13,6 +15,8 @@ public partial class Letter : RigidBody2D
 
     public bool IsOk => touches.All(t => t.Name == "Plate" || t is Letter);
     public bool OnPlate => touches.Any(t => t.Name == "Plate");
+
+    public int Score => score;
 
     public override void _Ready()
     {
