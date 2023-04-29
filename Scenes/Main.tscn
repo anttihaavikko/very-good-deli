@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=41 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
 [ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="2_j874t"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://bk2sxykx21xdg" path="res://Letters/X.tscn" id="28_f4d0n"]
 [ext_resource type="PackedScene" uid="uid://cvvkuhcaaujhw" path="res://Letters/Y.tscn" id="29_teune"]
 [ext_resource type="PackedScene" uid="uid://b27afihhnnbgc" path="res://Letters/Z.tscn" id="30_4ypvt"]
+[ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="37_7pnho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihbhw"]
 size = Vector2(0.658793, 69.3985)
@@ -93,12 +94,14 @@ texture = ExtResource("4_dtkrh")
 node_a = NodePath("..")
 softness = 2.0
 
-[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger")]
+[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary")]
 script = ExtResource("4_57g0e")
 letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds"), ExtResource("8_gp5py"), ExtResource("9_4e1wc"), ExtResource("10_tw725"), ExtResource("11_6m062"), ExtResource("12_ludwc"), ExtResource("13_3sqmj"), ExtResource("14_kiraw"), ExtResource("15_fwo0e"), ExtResource("16_lnyqm"), ExtResource("17_qwyo6"), ExtResource("18_f0b65"), ExtResource("19_6fw2v"), ExtResource("20_msf06"), ExtResource("21_mq8lr"), ExtResource("22_5k8cv"), ExtResource("24_70vfp"), ExtResource("25_wonye"), ExtResource("26_rbvx0"), ExtResource("27_pb723"), ExtResource("28_f4d0n"), ExtResource("29_teune"), ExtResource("30_4ypvt")])
 spawn = NodePath("Spawn")
 sceneChanger = NodePath("../Scene Changer")
-colors = PackedColorArray(0.815686, 0.556863, 0.321569, 1, 1, 0.513726, 0.447059, 1, 1, 0.282353, 0.219608, 1, 0, 0.752941, 0, 1, 1, 1, 0.223529, 1)
+colors = PackedColorArray(1, 0.513726, 0.447059, 1, 1, 0.282353, 0.219608, 1, 0, 0.752941, 0, 1, 1, 1, 0.223529, 1)
+breadColor = Color(0.815686, 0.556863, 0.321569, 1)
+wordDictionary = NodePath("../Dictionary")
 
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
@@ -170,3 +173,6 @@ scale = Vector2(2.18504, 0.0295629)
 texture = ExtResource("1_qofwn")
 
 [node name="Scene Changer" parent="." instance=ExtResource("9_vqoue")]
+
+[node name="Dictionary" type="Node2D" parent="."]
+script = ExtResource("37_7pnho")

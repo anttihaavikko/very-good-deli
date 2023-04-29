@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -12,13 +13,26 @@ public partial class Letters : Node2D
     [Export] private Node2D spawn;
     [Export] private SceneChanger sceneChanger;
     [Export] private Color[] colors;
-    
+    [Export] private Color breadColor;
+    [Export] private WordDictionary wordDictionary;
+
     public override void _Ready()
     {
-        for (var i = 0; i < 5; i++)
+        var word = wordDictionary.GetRandomWord(4);
+        GD.Print($"Word is {word}");
+        
+        var idx = 0;
+        foreach (var letter in word.ToCharArray())
         {
-            SpawnLetter();
+            var index = GetIndex(letter.ToString().ToUpper());
+            SpawnLetter(Mathf.Max(index, 0), idx == 0 || idx == word.Length - 1);
+            idx++;
         }
+    }
+
+    private static int GetIndex(string letter)
+    {
+        return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".IndexOf(letter, StringComparison.Ordinal);
     }
 
     public override void _Process(double delta)
@@ -29,12 +43,11 @@ public partial class Letters : Node2D
         }
     }
 
-    private void SpawnLetter()
+    private void SpawnLetter(int index, bool isBread)
     {
-        var prefab = letters.ToList().Random();
+        var prefab = letters[index];
         var letter = prefab.Instantiate();
-        ((CanvasItem)letter).Modulate = colors.Random();
-        GD.Print($"Spawning {letter.Name}");
+        ((CanvasItem)letter).Modulate = isBread ? breadColor :  colors.Random();
         spawn.AddChild(letter);
     }
 }
