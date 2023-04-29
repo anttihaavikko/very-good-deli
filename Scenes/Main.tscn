@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=46 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
 [ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="2_j874t"]
@@ -41,6 +41,7 @@
 [ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="37_7pnho"]
 [ext_resource type="PackedScene" uid="uid://bd1nep58v5p1v" path="res://Prefabs/EvaluationRow.tscn" id="37_taigo"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="38_mrn7r"]
+[ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="40_mawly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihbhw"]
 size = Vector2(0.658793, 69.3985)
@@ -175,6 +176,7 @@ offset_left = -73.0
 offset_top = -266.0
 offset_right = 72.0
 offset_bottom = -155.0
+theme = ExtResource("40_mawly")
 
 [node name="Table" type="StaticBody2D" parent="."]
 modulate = Color(0.894118, 0.729412, 0.627451, 1)
@@ -227,17 +229,19 @@ grow_vertical = 2
 
 [node name="Time Left" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 18.0
-offset_top = 14.0
+offset_top = 15.0
 offset_right = 418.0
-offset_bottom = 101.0
+offset_bottom = 102.0
+theme = ExtResource("40_mawly")
 theme_override_font_sizes/normal_font_size = 50
 text = "1:23"
 
 [node name="Score" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 448.0
-offset_top = -20.0
-offset_right = 1060.0
-offset_bottom = 195.0
+offset_left = 449.0
+offset_top = -5.0
+offset_right = 1061.0
+offset_bottom = 210.0
+theme = ExtResource("40_mawly")
 theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
 text = "[right]0[/right]"
@@ -245,18 +249,19 @@ text = "[right]0[/right]"
 [node name="Next Wrap" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 818.0
-offset_top = 1016.0
-offset_right = 858.0
-offset_bottom = 1056.0
+offset_left = 885.0
+offset_top = 1009.0
+offset_right = 925.0
+offset_bottom = 1049.0
 script = ExtResource("38_mrn7r")
 isOneSized = true
 
 [node name="Next Button" type="Button" parent="CanvasLayer/Next Wrap"]
-offset_left = -247.0
-offset_top = -44.0
-offset_right = 241.0
-offset_bottom = 40.0
+offset_left = -177.0
+offset_top = -41.0
+offset_right = 174.0
+offset_bottom = 47.0
+theme = ExtResource("40_mawly")
 theme_override_font_sizes/font_size = 50
 text = "NEXT CUSTOMER"
 
@@ -278,11 +283,12 @@ hideDuration = 0.6
 isOneSized = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Timer Wrap"]
-offset_left = -38.0
-offset_top = -114.0
-offset_right = 109.0
-offset_bottom = 107.0
-theme_override_font_sizes/normal_font_size = 150
+offset_left = -28.0
+offset_top = -106.0
+offset_right = 119.0
+offset_bottom = 115.0
+theme = ExtResource("40_mawly")
+theme_override_font_sizes/normal_font_size = 175
 text = "0"
 
 [connection signal="pressed" from="Bell/Button" to="Bell" method="Ring"]

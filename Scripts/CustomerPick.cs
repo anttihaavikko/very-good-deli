@@ -14,7 +14,7 @@ public partial class CustomerPick : Control
 
     public void Setup(string word, string adjective)
     {
-        textBubble.Text = $"[center]{GetStart()} {WithPrefix(adjective)} {word} {GetBread()}! {GetExtras()}[/center]";
+        textBubble.Text = $"[center]{GetStart()} {WithPrefix(adjective, word)} [b]{word}[/b] {GetBread()}! {GetExtras()}[/center]";
     }
 
     public void Pick()
@@ -36,9 +36,9 @@ public partial class CustomerPick : Control
         }.Random();
     }
 
-    private string WithPrefix(string adjective)
+    private string WithPrefix(string adjective, string word)
     {
-        return string.IsNullOrEmpty(adjective) ? "a" : $"{GetPrefix(adjective)} {adjective}";
+        return string.IsNullOrEmpty(adjective) ? GetPrefix(word) : $"{GetPrefix(adjective)} {adjective}";
     }
 
     private string GetPrefix(string adjective)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd1nep58v5p1v"]
+[gd_scene load_steps=5 format=3 uid="uid://bd1nep58v5p1v"]
 
 [ext_resource type="Script" path="res://Scripts/EvaluationRow.cs" id="1_iuk2d"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="1_wwap5"]
+[ext_resource type="FontFile" uid="uid://dbe2xxoy2rauf" path="res://learning_curve_bold_ot_tt.ttf" id="3_idfxw"]
+[ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="3_q45d0"]
 
 [node name="Evaluation Row" type="ColorRect" node_paths=PackedStringArray("titleLabel", "valueLabel", "changeLabel")]
 custom_minimum_size = Vector2(2.08165e-12, 100)
@@ -29,8 +31,11 @@ offset_top = -33.0
 offset_right = 376.0
 offset_bottom = 27.0
 pivot_offset = Vector2(60, 30)
+theme = ExtResource("3_q45d0")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 40
+theme_override_fonts/normal_font = ExtResource("3_idfxw")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
 text = "Base price"
 
 [node name="Control2" type="Control" parent="."]
@@ -51,9 +56,12 @@ offset_top = -20.0
 offset_right = 391.0
 offset_bottom = 40.0
 pivot_offset = Vector2(50, 30)
+theme = ExtResource("3_q45d0")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 35
-text = "100%"
+theme_override_fonts/normal_font = ExtResource("3_idfxw")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Base price"
 
 [node name="Control3" type="Control" parent="."]
 anchors_preset = 0
@@ -73,7 +81,9 @@ offset_top = -27.0
 offset_right = 30.0
 offset_bottom = 33.0
 pivot_offset = Vector2(240, 30)
+theme = ExtResource("3_q45d0")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 40
+theme_override_fonts/normal_font = ExtResource("3_idfxw")
+theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[right]+500[/right]"
+text = "Base price"
