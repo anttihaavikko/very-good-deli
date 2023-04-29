@@ -1,67 +1,107 @@
-[gd_scene load_steps=8 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=15 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
-[ext_resource type="Script" path="res://Scripts/Letter.cs" id="2_jd7yr"]
-[ext_resource type="Texture2D" uid="uid://tgr52yre8ij0" path="res://Sprites/a.png" id="3_vl77t"]
+[ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="2_j874t"]
+[ext_resource type="PackedScene" uid="uid://buueadi041e58" path="res://Letters/B.tscn" id="3_ivoux"]
+[ext_resource type="Script" path="res://Scripts/Letters.cs" id="4_57g0e"]
 [ext_resource type="Texture2D" uid="uid://da51roy4mumgr" path="res://Sprites/circle.svg" id="4_dtkrh"]
 [ext_resource type="Script" path="res://Scripts/Hand.cs" id="4_v0jb4"]
+[ext_resource type="PackedScene" uid="uid://nit2abnesagk" path="res://Letters/C.tscn" id="6_odhns"]
+[ext_resource type="PackedScene" uid="uid://c3q57af4cd6es" path="res://Letters/D.tscn" id="8_du2ds"]
+[ext_resource type="PackedScene" uid="uid://bi7sraec865yr" path="res://AnttiStarter/SceneChanger/SceneChanger.tscn" id="9_vqoue"]
+[ext_resource type="Texture2D" uid="uid://3rwocaycdkp1" path="res://Sprites/plate.png" id="10_3c44a"]
+[ext_resource type="Texture2D" uid="uid://ujxyxdlt7ua6" path="res://Sprites/basket.png" id="10_rmolq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vymed"]
-size = Vector2(4.00787, 4.02057)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihbhw"]
+size = Vector2(0.658793, 20.4627)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_24oiw"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vymed"]
+size = Vector2(8.71129, 8.38046)
+
 [node name="Node2D" type="Node2D"]
 
-[node name="Table" type="StaticBody2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1090, 352)
+zoom = Vector2(0.5, 0.5)
+
+[node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(529, 1137)
 scale = Vector2(381, 97.25)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
-position = Vector2(0.0118107, 0.00514126)
-shape = SubResource("RectangleShape2D_vymed")
-
-[node name="Square" type="Sprite2D" parent="Table"]
-texture = ExtResource("1_qofwn")
-
-[node name="Letter" type="RigidBody2D" parent="."]
-position = Vector2(281, 471)
-script = ExtResource("2_jd7yr")
-
-[node name="A" type="Sprite2D" parent="Letter"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-texture = ExtResource("3_vl77t")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Letter"]
-scale = Vector2(0.98669, 1.01911)
-polygon = PackedVector2Array(17.2293, 149.15, 97.295, 149.15, 45.607, -151.112, -42.5666, -151.112, -94.2545, 150.131, -16.2159, 150.131, -9.12143, 97.1437, 8.10791, 98.1249)
-
-[node name="Letter2" type="RigidBody2D" parent="."]
-position = Vector2(702, 455)
-script = ExtResource("2_jd7yr")
-
-[node name="A" type="Sprite2D" parent="Letter2"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-texture = ExtResource("3_vl77t")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Letter2"]
-scale = Vector2(0.98669, 1.01911)
-polygon = PackedVector2Array(17.2293, 149.15, 97.295, 149.15, 45.607, -151.112, -42.5666, -151.112, -94.2545, 150.131, -16.2159, 150.131, -9.12143, 97.1437, 8.10791, 98.1249)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(-1.66273, -3.85604)
+shape = SubResource("RectangleShape2D_ihbhw")
 
 [node name="Hand" type="StaticBody2D" parent="." node_paths=PackedStringArray("pin")]
 position = Vector2(108, 100)
 collision_layer = 2
 script = ExtResource("4_v0jb4")
 pin = NodePath("PinJoint2D")
-target = NodePath("../Letter")
+target = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
 shape = SubResource("CircleShape2D_24oiw")
 
 [node name="Circle" type="Sprite2D" parent="Hand"]
+visible = false
 position = Vector2(2.08165e-12, 2.08165e-12)
 scale = Vector2(0.176, 0.176)
 texture = ExtResource("4_dtkrh")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Hand"]
 node_a = NodePath("..")
+softness = 2.0
+
+[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger")]
+script = ExtResource("4_57g0e")
+letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds")])
+spawn = NodePath("Spawn")
+sceneChanger = NodePath("../Scene Changer")
+
+[node name="Spawn" type="Node2D" parent="Letters"]
+position = Vector2(540, 835)
+
+[node name="Basket" type="StaticBody2D" parent="."]
+position = Vector2(541, 862)
+scale = Vector2(0.827924, 0.827924)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Basket"]
+polygon = PackedVector2Array(-510, -106, -477, 8, -433, 20, -426, 109, 425, 109, 436, 18, 478, 5, 511, -108, 447, -108, 423, -30, 371, -3, 363, 40, -383, 41, -388, -19, -436, -36, -457, -106)
+
+[node name="Basket" type="Sprite2D" parent="Basket"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("10_rmolq")
+
+[node name="Plate" type="StaticBody2D" parent="."]
+position = Vector2(1382, 912)
+scale = Vector2(0.660269, 0.660269)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plate"]
+polygon = PackedVector2Array(-510.917, -64.0154, -404.627, -65.2233, -375.639, -2.41565, 379.262, -2.41565, 423.952, -67.639, 512.124, -67.639, 477.097, 8.45496, 432.406, 22.9491, 420.328, 56.7686, -422.745, 55.5608, -434.823, 19.3256, -477.097, 7.24719)
+
+[node name="Plate" type="Sprite2D" parent="Plate"]
+position = Vector2(2.08165e-12, 41.0668)
+texture = ExtResource("10_3c44a")
+
+[node name="Table" type="StaticBody2D" parent="."]
+position = Vector2(529, 1137)
+scale = Vector2(381, 97.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
+position = Vector2(2.36352, 2.18509)
+shape = SubResource("RectangleShape2D_vymed")
+
+[node name="Square" type="Sprite2D" parent="Table"]
+position = Vector2(2.37008, 2.18252)
+scale = Vector2(2.18504, 2.09126)
+texture = ExtResource("1_qofwn")
+
+[node name="Border" type="Sprite2D" parent="Table"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(2.37008, -1.94087)
+scale = Vector2(2.18504, 0.0295629)
+texture = ExtResource("1_qofwn")
+
+[node name="Scene Changer" parent="." instance=ExtResource("9_vqoue")]
