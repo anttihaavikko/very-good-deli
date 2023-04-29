@@ -25,6 +25,6 @@ public partial class WordDictionary : Node2D
             Init();
         }
         
-        return words.Where(word => length < 0 || word.Length == length).ToList().Random();
+        return words.Where(word => length < 0 || word.Length <= length).ToList().Random();
     }
 }

@@ -21,10 +21,13 @@ public partial class Letters : Node2D
     [Export] private Control evaluationContainer;
     [Export] private PackedScene spacer;
     [Export] private RichTextLabel levelTimer;
+    [Export] private Appearer nextButton;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
     private float timeLeft = 120f;
+    
+    public bool Waiting { get; set; }
 
     private GameState State => GetNode<GameState>("/root/GameState");
 
@@ -49,9 +52,14 @@ public partial class Letters : Node2D
         return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".IndexOf(letter, StringComparison.Ordinal);
     }
 
+    public void NextLevel()
+    {
+        sceneChanger.ChangeScene("res://Scenes/WordPick.tscn");
+    }
+
     public override void _Process(double delta)
     {
-        if (!evaluating)
+        if (!Waiting && !evaluating)
         {
             timeLeft = Mathf.Max(timeLeft - (float)delta, 0);
             var seconds = Mathf.RoundToInt(timeLeft);
@@ -69,7 +77,7 @@ public partial class Letters : Node2D
         }
     }
 
-    private void Evaluate()
+    public void Evaluate()
     {
         paper.Toggle();
         evaluating = true;
@@ -144,6 +152,11 @@ public partial class Letters : Node2D
             var row = evaluationRow.Instantiate() as EvaluationRow;
             row!.Setup(title, value, change);
             evaluationContainer.AddChild(row);
+
+            if (addSpacer)
+            {
+                nextButton.Toggle();
+            }
         };
         AddChild(timer);
         timer.Start(delay);
