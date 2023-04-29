@@ -23,6 +23,7 @@ public partial class Letters : Node2D
     [Export] private RichTextLabel levelTimer;
     [Export] private Appearer nextButton;
     [Export] private Bell bell;
+    [Export] private RichTextLabel scoreLabel;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
@@ -34,6 +35,8 @@ public partial class Letters : Node2D
 
     public override void _Ready()
     {
+        UpdateScore();
+        
         var word = State.Word ?? wordDictionary.GetRandomWord(2 + State.Level);
         timeLeft = word.Length * 15f;
         
@@ -46,6 +49,11 @@ public partial class Letters : Node2D
             SpawnLetter(Mathf.Max(index, 0), idx == 0 || idx == word.Length - 1);
             idx++;
         }
+    }
+
+    private void UpdateScore()
+    {
+        scoreLabel.Text = $"[right]{State.Score}[/right]";
     }
 
     public void RingBell()
@@ -119,6 +127,8 @@ public partial class Letters : Node2D
         }
         
         ShowEvaluationRow("Total", "", total.ToString(), rowDelay * 4 + totalDelay, true);
+
+        State.Score += total;
     }
 
     private string GetDesc()
@@ -162,6 +172,7 @@ public partial class Letters : Node2D
             if (addSpacer)
             {
                 nextButton.Toggle();
+                UpdateScore();
             }
         };
         
