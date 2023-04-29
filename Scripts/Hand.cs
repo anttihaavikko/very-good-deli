@@ -14,6 +14,8 @@ public partial class Hand : StaticBody2D
     [Export] private Node2D rotatePivot;
     [Export] private Node2D armPos;
     [Export] private Line2D grabLine;
+    [Export] private Texture2D handOpen, handGrab;
+    [Export] private Sprite2D sprite;
 
     private Vector2 offset;
     private Node2D grabbed;
@@ -39,6 +41,7 @@ public partial class Hand : StaticBody2D
 
     public void Release()
     {
+        sprite.Texture = handOpen;
         grabbed = null;
         grabLine.Hide();
         pin.NodeB = null;
@@ -64,6 +67,7 @@ public partial class Hand : StaticBody2D
             offset = grabbed.ToLocal(GlobalPosition);
 
             grabLine.Show();
+            sprite.Texture = handGrab;
         }
     }
 
