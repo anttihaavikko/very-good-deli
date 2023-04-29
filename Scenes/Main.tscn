@@ -114,7 +114,7 @@ default_color = Color(1, 1, 1, 0.501961)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton", "bell", "scoreLabel", "hand")]
+[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton", "bell", "scoreLabel", "hand", "paperRotator")]
 script = ExtResource("4_57g0e")
 letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds"), ExtResource("8_gp5py"), ExtResource("9_4e1wc"), ExtResource("10_tw725"), ExtResource("11_6m062"), ExtResource("12_ludwc"), ExtResource("13_3sqmj"), ExtResource("14_kiraw"), ExtResource("15_fwo0e"), ExtResource("16_lnyqm"), ExtResource("17_qwyo6"), ExtResource("18_f0b65"), ExtResource("19_6fw2v"), ExtResource("20_msf06"), ExtResource("21_mq8lr"), ExtResource("22_5k8cv"), ExtResource("24_70vfp"), ExtResource("25_wonye"), ExtResource("26_rbvx0"), ExtResource("27_pb723"), ExtResource("28_f4d0n"), ExtResource("29_teune"), ExtResource("30_4ypvt")])
 spawn = NodePath("Spawn")
@@ -122,15 +122,16 @@ sceneChanger = NodePath("../Scene Changer")
 colors = PackedColorArray(1, 0.513726, 0.447059, 1, 1, 0.282353, 0.219608, 1, 0, 0.752941, 0, 1, 1, 1, 0.223529, 1)
 breadColor = Color(0.815686, 0.556863, 0.321569, 1)
 wordDictionary = NodePath("../Dictionary")
-paper = NodePath("../CanvasLayer/Evaluation Paper")
+paper = NodePath("../CanvasLayer/Paper Wrap/Evaluation Paper")
 evaluationRow = ExtResource("37_taigo")
-evaluationContainer = NodePath("../CanvasLayer/Evaluation Paper/VBoxContainer")
+evaluationContainer = NodePath("../CanvasLayer/Paper Wrap/Evaluation Paper/VBoxContainer")
 spacer = ExtResource("32_lidel")
 levelTimer = NodePath("../CanvasLayer/Time Left")
 nextButton = NodePath("../CanvasLayer/Next Wrap")
 bell = NodePath("../Bell")
 scoreLabel = NodePath("../CanvasLayer/Score")
 hand = NodePath("../Hand")
+paperRotator = NodePath("../CanvasLayer/Paper Wrap")
 
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
@@ -215,7 +216,8 @@ texture = ExtResource("1_qofwn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Evaluation Paper" type="ColorRect" parent="CanvasLayer"]
+[node name="Paper Wrap" type="Control" parent="CanvasLayer"]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -227,11 +229,26 @@ offset_right = 325.0
 offset_bottom = 383.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(325, 397)
+
+[node name="Evaluation Paper" type="ColorRect" parent="CanvasLayer/Paper Wrap"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -397.0
+offset_right = 325.0
+offset_bottom = 397.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(325, 350)
 color = Color(1, 0.992157, 0.901961, 1)
 script = ExtResource("38_mrn7r")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Evaluation Paper"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -242,7 +259,7 @@ offset_right = -42.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 modulate = Color(0.482353, 0.329412, 0, 0.223529)
 texture_repeat = 2
 layout_mode = 1
@@ -260,7 +277,7 @@ texture = ExtResource("39_5yhhd")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 modulate = Color(0.482353, 0.329412, 0, 0.223529)
 texture_repeat = 2
 layout_mode = 1
@@ -278,7 +295,7 @@ texture = ExtResource("39_5yhhd")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 modulate = Color(0.482353, 0.329412, 0, 0.223529)
 texture_repeat = 2
 layout_mode = 1
@@ -296,7 +313,7 @@ texture = ExtResource("39_5yhhd")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 modulate = Color(0.482353, 0.329412, 0, 0.223529)
 texture_repeat = 2
 layout_mode = 1
@@ -314,7 +331,7 @@ texture = ExtResource("39_5yhhd")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 modulate = Color(0.482353, 0.329412, 0, 0.223529)
 texture_repeat = 2
 layout_mode = 1
@@ -332,7 +349,7 @@ texture = ExtResource("39_5yhhd")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 modulate = Color(0.482353, 0.329412, 0, 0.223529)
 texture_repeat = 2
 layout_mode = 1
@@ -350,7 +367,7 @@ texture = ExtResource("39_5yhhd")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 modulate = Color(0.482353, 0.329412, 0, 0.223529)
 texture_repeat = 2
 layout_mode = 1
@@ -368,7 +385,7 @@ texture = ExtResource("39_5yhhd")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect8" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+[node name="TextureRect8" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 modulate = Color(0.482353, 0.329412, 0, 0.223529)
 texture_repeat = 2
 layout_mode = 1
@@ -386,7 +403,7 @@ texture = ExtResource("39_5yhhd")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect9" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+[node name="TextureRect9" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 modulate = Color(0.482353, 0.329412, 0, 0.223529)
 texture_repeat = 2
 layout_mode = 1
@@ -404,7 +421,7 @@ texture = ExtResource("39_5yhhd")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="TextureRect10" type="TextureRect" parent="CanvasLayer/Evaluation Paper"]
+[node name="TextureRect10" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
 modulate = Color(0.482353, 0.329412, 0, 0.223529)
 texture_repeat = 2
 layout_mode = 1

@@ -26,6 +26,7 @@ public partial class Letters : Node2D
     [Export] private Bell bell;
     [Export] private RichTextLabel scoreLabel;
     [Export] private Hand hand;
+    [Export] private Control paperRotator;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
@@ -100,6 +101,14 @@ public partial class Letters : Node2D
     public void Evaluate()
     {
         paper.Toggle();
+        
+        var tween = GetTree().CreateTween();
+        var angle = 0.1f;
+        paperRotator.Rotation = Rng.Range(-angle, angle);
+        tween.TweenProperty(paperRotator, "rotation", Rng.Range(-angle, angle), 0.5f)
+            .SetTrans(Tween.TransitionType.Elastic)
+            .SetEase(Tween.EaseType.Out);
+        
         evaluating = true;
         
         var top = ingredients.OrderBy(i => i.GetHighestPoint()).First();
