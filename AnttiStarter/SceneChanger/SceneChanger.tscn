@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi7sraec865yr"]
+
+[ext_resource type="Script" path="res://AnttiStarter/SceneChanger/SceneChanger.cs" id="1_1usav"]
+[ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="2_nprkr"]
+
+[node name="Scene Changer" type="CanvasLayer"]
+script = ExtResource("1_1usav")
+blinderLeft = NodePath("Left")
+blinderRight = NodePath("Right")
+
+[node name="Left" type="ColorRect" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 540.0
+grow_vertical = 2
+scale = Vector2(2.08165e-12, 1)
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_nprkr")
+startShown = true
+showTransition = 9
+showDuration = 0.5
+hideTransition = 9
+hideDuration = 0.5
+isOneSized = true
+closedSize = Vector2(0, 1)
+
+[node name="Right" type="ColorRect" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -540.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.08165e-12, 1)
+pivot_offset = Vector2(540, 2.08165e-12)
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_nprkr")
+startShown = true
+showTransition = 9
+showDuration = 0.5
+hideTransition = 9
+hideDuration = 0.5
+isOneSized = true
+closedSize = Vector2(0, 1)

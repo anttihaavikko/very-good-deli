@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://n13ntcoklr72"]
+
+[ext_resource type="Script" path="res://AnttiStarter/Leaderboards/Leaderboards.cs" id="1_odxym"]
+[ext_resource type="PackedScene" uid="uid://b2j8x7unvw0ke" path="res://AnttiStarter/Leaderboards/ScoreRow.tscn" id="2_umbsi"]
+
+[node name="Leaderboards" type="VBoxContainer" node_paths=PackedStringArray("scoreManager")]
+offset_left = 23.0
+offset_top = 469.0
+offset_right = 329.0
+offset_bottom = 694.0
+size_flags_vertical = 0
+script = ExtResource("1_odxym")
+rowPrefab = ExtResource("2_umbsi")
+scoreManager = NodePath("")

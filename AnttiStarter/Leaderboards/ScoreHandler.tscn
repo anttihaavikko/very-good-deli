@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs1dtnn7c3mps"]
+
+[ext_resource type="Script" path="res://AnttiStarter/Leaderboards/ScoreManager.cs" id="1_moynp"]
+
+[node name="Scores" type="Node2D" node_paths=PackedStringArray("loadRequest", "saveRequest")]
+script = ExtResource("1_moynp")
+game = "godottest"
+loadRequest = NodePath("Load")
+saveRequest = NodePath("Save")
+
+[node name="Load" type="HTTPRequest" parent="."]
+
+[node name="@@33824" type="Timer" parent="Load"]
+one_shot = true
+
+[node name="Save" type="HTTPRequest" parent="."]
+
+[node name="@@33825" type="Timer" parent="Save"]
+one_shot = true

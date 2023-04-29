@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://defaqmft8mbsr"]
+
+[ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
+[ext_resource type="Script" path="res://Scripts/Letter.cs" id="2_jd7yr"]
+[ext_resource type="Texture2D" uid="uid://tgr52yre8ij0" path="res://Sprites/a.png" id="3_vl77t"]
+[ext_resource type="Texture2D" uid="uid://da51roy4mumgr" path="res://Sprites/circle.svg" id="4_dtkrh"]
+[ext_resource type="Script" path="res://Scripts/Hand.cs" id="4_v0jb4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vymed"]
+size = Vector2(4.00787, 4.02057)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_24oiw"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Table" type="StaticBody2D" parent="."]
+position = Vector2(529, 1137)
+scale = Vector2(381, 97.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
+position = Vector2(0.0118107, 0.00514126)
+shape = SubResource("RectangleShape2D_vymed")
+
+[node name="Square" type="Sprite2D" parent="Table"]
+texture = ExtResource("1_qofwn")
+
+[node name="Letter" type="RigidBody2D" parent="."]
+position = Vector2(281, 471)
+script = ExtResource("2_jd7yr")
+
+[node name="A" type="Sprite2D" parent="Letter"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("3_vl77t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Letter"]
+scale = Vector2(0.98669, 1.01911)
+polygon = PackedVector2Array(17.2293, 149.15, 97.295, 149.15, 45.607, -151.112, -42.5666, -151.112, -94.2545, 150.131, -16.2159, 150.131, -9.12143, 97.1437, 8.10791, 98.1249)
+
+[node name="Letter2" type="RigidBody2D" parent="."]
+position = Vector2(702, 455)
+script = ExtResource("2_jd7yr")
+
+[node name="A" type="Sprite2D" parent="Letter2"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("3_vl77t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Letter2"]
+scale = Vector2(0.98669, 1.01911)
+polygon = PackedVector2Array(17.2293, 149.15, 97.295, 149.15, 45.607, -151.112, -42.5666, -151.112, -94.2545, 150.131, -16.2159, 150.131, -9.12143, 97.1437, 8.10791, 98.1249)
+
+[node name="Hand" type="StaticBody2D" parent="." node_paths=PackedStringArray("pin")]
+position = Vector2(108, 100)
+collision_layer = 2
+script = ExtResource("4_v0jb4")
+pin = NodePath("PinJoint2D")
+target = NodePath("../Letter")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
+shape = SubResource("CircleShape2D_24oiw")
+
+[node name="Circle" type="Sprite2D" parent="Hand"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("4_dtkrh")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Hand"]
+node_a = NodePath("..")
