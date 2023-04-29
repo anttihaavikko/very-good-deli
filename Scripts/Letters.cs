@@ -137,16 +137,17 @@ public partial class Letters : Node2D
         var breadnessBonus = Mathf.RoundToInt(breadness * amount);
         var missing = ingredients.Any(i => i.OnPlate) ? ingredients.Count(i => !i.IsOk) : ingredients.Count;
         var penalty = Mathf.RoundToInt(1f * missing / ingredients.Count * amount) * 2;
-        var heightBonus = height * 3;
-        var timeBonus = Mathf.RoundToInt(timeLeft);
-        var total = Mathf.Max(0, amount + breadnessBonus + heightBonus - penalty);
+        var heightBonus = height * 4;
+        var time = Mathf.RoundToInt(timeLeft);
+        var timeBonus = time * State.Level;
+        var total = Mathf.Max(0, amount + breadnessBonus + timeBonus + heightBonus - penalty);
         
         var totalDelay = 0f;
         
         ShowEvaluationRow("Base price", GetDesc(), amount.WithSign(), 0.1f);
         ShowEvaluationRow("Sandwichness", AsPercent(breadness), breadnessBonus.WithSign(), rowDelay * 1);
         ShowEvaluationRow("Height", height + " cm", heightBonus.WithSign(), rowDelay * 2);
-        ShowEvaluationRow("Time left", timeBonus + " s", timeBonus.WithSign(), rowDelay * 3);
+        ShowEvaluationRow("Time left", time + " s", timeBonus.WithSign(), rowDelay * 3);
 
         if (penalty > 0)
         {
