@@ -10,12 +10,14 @@ public partial class Bell : Node2D
     [Export] private Appearer timeLabelAppearer;
 
     private readonly Timer timer = new();
+    private bool done;
 
     public override void _Ready()
     {
         AddChild(timer);
         timer.Timeout += () =>
         {
+            done = true;
             timeLabelAppearer.Toggle(false);
             letters.Evaluate();
         };
@@ -28,6 +30,7 @@ public partial class Bell : Node2D
 
     public void Cancel()
     {
+        if (done) return;
         timeLabelAppearer.Toggle(false);
         letters.Waiting = false;
         timer.Stop();
@@ -35,6 +38,7 @@ public partial class Bell : Node2D
 
     public void Ring()
     {
+        if (done) return;
         timeLabelAppearer.Toggle(true);
         letters.Waiting = true;
         timer.OneShot = true;

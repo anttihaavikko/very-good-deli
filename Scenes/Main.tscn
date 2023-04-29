@@ -78,12 +78,13 @@ scale = Vector2(381, 97.25)
 position = Vector2(-1.66273, -3.64524)
 shape = SubResource("RectangleShape2D_ihbhw")
 
-[node name="Hand" type="StaticBody2D" parent="." node_paths=PackedStringArray("pin")]
+[node name="Hand" type="StaticBody2D" parent="." node_paths=PackedStringArray("pin", "bell")]
 position = Vector2(108, 100)
 collision_layer = 2
 script = ExtResource("4_v0jb4")
 pin = NodePath("PinJoint2D")
 target = NodePath("")
+bell = NodePath("../Bell")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
 shape = SubResource("CircleShape2D_24oiw")
@@ -98,7 +99,7 @@ texture = ExtResource("4_dtkrh")
 node_a = NodePath("..")
 softness = 2.0
 
-[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton")]
+[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton", "bell")]
 script = ExtResource("4_57g0e")
 letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds"), ExtResource("8_gp5py"), ExtResource("9_4e1wc"), ExtResource("10_tw725"), ExtResource("11_6m062"), ExtResource("12_ludwc"), ExtResource("13_3sqmj"), ExtResource("14_kiraw"), ExtResource("15_fwo0e"), ExtResource("16_lnyqm"), ExtResource("17_qwyo6"), ExtResource("18_f0b65"), ExtResource("19_6fw2v"), ExtResource("20_msf06"), ExtResource("21_mq8lr"), ExtResource("22_5k8cv"), ExtResource("24_70vfp"), ExtResource("25_wonye"), ExtResource("26_rbvx0"), ExtResource("27_pb723"), ExtResource("28_f4d0n"), ExtResource("29_teune"), ExtResource("30_4ypvt")])
 spawn = NodePath("Spawn")
@@ -112,6 +113,7 @@ evaluationContainer = NodePath("../CanvasLayer/Evaluation Paper/VBoxContainer")
 spacer = ExtResource("32_lidel")
 levelTimer = NodePath("../CanvasLayer/Time Left")
 nextButton = NodePath("../CanvasLayer/Next Wrap")
+bell = NodePath("../Bell")
 
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
@@ -156,9 +158,9 @@ position = Vector2(-0.736328, -29.2399)
 scale = Vector2(0.373257, 0.373257)
 texture = ExtResource("20_ebig8")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Bell/Bell Base"]
+[node name="BellBody" type="StaticBody2D" parent="Bell/Bell Base"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bell/Bell Base/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bell/Bell Base/BellBody"]
 polygon = PackedVector2Array(-343.634, 86.3748, -295.41, -31.5066, -292.731, -176.179, -239.148, -280.665, -158.775, -350.322, -46.2515, -393.188, -46.2515, -444.091, -94.4756, -446.77, -123.946, -473.562, -126.625, -548.577, -91.7969, -588.764, 95.7417, -588.764, 127.891, -551.256, 122.533, -468.203, 93.0625, -444.091, 47.5176, -444.091, 47.5176, -393.188, 154.683, -358.359, 235.056, -283.344, 293.997, -173.5, 293.997, -50.2605, 269.885, -28.8274, 331.504, 83.6956)
 
 [node name="Bell" type="Sprite2D" parent="Bell"]

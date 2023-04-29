@@ -9,6 +9,7 @@ public partial class Hand : StaticBody2D
     [Export] private PinJoint2D pin;
     [Export] private NodePath target;
     [Export] private StaticBody2D collisionShape;
+    [Export] private Bell bell;
 
     public override void _Input(InputEvent @event)
     {
@@ -37,6 +38,7 @@ public partial class Hand : StaticBody2D
         if (match != default)
         {
             match.TryGetValue("collider", out var coll);
+            bell.Cancel();
             pin.NodeB = ((Node2D)coll).GetPath();
         }
     }

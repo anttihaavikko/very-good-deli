@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -18,6 +19,8 @@ public partial class Letter : RigidBody2D
 
     public int Score => score;
 
+    public Action ringBell;
+
     public override void _Ready()
     {
         polygon = GetNode<CollisionPolygon2D>("CollisionPolygon2D");
@@ -32,6 +35,11 @@ public partial class Letter : RigidBody2D
 
     private void Touch(Node other)
     {
+        if (other.Name == "BellBody")
+        {
+            ringBell?.Invoke();
+        }
+        
         touches.Add(other);
     }
 

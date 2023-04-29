@@ -22,6 +22,7 @@ public partial class Letters : Node2D
     [Export] private PackedScene spacer;
     [Export] private RichTextLabel levelTimer;
     [Export] private Appearer nextButton;
+    [Export] private Bell bell;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
@@ -45,6 +46,11 @@ public partial class Letters : Node2D
             SpawnLetter(Mathf.Max(index, 0), idx == 0 || idx == word.Length - 1);
             idx++;
         }
+    }
+
+    public void RingBell()
+    {
+        bell.Ring();
     }
 
     private static int GetIndex(string letter)
@@ -158,6 +164,7 @@ public partial class Letters : Node2D
                 nextButton.Toggle();
             }
         };
+        
         AddChild(timer);
         timer.Start(delay);
     }
@@ -168,6 +175,7 @@ public partial class Letters : Node2D
         var letter = prefab.Instantiate() as Letter;
         letter!.Modulate = isBread ? breadColor :  colors.Random();
         letter.IsBread = isBread;
+        letter.ringBell += RingBell;
         ingredients.Add(letter);
         spawn.AddChild(letter);
     }
