@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://j7ou0aytb4eh"]
+
+[ext_resource type="Script" path="res://Scripts/Letter.cs" id="1_suy8q"]
+[ext_resource type="Texture2D" uid="uid://fhyyqrjp1uxn" path="res://Sprites/e.png" id="2_ql6ja"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n5cq3"]
+friction = 0.5
+bounce = 0.2
+absorbent = true
+
+[node name="Letter E" type="RigidBody2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+mass = 3.0
+physics_material_override = SubResource("PhysicsMaterial_n5cq3")
+continuous_cd = 2
+can_sleep = false
+script = ExtResource("1_suy8q")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_ql6ja")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.988781, 1.01911)
+polygon = PackedVector2Array(-78.885, 151.112, 74.8396, 150.131, 75.851, 78.4999, 0, 77.5186, 0, 32.3812, 59.6694, 31.3999, 59.6694, -43.1749, -2.02269, -43.1749, 0, -77.5186, 74.8396, -77.5186, 74.8396, -151.112, -79.8963, -152.093)

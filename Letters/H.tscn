@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://buyaam0j32wmr"]
+
+[ext_resource type="Script" path="res://Scripts/Letter.cs" id="1_piql4"]
+[ext_resource type="Texture2D" uid="uid://re3jfjyxin3q" path="res://Sprites/h.png" id="2_k6h2s"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n5cq3"]
+friction = 0.5
+bounce = 0.2
+absorbent = true
+
+[node name="Letter H" type="RigidBody2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+mass = 3.0
+physics_material_override = SubResource("PhysicsMaterial_n5cq3")
+continuous_cd = 2
+can_sleep = false
+script = ExtResource("1_piql4")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_k6h2s")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.988781, 1.01911)
+polygon = PackedVector2Array(-79.8963, -149.15, -1.01135, -150.131, 0, -42.1937, 11.1248, -42.1937, 10.1135, -152.093, 88.9985, -152.093, 87.9871, 149.15, 10.1135, 150.131, 10.1135, 31.3999, -1.01135, 31.3999, -1.01135, 150.131, -79.8963, 150.131)

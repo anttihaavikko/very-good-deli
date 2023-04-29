@@ -11,7 +11,8 @@ public partial class Letters : Node2D
     [Export] private PackedScene[] letters;
     [Export] private Node2D spawn;
     [Export] private SceneChanger sceneChanger;
-
+    [Export] private Color[] colors;
+    
     public override void _Ready()
     {
         for (var i = 0; i < 5; i++)
@@ -32,6 +33,7 @@ public partial class Letters : Node2D
     {
         var prefab = letters.ToList().Random();
         var letter = prefab.Instantiate();
+        ((CanvasItem)letter).Modulate = colors.Random();
         GD.Print($"Spawning {letter.Name}");
         spawn.AddChild(letter);
     }
