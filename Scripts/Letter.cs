@@ -12,6 +12,8 @@ public partial class Letter : RigidBody2D
     private CollisionPolygon2D polygon;
     private readonly List<Node> touches = new();
     
+    public Vector2 ResetSpot { get; set; }
+    
     public bool IsBread { get; set; }
 
     public bool IsOk => touches.All(t => t.Name == "Plate" || t is Letter);

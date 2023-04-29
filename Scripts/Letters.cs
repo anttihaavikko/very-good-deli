@@ -56,7 +56,7 @@ public partial class Letters : Node2D
         foreach (var letter in word.ToCharArray())
         {
             var index = GetIndex(letter.ToString().ToUpper());
-            SpawnLetter(Mathf.Max(index, 0), idx == 0 || idx == word.Length - 1);
+            SpawnLetter(Mathf.Max(index, 0), idx, idx == 0 || idx == word.Length - 1);
             idx++;
         }
     }
@@ -142,7 +142,7 @@ public partial class Letters : Node2D
         var totalDelay = 0f;
         
         ShowEvaluationRow("Base price", GetDesc(), amount.WithSign(), 0.1f);
-        ShowEvaluationRow("Breadness", AsPercent(breadness), breadnessBonus.WithSign(), rowDelay * 1);
+        ShowEvaluationRow("Sandwichness", AsPercent(breadness), breadnessBonus.WithSign(), rowDelay * 1);
         ShowEvaluationRow("Height", height + " cm", heightBonus.WithSign(), rowDelay * 2);
         ShowEvaluationRow("Time left", timeBonus + " s", timeBonus.WithSign(), rowDelay * 3);
 
@@ -214,16 +214,16 @@ public partial class Letters : Node2D
         timer.Start(delay);
     }
 
-    private void SpawnLetter(int index, bool isBread)
+    private void SpawnLetter(int index, int count, bool isBread)
     {
-        var makeBread = isBread || index > 4 && Rng.Value < 0.1f;
+        var makeBread = isBread || count > 3 && Rng.Value < 0.1f;
         var prefab = letters[index];
         var letter = prefab.Instantiate() as Letter;
-        letter.Position += Vector2.Zero.RandomOffset(25f);
-        letter!.Modulate = makeBread ? breadColor :  colors.Random();
+        spawn.AddChild(letter);
+        letter!.Position += Vector2.Zero.RandomOffset(0f) + Vector2.Up * count * 50f;
+        letter.Modulate = makeBread ? breadColor : colors.Random();
         letter.IsBread = makeBread;
         letter.ringBell += RingBell;
         ingredients.Add(letter);
-        spawn.AddChild(letter);
     }
 }
