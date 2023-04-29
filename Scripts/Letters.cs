@@ -38,7 +38,8 @@ public partial class Letters : Node2D
         UpdateScore();
         
         var word = State.Word ?? wordDictionary.GetRandomWord(2 + State.Level);
-        timeLeft = word.Length * 15f;
+        var mod = Mathf.Pow(0.9f, State.Level - 1);
+        timeLeft = word.Length * mod * 20f;
         
         GD.Print($"Word is {word}");
         
