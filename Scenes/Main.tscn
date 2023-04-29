@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=59 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
 [ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="2_j874t"]
@@ -42,6 +42,7 @@
 [ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="37_7pnho"]
 [ext_resource type="PackedScene" uid="uid://bd1nep58v5p1v" path="res://Prefabs/EvaluationRow.tscn" id="37_taigo"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="38_mrn7r"]
+[ext_resource type="Texture2D" uid="uid://bh73xprahvwga" path="res://Sprites/bell-lines.png" id="38_t1in7"]
 [ext_resource type="Texture2D" uid="uid://bborbmaow43sl" path="res://Sprites/paper-lines.png" id="39_5yhhd"]
 [ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="40_mawly"]
 [ext_resource type="Texture2D" uid="uid://77w4dsvglf63" path="res://Sprites/hand-open.png" id="42_l8nyf"]
@@ -58,6 +59,71 @@ size = Vector2(4.80053, 69.3985)
 
 [sub_resource type="Curve" id="Curve_h6k4k"]
 _data = [Vector2(0, 0.317265), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_qwk5h"]
+resource_name = "BellRing"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bell Handle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.736206, -199), Vector2(-0.736328, -174), Vector2(-0.736206, -199)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0859374, 0.0, -0.0859374, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hj726"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bell Handle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.736206, -199)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ay2k"]
+_data = {
+"BellRing": SubResource("Animation_qwk5h"),
+"RESET": SubResource("Animation_hj726")
+}
+
+[sub_resource type="Curve" id="Curve_vrdjw"]
+_data = [Vector2(0, 0), 0.0, 0.0449259, 0, 0, Vector2(1, 1), 1.72907, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vymed"]
@@ -158,13 +224,15 @@ polygon = PackedVector2Array(-510.917, -64.0154, -404.627, -65.2233, -375.639, -
 position = Vector2(2.08165e-12, -7.57275)
 texture = ExtResource("10_3c44a")
 
-[node name="Bell" type="Node2D" parent="." node_paths=PackedStringArray("letters", "timeLabel", "timeLabelAppearer")]
+[node name="Bell" type="Node2D" parent="." node_paths=PackedStringArray("letters", "timeLabel", "timeLabelAppearer", "particles", "anim")]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
 position = Vector2(2006, 941)
 script = ExtResource("35_r6vxn")
 letters = NodePath("../Letters")
 timeLabel = NodePath("../Timer Wrap/RichTextLabel")
 timeLabelAppearer = NodePath("../Timer Wrap")
+particles = NodePath("../Bell Ring")
+anim = NodePath("AnimationPlayer")
 
 [node name="Bell Handle" type="Sprite2D" parent="Bell"]
 position = Vector2(-0.736206, -199)
@@ -176,13 +244,18 @@ position = Vector2(-0.736328, -29.2399)
 scale = Vector2(0.373257, 0.373257)
 texture = ExtResource("20_ebig8")
 
-[node name="BellBody" type="StaticBody2D" parent="Bell/Bell Base"]
+[node name="BellBody" type="StaticBody2D" parent="Bell"]
+position = Vector2(-0.736328, -29.2399)
+scale = Vector2(0.373257, 0.373257)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bell/Bell Base/BellBody"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bell/BellBody"]
 polygon = PackedVector2Array(-343.634, 86.3748, -295.41, -31.5066, -292.731, -176.179, -239.148, -280.665, -158.775, -350.322, -46.2515, -393.188, -46.2515, -444.091, -94.4756, -446.77, -123.946, -473.562, -126.625, -548.577, -91.7969, -588.764, 95.7417, -588.764, 127.891, -551.256, 122.533, -468.203, 93.0625, -444.091, 47.5176, -444.091, 47.5176, -393.188, 154.683, -358.359, 235.056, -283.344, 293.997, -173.5, 293.997, -50.2605, 269.885, -28.8274, 331.504, 83.6956)
 
-[node name="Bell" type="Sprite2D" parent="Bell"]
-position = Vector2(-0.736328, -113.24)
+[node name="Pivot" type="Node2D" parent="Bell"]
+position = Vector2(0, -168)
+
+[node name="Bell" type="Sprite2D" parent="Bell/Pivot"]
+position = Vector2(-0.736328, 54.7601)
 scale = Vector2(0.373257, 0.373257)
 texture = ExtResource("22_2bcov")
 
@@ -193,6 +266,27 @@ offset_top = -266.0
 offset_right = 72.0
 offset_bottom = -155.0
 theme = ExtResource("40_mawly")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bell"]
+libraries = {
+"": SubResource("AnimationLibrary_3ay2k")
+}
+
+[node name="Bell Ring" type="CPUParticles2D" parent="."]
+position = Vector2(2005, 683)
+emitting = false
+amount = 50
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.5
+randomness = 0.23
+texture = ExtResource("38_t1in7")
+direction = Vector2(2.08165e-12, 2.08165e-12)
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_vrdjw")
+color = Color(1, 1, 1, 0.0784314)
 
 [node name="Table" type="StaticBody2D" parent="."]
 modulate = Color(0.894118, 0.729412, 0.627451, 1)

@@ -8,6 +8,8 @@ public partial class Bell : Node2D
     [Export] private Letters letters;
     [Export] private RichTextLabel timeLabel;
     [Export] private Appearer timeLabelAppearer;
+    [Export] private CpuParticles2D particles;
+    [Export] private AnimationPlayer anim;
 
     private readonly Timer timer = new();
     private bool done;
@@ -39,6 +41,8 @@ public partial class Bell : Node2D
     public void Ring()
     {
         if (done) return;
+        anim.Play("BellRing");
+        particles.Emitting = true;
         timeLabelAppearer.Toggle(true);
         letters.Waiting = true;
         timer.OneShot = true;
