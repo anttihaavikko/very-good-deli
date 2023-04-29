@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://7ambpmmfn7n0"]
+[gd_scene load_steps=10 format=3 uid="uid://7ambpmmfn7n0"]
 
 [ext_resource type="Script" path="res://Scripts/CustomerPick.cs" id="1_py8p7"]
 [ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="2_lbieo"]
 [ext_resource type="Texture2D" uid="uid://enme43dnja5y" path="res://Sprites/bubble.png" id="3_xgrm5"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/MovingNode.cs" id="4_2fapc"]
+[ext_resource type="Texture2D" uid="uid://c1bynviyu8x4l" path="res://Sprites/circle-outlined.svg" id="5_re7i5"]
+[ext_resource type="Texture2D" uid="uid://da51roy4mumgr" path="res://Sprites/circle.svg" id="6_351ti"]
+[ext_resource type="Script" path="res://Scripts/RandomScale.cs" id="6_o6ywg"]
+[ext_resource type="Script" path="res://AnttiStarter/Animations/Face.cs" id="6_voebv"]
+[ext_resource type="Texture2D" uid="uid://djtx0lg0xw3kp" path="res://Sprites/mouth.svg" id="7_ew2hl"]
 
 [node name="Pick" type="Control" node_paths=PackedStringArray("textBubble")]
 layout_mode = 3
@@ -75,5 +80,51 @@ offset_left = 19.0
 offset_top = 72.0
 offset_right = 328.0
 offset_bottom = 245.0
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(176, 355)
+scale = Vector2(0.480486, 0.480486)
+texture = ExtResource("5_re7i5")
+script = ExtResource("6_o6ywg")
+
+[node name="Wrap" type="Node2D" parent="Head"]
+script = ExtResource("6_o6ywg")
+
+[node name="Face" type="Sprite2D" parent="Head/Wrap" node_paths=PackedStringArray("wrapper", "leftEye", "rightEye")]
+scale = Vector2(0.711184, 0.711184)
+script = ExtResource("6_voebv")
+wrapper = NodePath("..")
+leftEye = NodePath("Left Eye")
+rightEye = NodePath("Right Eye")
+
+[node name="Left Eye" type="Sprite2D" parent="Head/Wrap/Face"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-27, -4.162)
+scale = Vector2(0.0835464, 0.0835464)
+texture = ExtResource("6_351ti")
+
+[node name="Right Eye" type="Sprite2D" parent="Head/Wrap/Face"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(27, -4.162)
+scale = Vector2(0.0835464, 0.0835464)
+texture = ExtResource("6_351ti")
+
+[node name="Right Blush" type="Sprite2D" parent="Head/Wrap/Face"]
+self_modulate = Color(1, 0.337255, 0.270588, 1)
+position = Vector2(66.5991, 12.4873)
+scale = Vector2(0.116697, 0.0835464)
+texture = ExtResource("6_351ti")
+
+[node name="Left Blush" type="Sprite2D" parent="Head/Wrap/Face"]
+self_modulate = Color(1, 0.337255, 0.270588, 1)
+position = Vector2(-66.5992, 12.4873)
+scale = Vector2(0.116697, 0.0835464)
+texture = ExtResource("6_351ti")
+
+[node name="Mouth" type="Sprite2D" parent="Head/Wrap/Face"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 14.6321)
+scale = Vector2(0.559632, 0.559632)
+texture = ExtResource("7_ew2hl")
 
 [connection signal="pressed" from="Button" to="." method="Pick"]

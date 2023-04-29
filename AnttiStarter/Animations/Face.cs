@@ -50,6 +50,9 @@ public partial class Face : Sprite2D
 	{
 		var mp = GetLocalMousePosition();
 		var dir = mp - Position;
-		wrapper.Position = dir.Normalized() * 20f;
+		if (dir.Length() > 30f)
+		{
+			wrapper.Position = dir.Normalized() * 20f;
+		}
 	}
 }
