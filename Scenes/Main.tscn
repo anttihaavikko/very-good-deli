@@ -1,10 +1,11 @@
-[gd_scene load_steps=46 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=52 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
 [ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="2_j874t"]
 [ext_resource type="PackedScene" uid="uid://buueadi041e58" path="res://Letters/B.tscn" id="3_ivoux"]
 [ext_resource type="Script" path="res://Scripts/Letters.cs" id="4_57g0e"]
 [ext_resource type="Texture2D" uid="uid://da51roy4mumgr" path="res://Sprites/circle.svg" id="4_dtkrh"]
+[ext_resource type="Texture2D" uid="uid://be5cdha1wakdv" path="res://Sprites/hand.png" id="4_gajw3"]
 [ext_resource type="Script" path="res://Scripts/Hand.cs" id="4_v0jb4"]
 [ext_resource type="PackedScene" uid="uid://nit2abnesagk" path="res://Letters/C.tscn" id="6_odhns"]
 [ext_resource type="PackedScene" uid="uid://c3q57af4cd6es" path="res://Letters/D.tscn" id="8_du2ds"]
@@ -42,14 +43,29 @@
 [ext_resource type="PackedScene" uid="uid://bd1nep58v5p1v" path="res://Prefabs/EvaluationRow.tscn" id="37_taigo"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="38_mrn7r"]
 [ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="40_mawly"]
+[ext_resource type="Script" path="res://AnttiStarter/Visuals/InverseKinematicsLine.cs" id="44_m0qxs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4asle"]
+size = Vector2(4.28084, 69.3985)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yd68f"]
+size = Vector2(7.12598, 9.50129)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihbhw"]
-size = Vector2(0.658793, 69.3985)
+size = Vector2(4.80053, 69.3985)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_24oiw"]
+[sub_resource type="Curve" id="Curve_h6k4k"]
+_data = [Vector2(0, 0.317265), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vymed"]
 size = Vector2(8.71129, 8.38046)
+
+[sub_resource type="Curve" id="Curve_400xt"]
+_data = [Vector2(0.0006603, 1), 0.0, 0.0, 0, 0, Vector2(0.516203, 0.637051), 0.0364874, 0.0364874, 0, 0, Vector2(1, 0.870038), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_24oiw"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -68,37 +84,33 @@ position = Vector2(529, 1137)
 scale = Vector2(381, 97.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-position = Vector2(-1.66273, -3.85604)
-shape = SubResource("RectangleShape2D_ihbhw")
+position = Vector2(-3.47375, -3.85604)
+shape = SubResource("RectangleShape2D_4asle")
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2(529, 1137)
+scale = Vector2(381, 97.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(1.57087, -39.671)
+shape = SubResource("RectangleShape2D_yd68f")
 
 [node name="Wall2" type="StaticBody2D" parent="."]
 position = Vector2(3036, 1134)
 scale = Vector2(381, 97.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
-position = Vector2(-1.66273, -3.64524)
+position = Vector2(0.408136, -3.64524)
 shape = SubResource("RectangleShape2D_ihbhw")
 
-[node name="Hand" type="StaticBody2D" parent="." node_paths=PackedStringArray("pin", "bell")]
+[node name="Grab Line" type="Line2D" parent="."]
 position = Vector2(108, 100)
-collision_layer = 2
-script = ExtResource("4_v0jb4")
-pin = NodePath("PinJoint2D")
-target = NodePath("")
-bell = NodePath("../Bell")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
-shape = SubResource("CircleShape2D_24oiw")
-
-[node name="Circle" type="Sprite2D" parent="Hand"]
-visible = false
-position = Vector2(2.08165e-12, 2.08165e-12)
-scale = Vector2(0.176, 0.176)
-texture = ExtResource("4_dtkrh")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Hand"]
-node_a = NodePath("..")
-softness = 2.0
+points = PackedVector2Array(0, 0, 0, 74)
+width = 30.0
+width_curve = SubResource("Curve_h6k4k")
+default_color = Color(1, 1, 1, 0.501961)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton", "bell", "scoreLabel", "hand")]
 script = ExtResource("4_57g0e")
@@ -265,6 +277,69 @@ offset_bottom = 47.0
 theme = ExtResource("40_mawly")
 theme_override_font_sizes/font_size = 50
 text = "NEXT CUSTOMER"
+
+[node name="Line Outline" type="Line2D" parent="."]
+position = Vector2(1128, -1082)
+points = PackedVector2Array(2.08165e-12, 2.08165e-12, -64, 677, -1018, 846)
+width = 250.0
+width_curve = SubResource("Curve_400xt")
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("44_m0qxs")
+targetPath = NodePath("../Hand/Pivot/Sprite/Arm Spot")
+length = 1000.0
+flip = true
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(1128, -1082)
+points = PackedVector2Array(2.08165e-12, 2.08165e-12, -64, 677, -1018, 846)
+width = 200.0
+width_curve = SubResource("Curve_400xt")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("44_m0qxs")
+targetPath = NodePath("../Hand/Pivot/Sprite/Arm Spot")
+length = 1000.0
+flip = true
+
+[node name="Hand" type="StaticBody2D" parent="." node_paths=PackedStringArray("pin", "bell", "rotatePivot", "armPos", "grabLine")]
+position = Vector2(108, 100)
+collision_layer = 2
+script = ExtResource("4_v0jb4")
+pin = NodePath("PinJoint2D")
+target = NodePath("")
+bell = NodePath("../Bell")
+rotatePivot = NodePath("Pivot")
+armPos = NodePath("../Line2D")
+grabLine = NodePath("../Grab Line")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
+shape = SubResource("CircleShape2D_24oiw")
+
+[node name="Circle" type="Sprite2D" parent="Hand"]
+visible = false
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("4_dtkrh")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Hand"]
+node_a = NodePath("..")
+softness = 2.0
+
+[node name="Pivot" type="Node2D" parent="Hand"]
+
+[node name="Sprite" type="Sprite2D" parent="Hand/Pivot"]
+modulate = Color(1, 0.886275, 0.87451, 1)
+position = Vector2(25, -194)
+rotation = 0.107136
+scale = Vector2(0.151392, 0.151392)
+texture = ExtResource("4_gajw3")
+
+[node name="Arm Spot" type="Node2D" parent="Hand/Pivot/Sprite"]
+position = Vector2(-125.502, -977.593)
 
 [node name="Scene Changer" parent="." instance=ExtResource("9_vqoue")]
 
