@@ -5,6 +5,7 @@
 
 [node name="Evaluation Row" type="ColorRect" node_paths=PackedStringArray("titleLabel", "valueLabel", "changeLabel")]
 custom_minimum_size = Vector2(2.08165e-12, 100)
+color = Color(1, 1, 1, 0)
 script = ExtResource("1_iuk2d")
 titleLabel = NodePath("Control/Title")
 valueLabel = NodePath("Control2/Value")

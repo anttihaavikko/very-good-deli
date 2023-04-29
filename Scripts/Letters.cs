@@ -60,13 +60,14 @@ public partial class Letters : Node2D
     {
         paper.Toggle();
         evaluating = true;
+        
         var top = ingredients.OrderBy(i => i.GetHighestPoint()).First();
         var bottom = ingredients.OrderByDescending(i => i.GetLowestPoint()).First();
         var height = Mathf.RoundToInt(Mathf.Abs(bottom.GetLowestPoint() - top.GetHighestPoint()) * 0.02f);
+        
         var breadness = 0f;
         breadness += top.IsBread ? 0.5f : 0;
         breadness += bottom.IsBread ? 0.5f : 0;
-        ingredients.ForEach(i => GD.Print($"{i.Name} touches {i.GetTouches()}"));
 
         var rowDelay = 1.3f;
         var amount = 123;
@@ -75,18 +76,21 @@ public partial class Letters : Node2D
         var penalty = Mathf.RoundToInt(1f * missing / ingredients.Count * amount) * 2;
         var heightBonus = height * 3;
         var total = Mathf.Max(0, amount + breadnessBonus + heightBonus - penalty);
+        
         var totalDelay = 0f;
+        
         ShowEvaluationRow("Base price", "BASIC", amount.WithSign(), 0.1f);
         ShowEvaluationRow("Breadness", AsPercent(breadness), breadnessBonus.WithSign(), rowDelay * 1);
         ShowEvaluationRow("Height", height + " cm", heightBonus.WithSign(), rowDelay * 2);
+        ShowEvaluationRow("Time left", height + " s", heightBonus.WithSign(), rowDelay * 3);
 
         if (penalty > 0)
         {
-            ShowEvaluationRow("Missing ingredients", missing.ToString(), (-penalty).ToString(), rowDelay * 3);
+            ShowEvaluationRow("Missing ingredients", missing.ToString(), (-penalty).ToString(), rowDelay * 4);
             totalDelay += rowDelay;
         }
         
-        ShowEvaluationRow("Total", "", total.ToString(), rowDelay * 3 + totalDelay, true);
+        ShowEvaluationRow("Total", "", total.ToString(), rowDelay * 4 + totalDelay, true);
     }
 
     private string AsMulti(float value)
