@@ -576,6 +576,7 @@ script = ExtResource("38_mrn7r")
 isOneSized = true
 
 [node name="Next Button" type="Button" parent="CanvasLayer/Next Wrap"]
+layout_mode = 0
 offset_left = -177.0
 offset_top = -41.0
 offset_right = 174.0
@@ -703,6 +704,7 @@ expand_mode = 2
 
 [node name="Life" type="TextureRect" parent="CanvasLayer/Lives"]
 self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("41_xxfky")
@@ -719,6 +721,7 @@ expand_mode = 2
 
 [node name="Life2" type="TextureRect" parent="CanvasLayer/Lives"]
 self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = 45.0
 offset_right = 85.0
 offset_bottom = 40.0
@@ -736,6 +739,7 @@ expand_mode = 2
 
 [node name="Life3" type="TextureRect" parent="CanvasLayer/Lives"]
 self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = 90.0
 offset_right = 130.0
 offset_bottom = 40.0
@@ -753,6 +757,7 @@ expand_mode = 2
 
 [node name="Life4" type="TextureRect" parent="CanvasLayer/Lives"]
 self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = 136.0
 offset_right = 176.0
 offset_bottom = 40.0
@@ -770,6 +775,7 @@ expand_mode = 2
 
 [node name="Life5" type="TextureRect" parent="CanvasLayer/Lives"]
 self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
 offset_left = 182.0
 offset_right = 222.0
 offset_bottom = 40.0
@@ -890,6 +896,7 @@ hideDuration = 0.6
 isOneSized = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Timer Wrap"]
+layout_mode = 0
 offset_left = -28.0
 offset_top = -106.0
 offset_right = 119.0

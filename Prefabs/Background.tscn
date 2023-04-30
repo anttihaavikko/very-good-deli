@@ -26,17 +26,17 @@ size = Vector2(148, 485.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86vtx"]
 size = Vector2(148, 594.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx1n0"]
-size = Vector2(53, 644)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vocd"]
 size = Vector2(400, 282)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7u6o"]
+size = Vector2(2400.5, 97)
 
 [node name="Background" type="Node2D"]
 
 [node name="Color" type="Sprite2D" parent="."]
 modulate = Color(0.739301, 0.685582, 0.666553, 1)
-position = Vector2(1356.6, 469.6)
+position = Vector2(1359, 418)
 scale = Vector2(1461.7, 1098.2)
 texture = ExtResource("1_2wu80")
 
@@ -197,16 +197,19 @@ shape = SubResource("RectangleShape2D_86vtx")
 debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
 
 [node name="Lamp" type="Node2D" parent="."]
-position = Vector2(456, -1227)
+position = Vector2(457, -1227)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Lamp"]
+position = Vector2(-1, 10)
+node_a = NodePath("../../Ceiling Body")
+node_b = NodePath("../Spoon2")
 
 [node name="Spoon2" type="RigidBody2D" parent="Lamp"]
 position = Vector2(-16, -4)
 collision_layer = 4
 collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp/Spoon2"]
-position = Vector2(16.5, 312)
-shape = SubResource("RectangleShape2D_vx1n0")
+center_of_mass_mode = 1
+center_of_mass = Vector2(16, 640)
 
 [node name="Light Wrap" type="Node2D" parent="Lamp/Spoon2"]
 position = Vector2(16, 640)
@@ -225,10 +228,8 @@ position = Vector2(16, 13.9999)
 scale = Vector2(1.20804, 1.20804)
 texture = ExtResource("11_h4868")
 
-[node name="PinJoint2D" type="PinJoint2D" parent="Lamp"]
-position = Vector2(-1, 10)
-node_a = NodePath("../../Shelf Body")
-node_b = NodePath("../Spoon2")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lamp/Spoon2"]
+polygon = PackedVector2Array(-224, 771, 260, 771, 49, 540, 40, -154, -14, -158, -18, 537)
 
 [node name="Area2D" type="Area2D" parent="Lamp" node_paths=PackedStringArray("body")]
 position = Vector2(0, -114.232)
@@ -236,6 +237,7 @@ collision_layer = 256
 collision_mask = 11
 script = ExtResource("8_chywh")
 body = NodePath("../Spoon2")
+nudgeAmount = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp/Area2D"]
 position = Vector2(3, 752)
@@ -245,14 +247,17 @@ debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
 [node name="Lamp2" type="Node2D" parent="."]
 position = Vector2(1703, -1328)
 
+[node name="PinJoint2D" type="PinJoint2D" parent="Lamp2"]
+position = Vector2(-1, 10)
+node_a = NodePath("../../Ceiling Body")
+node_b = NodePath("../Spoon2")
+
 [node name="Spoon2" type="RigidBody2D" parent="Lamp2"]
 position = Vector2(-16, -4)
 collision_layer = 4
 collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp2/Spoon2"]
-position = Vector2(16.5, 312)
-shape = SubResource("RectangleShape2D_vx1n0")
+center_of_mass_mode = 1
+center_of_mass = Vector2(16, 640)
 
 [node name="Light Wrap" type="Node2D" parent="Lamp2/Spoon2"]
 position = Vector2(16, 640)
@@ -271,10 +276,9 @@ position = Vector2(16, 13.9999)
 scale = Vector2(1.20804, 1.20804)
 texture = ExtResource("11_h4868")
 
-[node name="PinJoint2D" type="PinJoint2D" parent="Lamp2"]
-position = Vector2(-1, 10)
-node_a = NodePath("../../Shelf Body")
-node_b = NodePath("../Spoon2")
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Lamp2/Spoon2"]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-224, 771, 260, 771, 49, 540, 37, -146, -12, -150, -18, 537)
 
 [node name="Area2D" type="Area2D" parent="Lamp2" node_paths=PackedStringArray("body")]
 position = Vector2(0, -114.232)
@@ -282,8 +286,16 @@ collision_layer = 256
 collision_mask = 11
 script = ExtResource("8_chywh")
 body = NodePath("../Spoon2")
+nudgeAmount = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp2/Area2D"]
 position = Vector2(3, 752)
 shape = SubResource("RectangleShape2D_7vocd")
 debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
+
+[node name="Ceiling Body" type="StaticBody2D" parent="."]
+position = Vector2(0, -1860)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling Body"]
+position = Vector2(1187.75, 238)
+shape = SubResource("RectangleShape2D_e7u6o")
