@@ -110,6 +110,10 @@ theLeaderboards = NodePath("CanvasLayer/Paper Wrap/Evaluation Paper/Leaderboards
 position = Vector2(1130, 122)
 zoom = Vector2(0.48, 0.48)
 
+[node name="Adjectives" type="Node2D" parent="."]
+script = ExtResource("33_vrmm7")
+fileName = "res://adjectives.txt"
+
 [node name="Score Manager" type="Node2D" parent="."]
 script = ExtResource("40_d2xdh")
 game = "deli"
@@ -818,10 +822,6 @@ theme_override_font_sizes/font_size = 40
 text = "QUIT"
 
 [node name="Scene Changer" parent="." instance=ExtResource("6_nyamx")]
-
-[node name="Adjectives" type="Node2D" parent="."]
-script = ExtResource("33_vrmm7")
-fileName = "res://adjectives.txt"
 
 [node name="Label" type="RichTextLabel" parent="."]
 material = ExtResource("34_j2u63")

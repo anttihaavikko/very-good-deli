@@ -96,7 +96,7 @@ public partial class Letter : RigidBody2D
     {
         if (GlobalPosition.Y is > 2000 or < -2500)
         {
-            GD.Print($"Reset {Name}");
+            // GD.Print($"Reset {Name}");
             GlobalPosition = ResetSpot;
         } 
     }

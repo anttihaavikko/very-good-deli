@@ -34,3 +34,7 @@ project/assembly_name="Very Good Deli"
 [physics]
 
 2d/default_gravity_vector=Vector2(2.08165e-12, 1.5)
+
+[rendering]
+
+textures/vram_compression/import_s3tc_bptc=true

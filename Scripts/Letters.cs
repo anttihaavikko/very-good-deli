@@ -53,7 +53,7 @@ public partial class Letters : Node2D
 
     public override void _Ready()
     {
-        GD.Print($"Hello {State.PlayerName}, {State.PlayerId}");
+        // GD.Print($"Hello {State.PlayerName}, {State.PlayerId}");
         Music.Lowpass(false);
         
         if (State.Level == 1)
@@ -69,7 +69,7 @@ public partial class Letters : Node2D
         var mod = Mathf.Pow(0.9f, State.Level - 1);
         timeLeft = word.Length * mod * 20f;
 
-        GD.Print($"Word is {word}");
+        // GD.Print($"Word is {word}");
         
         var idx = 0;
         foreach (var letter in word.ToCharArray())
