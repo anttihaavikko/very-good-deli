@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://7ambpmmfn7n0"]
+[gd_scene load_steps=30 format=3 uid="uid://7ambpmmfn7n0"]
 
 [ext_resource type="Script" path="res://Scripts/CustomerPick.cs" id="1_py8p7"]
 [ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="2_lbieo"]
@@ -7,12 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://dwx2lwtig6g41" path="res://Sprites/hair3.png" id="4_226qp"]
 [ext_resource type="Texture2D" uid="uid://c1bynviyu8x4l" path="res://Sprites/circle-outlined.svg" id="5_re7i5"]
 [ext_resource type="Texture2D" uid="uid://d3sga3air2j1v" path="res://Sprites/neck.png" id="5_rthlr"]
+[ext_resource type="Texture2D" uid="uid://bhysm7kl4nc1j" path="res://Sprites/hat.png" id="6_5w5u0"]
 [ext_resource type="Texture2D" uid="uid://da51roy4mumgr" path="res://Sprites/circle.svg" id="6_351ti"]
 [ext_resource type="Script" path="res://Scripts/RandomScale.cs" id="6_o6ywg"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/Face.cs" id="6_voebv"]
 [ext_resource type="Texture2D" uid="uid://djtx0lg0xw3kp" path="res://Sprites/mouth.svg" id="7_ew2hl"]
+[ext_resource type="Texture2D" uid="uid://dsfkhpn1u5r3p" path="res://Sprites/top-hat.png" id="7_jbdo3"]
 [ext_resource type="Texture2D" uid="uid://d0uxl52i1q25" path="res://Sprites/shirt-dots.png" id="8_2s8fk"]
+[ext_resource type="Texture2D" uid="uid://cavfjsd1asrtl" path="res://Sprites/man-bun.png" id="8_4thpe"]
 [ext_resource type="Texture2D" uid="uid://b5olfte3crmug" path="res://Sprites/shirt-star.png" id="9_1su4l"]
+[ext_resource type="Texture2D" uid="uid://bu6x38xaa2img" path="res://Sprites/beanie.png" id="9_s1ypu"]
 [ext_resource type="Texture2D" uid="uid://cq5kcqcstc36r" path="res://Sprites/hair1.png" id="11_6smdw"]
 [ext_resource type="Texture2D" uid="uid://dtk0j2yp5cdd6" path="res://Sprites/shirt-stripes-thin.png" id="11_12owk"]
 [ext_resource type="Texture2D" uid="uid://b8l70ubauxm3c" path="res://Sprites/shirt-stripes.png" id="11_mdbd2"]
@@ -142,12 +146,12 @@ offset_bottom = 828.0
 script = ExtResource("1_py8p7")
 textBubble = NodePath("Bubble Wrap/Node2D/VBoxContainer/RichTextLabel")
 anim = NodePath("AnimationPlayer")
-hairs = Array[Texture2D]([ExtResource("11_6smdw"), ExtResource("11_tyegs"), ExtResource("4_226qp"), ExtResource("12_falsu")])
+hairs = Array[Texture2D]([ExtResource("11_6smdw"), ExtResource("11_tyegs"), ExtResource("4_226qp"), ExtResource("12_falsu"), ExtResource("6_5w5u0"), ExtResource("7_jbdo3"), ExtResource("8_4thpe"), ExtResource("9_s1ypu")])
 hair = NodePath("Body/Head Wrap/Scaler/Hair")
 head = NodePath("Body/Head Wrap/Scaler")
 bubble = NodePath("Bubble Wrap")
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.301961, 0.235294, 1, 0.247059, 0.466667, 1, 1, 0.513726, 0.956863, 0.627451, 1, 0.160784, 0.160784, 0.160784, 1, 1, 1, 0, 1, 1, 0.662745, 0, 1, 0.576471, 0.576471, 0.576471, 1)
-skinColors = PackedColorArray(1, 0.886275, 0.87451, 1, 1, 0.941176, 0.933333, 1, 1, 0.776471, 0.756863, 1, 1, 0.847059, 0.486275, 1, 0.309804, 0.247059, 0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.301961, 0.235294, 1, 0.247059, 0.466667, 1, 1, 0.513726, 0.956863, 0.627451, 1, 0.160784, 0.160784, 0.160784, 1, 1, 1, 0, 1, 1, 0.662745, 0, 1, 0.576471, 0.576471, 0.576471, 1, 1, 0.533333, 0.905882, 1, 0.0901961, 0.0901961, 0.0901961, 1)
+skinColors = PackedColorArray(1, 0.886275, 0.87451, 1, 1, 0.941176, 0.933333, 1, 1, 0.776471, 0.756863, 1, 1, 0.847059, 0.486275, 1, 0.309804, 0.247059, 0, 1, 0.301961, 0.145098, 0.0901961, 1, 1, 0.784314, 0.521569, 1, 1, 1, 0.737255, 1)
 sleeveLeft = NodePath("Hands/Sleeves/Sleeve Left")
 sleeveRight = NodePath("Hands/Sleeves/Sleeve Right")
 shirt = NodePath("Body/Shirt")
@@ -157,7 +161,7 @@ leftHand = NodePath("Hands/Customer-hand")
 rightHand = NodePath("Hands/Customer-hand2")
 shirtDeco = NodePath("Body/Shirt Deco")
 shirtDecorations = Array[Texture2D]([ExtResource("11_mdbd2"), ExtResource("11_12owk"), null, ExtResource("8_2s8fk"), ExtResource("9_1su4l")])
-textColors = PackedColorArray(0.862745, 0, 0, 1, 0.305882, 0.517647, 1, 1, 0, 0.678431, 0, 1)
+textColors = PackedColorArray(0.862745, 0, 0, 1, 0.305882, 0.517647, 1, 1, 0, 0.678431, 0, 1, 1, 0.435294, 0, 1, 0.733333, 0.388235, 0.694118, 1, 0.396078, 0.396078, 0.396078, 1)
 button = NodePath("Button")
 
 [node name="Bubble Wrap" type="Node2D" parent="."]
