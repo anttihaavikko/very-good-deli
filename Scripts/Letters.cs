@@ -28,6 +28,7 @@ public partial class Letters : Node2D
     [Export] private Hand hand;
     [Export] private Control paperRotator;
     [Export] private LifeDisplay lifeDisplay;
+    [Export] private Control blurLayer;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
@@ -114,6 +115,8 @@ public partial class Letters : Node2D
     {
         Input.MouseMode = Input.MouseModeEnum.Visible;
         paper.Toggle();
+        
+        blurLayer.Show();
         
         var tween = GetTree().CreateTween();
         var angle = 0.1f;

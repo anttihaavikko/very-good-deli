@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ccvnghy1k4xpe"]
+[gd_scene load_steps=21 format=3 uid="uid://ccvnghy1k4xpe"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_2wu80"]
 [ext_resource type="Texture2D" uid="uid://b1vow58750ynk" path="res://Sprites/boards.png" id="2_gq8nv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://6kdk7krjgma2" path="res://Sprites/spoon3.png" id="10_wb6tn"]
 [ext_resource type="Texture2D" uid="uid://b2v8h5blfo0la" path="res://Sprites/light.png" id="11_h4868"]
 [ext_resource type="Texture2D" uid="uid://ds8v7nxhravyu" path="res://Sprites/spot.png" id="11_ps7k1"]
+[ext_resource type="Material" uid="uid://d0248eb16o1eu" path="res://Prefabs/Blur.tres" id="11_tk4n4"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/PulsatingNode.cs" id="12_q3lc5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4eww"]
@@ -195,6 +196,13 @@ body = NodePath("../Spoon2")
 position = Vector2(3, 364.75)
 shape = SubResource("RectangleShape2D_86vtx")
 debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
+
+[node name="Blur" type="ColorRect" parent="."]
+material = ExtResource("11_tk4n4")
+offset_left = -35.0
+offset_top = -1086.0
+offset_right = 2315.0
+offset_bottom = 1117.0
 
 [node name="Lamp" type="Node2D" parent="."]
 position = Vector2(457, -1227)

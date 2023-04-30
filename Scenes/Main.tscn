@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=69 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="PackedScene" uid="uid://ccvnghy1k4xpe" path="res://Prefabs/Background.tscn" id="1_77qrv"]
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
@@ -53,6 +53,11 @@
 [ext_resource type="Texture2D" uid="uid://77w4dsvglf63" path="res://Sprites/hand-open.png" id="42_l8nyf"]
 [ext_resource type="Script" path="res://AnttiStarter/Utils/ListWrapper.cs" id="42_v05fh"]
 [ext_resource type="Script" path="res://AnttiStarter/Visuals/InverseKinematicsLine.cs" id="44_m0qxs"]
+[ext_resource type="Shader" path="res://Scenes/Blur.gdshader" id="54_5lj7v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0246d"]
+shader = ExtResource("54_5lj7v")
+shader_parameter/lod = 0.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4asle"]
 size = Vector2(4.28084, 69.3985)
@@ -135,6 +140,10 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vymed"]
 size = Vector2(8.71129, 8.38046)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rh2gy"]
+shader = ExtResource("54_5lj7v")
+shader_parameter/lod = 2.0
+
 [sub_resource type="Curve" id="Curve_400xt"]
 _data = [Vector2(0.0006603, 1), 0.0, 0.0, 0, 0, Vector2(0.516203, 0.637051), 0.0364874, 0.0364874, 0, 0, Vector2(1, 0.870038), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -151,6 +160,14 @@ size = Vector2(941.111, 2449.87)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1130, 122)
 zoom = Vector2(0.48, 0.48)
+
+[node name="Blur" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_0246d")
+offset_left = -35.0
+offset_top = -1086.0
+offset_right = 2315.0
+offset_bottom = 1117.0
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(529, 1137)
@@ -185,7 +202,7 @@ default_color = Color(1, 1, 1, 0.501961)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton", "bell", "scoreLabel", "hand", "paperRotator", "lifeDisplay")]
+[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton", "bell", "scoreLabel", "hand", "paperRotator", "lifeDisplay", "blurLayer")]
 script = ExtResource("4_57g0e")
 letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds"), ExtResource("8_gp5py"), ExtResource("9_4e1wc"), ExtResource("10_tw725"), ExtResource("11_6m062"), ExtResource("12_ludwc"), ExtResource("13_3sqmj"), ExtResource("14_kiraw"), ExtResource("15_fwo0e"), ExtResource("16_lnyqm"), ExtResource("17_qwyo6"), ExtResource("18_f0b65"), ExtResource("19_6fw2v"), ExtResource("20_msf06"), ExtResource("21_mq8lr"), ExtResource("22_5k8cv"), ExtResource("24_70vfp"), ExtResource("25_wonye"), ExtResource("26_rbvx0"), ExtResource("27_pb723"), ExtResource("28_f4d0n"), ExtResource("29_teune"), ExtResource("30_4ypvt")])
 spawn = NodePath("Spawn")
@@ -204,6 +221,7 @@ scoreLabel = NodePath("../CanvasLayer/Score")
 hand = NodePath("../Hand")
 paperRotator = NodePath("../CanvasLayer/Paper Wrap")
 lifeDisplay = NodePath("../CanvasLayer/Lives")
+blurLayer = NodePath("../CanvasLayer/Eval Blur")
 
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
@@ -315,6 +333,15 @@ scale = Vector2(2.18504, 0.0295629)
 texture = ExtResource("1_qofwn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Eval Blur" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_rh2gy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Paper Wrap" type="Control" parent="CanvasLayer"]
 layout_mode = 3
