@@ -200,10 +200,14 @@ public partial class Letters : Node2D
     private string GetDesc()
     {
         var lvl = State.Level;
-        if (lvl > 7) return "GOD-TIER";
-        if (lvl > 6) return "LUXURIOUS";
-        if (lvl > 5) return "DECADENT";
-        if (lvl > 4) return "ARTISAN";
+        if (lvl > 11) return "GOD-TIER";
+        if (lvl > 10) return "MIND-BLOWING";
+        if (lvl > 9) return "LUXURIOUS";
+        if (lvl > 8) return "DECADENT";
+        if (lvl > 7) return "ARTISAN";
+        if (lvl > 6) return "MARVELOUS";
+        if (lvl > 5) return "EXCELLENT";
+        if (lvl > 4) return "GOOD";
         if (lvl > 3) return "NICE";
         if (lvl > 2) return "DECENT";
         if (lvl > 1) return "BASIC";
