@@ -1,4 +1,5 @@
 using AnttiStarter.Animations;
+using AnttiStarter.Extensions;
 using Godot;
 
 namespace Scripts;
@@ -10,6 +11,7 @@ public partial class Bell : Node2D
     [Export] private Appearer timeLabelAppearer;
     [Export] private CpuParticles2D particles;
     [Export] private AnimationPlayer anim;
+    [Export] private AudioStreamPlayer2D sound;
 
     private readonly Timer timer = new();
     private bool done;
@@ -41,6 +43,7 @@ public partial class Bell : Node2D
     public void Ring()
     {
         if (done) return;
+        sound.PlayWithVariation();
         letters.HideTutorial();
         anim.Play("BellRing");
         particles.Emitting = true;

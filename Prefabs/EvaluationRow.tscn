@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd1nep58v5p1v"]
+[gd_scene load_steps=6 format=3 uid="uid://bd1nep58v5p1v"]
 
 [ext_resource type="Script" path="res://Scripts/EvaluationRow.cs" id="1_iuk2d"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="1_wwap5"]
 [ext_resource type="FontFile" uid="uid://dbe2xxoy2rauf" path="res://learning_curve_bold_ot_tt.ttf" id="3_idfxw"]
 [ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="3_q45d0"]
+[ext_resource type="AudioStream" uid="uid://dgm2i2vt47l72" path="res://Sounds/writing.wav" id="5_i80b2"]
 
 [node name="Evaluation Row" type="ColorRect" node_paths=PackedStringArray("titleLabel", "valueLabel", "changeLabel")]
 custom_minimum_size = Vector2(2.08165e-12, 100)
@@ -15,7 +16,7 @@ titleLabel = NodePath("Control/Title")
 valueLabel = NodePath("Control2/Value")
 changeLabel = NodePath("Control3/Addition")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("sound")]
 anchors_preset = 0
 offset_left = 87.0
 offset_top = 36.0
@@ -25,6 +26,7 @@ script = ExtResource("1_wwap5")
 showAfter = 0.2
 showDuration = 0.4
 isOneSized = true
+sound = NodePath("../Sound")
 
 [node name="Title" type="RichTextLabel" parent="Control"]
 layout_mode = 0
@@ -42,7 +44,7 @@ theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "Base price"
 
-[node name="Control2" type="Control" parent="."]
+[node name="Control2" type="Control" parent="." node_paths=PackedStringArray("sound")]
 anchors_preset = 0
 offset_left = 109.0
 offset_top = 78.0
@@ -52,6 +54,7 @@ script = ExtResource("1_wwap5")
 showAfter = 0.6
 showDuration = 0.4
 isOneSized = true
+sound = NodePath("../Sound")
 
 [node name="Value" type="RichTextLabel" parent="Control2"]
 layout_mode = 0
@@ -69,7 +72,7 @@ theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "Base price"
 
-[node name="Control3" type="Control" parent="."]
+[node name="Control3" type="Control" parent="." node_paths=PackedStringArray("sound")]
 anchors_preset = 0
 offset_left = 538.0
 offset_top = 79.0
@@ -79,6 +82,7 @@ script = ExtResource("1_wwap5")
 showAfter = 0.9
 showDuration = 0.4
 isOneSized = true
+sound = NodePath("../Sound")
 
 [node name="Addition" type="RichTextLabel" parent="Control3"]
 layout_mode = 0
@@ -95,3 +99,7 @@ theme_override_fonts/normal_font = ExtResource("3_idfxw")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "Base price"
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_i80b2")
+volume_db = -15.0

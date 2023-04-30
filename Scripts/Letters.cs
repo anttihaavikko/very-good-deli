@@ -6,6 +6,7 @@ using Godot;
 using AnttiStarter.Extensions;
 using AnttiStarter.SceneChanger;
 using AnttiStarter.Utils;
+using Range = Godot.Range;
 
 namespace Scripts;
 
@@ -31,6 +32,7 @@ public partial class Letters : Node2D
     [Export] private Control blurLayer;
     [Export] private Appearer buildHelp, ringHelp;
     [Export] private Appearer quitButton, againButton;
+    [Export] private AudioStream[] letterSounds;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
@@ -45,9 +47,12 @@ public partial class Letters : Node2D
     private bool tutorialDone;
 
     private GameState State => GetNode<GameState>("/root/GameState");
+    private Music Music => GetNode<Music>("/root/Music");
 
     public override void _Ready()
     {
+        Music.Lowpass(false);
+        
         if (State.Level == 1)
         {
             buildHelp.Toggle(true, 1.5f);    
@@ -98,6 +103,7 @@ public partial class Letters : Node2D
 
     public void NextLevel()
     {
+        Music.Lowpass(false);
         sceneChanger.ChangeScene("res://Scenes/WordPick.tscn");
     }
 
@@ -132,6 +138,8 @@ public partial class Letters : Node2D
     {
         Input.MouseMode = Input.MouseModeEnum.Visible;
         paper.Toggle();
+        
+        Music.Lowpass(true);
         
         blurLayer.Show();
         
@@ -249,7 +257,9 @@ public partial class Letters : Node2D
         spawn.AddChild(letter);
         letter!.Position += Vector2.Zero.RandomOffset(25f);
         letter.ResetSpot = spawn.GlobalPosition;
-        letter.Modulate = makeBread ? breadColor : colors.Random();
+        var typeIndex = Rng.Range(0, colors.Length - 1);
+        letter.Modulate = makeBread ? breadColor : colors[typeIndex];
+        letter.SetSound(makeBread ? letterSounds.Last() : letterSounds[typeIndex]);
         letter.IsBread = makeBread;
         letter.ringBell += RingBell;
         letter.placedOnPlate += ShowRingTutorial;
@@ -263,12 +273,14 @@ public partial class Letters : Node2D
 
     public void PlayAgain()
     {
+        Music.Lowpass(false);
         State.Reset();
         sceneChanger.ChangeScene("res://Scenes/Main.tscn");
     }
 
     public void QuitToMenu()
     {
+        Music.Lowpass(false);
         State.Reset();
         GD.Print("Go to menu");
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AnttiStarter.Extensions;
 using Godot;
 
 namespace Scripts;
@@ -12,6 +13,8 @@ public partial class Letter : RigidBody2D
 
     private CollisionPolygon2D polygon;
     private readonly List<Node> touches = new();
+
+    private AudioStreamPlayer2D audio = new();
     
     public Vector2 ResetSpot { get; set; }
     
@@ -29,6 +32,7 @@ public partial class Letter : RigidBody2D
         polygon = GetNode<CollisionPolygon2D>("CollisionPolygon2D");
         BodyEntered += Touch;
         BodyExited += StopTouch;
+        AddChild(audio);
     }
 
     private void StopTouch(Node other)
@@ -55,10 +59,22 @@ public partial class Letter : RigidBody2D
         
         touches.Add(other);
 
-        if (LinearVelocity.Length() > 50f)
+        var velocity = LinearVelocity.Length() + Mathf.Abs(AngularVelocity);
+        if (velocity > 50f)
         {
+            var minVol = -40f;
+            var maxVol = -5f;
+            audio.VolumeDb = Mathf.Clamp(Mathf.Remap(velocity, 50f, 400f, minVol, maxVol), minVol, maxVol);
+            audio.PlayWithVariation();
             splash.Restart();
         }
+    }
+
+    public void Grab()
+    {
+        audio.VolumeDb = -10f;
+        audio.PlayWithVariation();
+        splash.Restart();
     }
 
     public int GetTouches()
@@ -83,5 +99,10 @@ public partial class Letter : RigidBody2D
             GD.Print($"Reset {Name}");
             GlobalPosition = ResetSpot;
         } 
+    }
+
+    public void SetSound(AudioStream sound)
+    {
+        audio.Stream = sound;
     }
 }

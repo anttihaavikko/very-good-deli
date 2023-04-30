@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=79 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="PackedScene" uid="uid://ccvnghy1k4xpe" path="res://Prefabs/Background.tscn" id="1_77qrv"]
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
@@ -43,19 +43,25 @@
 [ext_resource type="PackedScene" uid="uid://b27afihhnnbgc" path="res://Letters/Z.tscn" id="30_4ypvt"]
 [ext_resource type="PackedScene" uid="uid://ha72pwhfdhsb" path="res://Prefabs/Spacer.tscn" id="32_lidel"]
 [ext_resource type="Script" path="res://Scripts/Bell.cs" id="35_r6vxn"]
+[ext_resource type="AudioStream" uid="uid://ctawxdn16d1nb" path="res://Sounds/meat.wav" id="37_1vibs"]
 [ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="37_7pnho"]
+[ext_resource type="AudioStream" uid="uid://bvv2mvcm5rr8v" path="res://Sounds/salad.wav" id="37_olvyj"]
 [ext_resource type="PackedScene" uid="uid://bd1nep58v5p1v" path="res://Prefabs/EvaluationRow.tscn" id="37_taigo"]
 [ext_resource type="Texture2D" uid="uid://cscu5qkuf7ki7" path="res://Sprites/dotted-circle.png" id="38_bnqt3"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="38_mrn7r"]
+[ext_resource type="AudioStream" uid="uid://br05j5xqbmc3c" path="res://Sounds/tomato.wav" id="38_ne6gk"]
 [ext_resource type="Texture2D" uid="uid://bh73xprahvwga" path="res://Sprites/bell-lines.png" id="38_t1in7"]
 [ext_resource type="Texture2D" uid="uid://bborbmaow43sl" path="res://Sprites/paper-lines.png" id="39_5yhhd"]
+[ext_resource type="AudioStream" uid="uid://cuow11iejsqo4" path="res://Sounds/bread.wav" id="39_l8tb6"]
 [ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="40_mawly"]
 [ext_resource type="Script" path="res://Scripts/LifeDisplay.cs" id="41_txdyc"]
 [ext_resource type="Texture2D" uid="uid://cbwfyeb115hp8" path="res://Sprites/life-ring.png" id="41_xxfky"]
 [ext_resource type="Texture2D" uid="uid://d2uwuqdbe5ohp" path="res://Sprites/life-dot.png" id="42_ah1vm"]
 [ext_resource type="Texture2D" uid="uid://77w4dsvglf63" path="res://Sprites/hand-open.png" id="42_l8nyf"]
+[ext_resource type="AudioStream" uid="uid://dgdbmth7h02wn" path="res://Sounds/bell.wav" id="42_u8sej"]
 [ext_resource type="Script" path="res://AnttiStarter/Utils/ListWrapper.cs" id="42_v05fh"]
 [ext_resource type="Script" path="res://AnttiStarter/Visuals/InverseKinematicsLine.cs" id="44_m0qxs"]
+[ext_resource type="AudioStream" uid="uid://ckc1scm0d1cy1" path="res://Sounds/pop.wav" id="53_iruyh"]
 [ext_resource type="Shader" path="res://Scenes/Blur.gdshader" id="54_5lj7v"]
 [ext_resource type="Texture2D" uid="uid://c4rwetqfqlcdx" path="res://Sprites/shadows.png" id="58_61ts4"]
 
@@ -148,7 +154,7 @@ point_count = 3
 [sub_resource type="CircleShape2D" id="CircleShape2D_24oiw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqywb"]
-size = Vector2(941.111, 2449.87)
+size = Vector2(1339.84, 2449.87)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vymed"]
 size = Vector2(8.71129, 8.38046)
@@ -296,11 +302,12 @@ buildHelp = NodePath("../Help Build")
 ringHelp = NodePath("../Help Bell")
 quitButton = NodePath("../CanvasLayer/Quit Wrap")
 againButton = NodePath("../CanvasLayer/Again Wrap")
+letterSounds = Array[AudioStream]([ExtResource("37_1vibs"), ExtResource("38_ne6gk"), ExtResource("37_olvyj"), ExtResource("39_l8tb6"), ExtResource("39_l8tb6")])
 
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
 
-[node name="Bell" type="Node2D" parent="." node_paths=PackedStringArray("letters", "timeLabel", "timeLabelAppearer", "particles", "anim")]
+[node name="Bell" type="Node2D" parent="." node_paths=PackedStringArray("letters", "timeLabel", "timeLabelAppearer", "particles", "anim", "sound")]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
 position = Vector2(2006, 941)
 script = ExtResource("35_r6vxn")
@@ -309,6 +316,7 @@ timeLabel = NodePath("../Timer Wrap/RichTextLabel")
 timeLabelAppearer = NodePath("../Timer Wrap")
 particles = NodePath("../Bell Ring")
 anim = NodePath("AnimationPlayer")
+sound = NodePath("../Bell Ring/AudioStreamPlayer2D")
 
 [node name="Bell Handle" type="Sprite2D" parent="Bell"]
 position = Vector2(-0.736206, -199)
@@ -364,6 +372,10 @@ scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_vrdjw")
 color = Color(1, 1, 1, 0.0784314)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Bell Ring"]
+stream = ExtResource("42_u8sej")
+volume_db = -10.0
+
 [node name="Line Outline" type="Line2D" parent="."]
 position = Vector2(1128, -1082)
 points = PackedVector2Array(2.08165e-12, 2.08165e-12, -64, 677, -1018, 846)
@@ -391,7 +403,7 @@ targetPath = NodePath("../Hand/Pivot/Sprite/Arm Spot")
 length = 1000.0
 flip = true
 
-[node name="Hand" type="StaticBody2D" parent="." node_paths=PackedStringArray("pin", "bell", "rotatePivot", "armPos", "grabLine", "sprite", "letters", "body", "grabParticles")]
+[node name="Hand" type="StaticBody2D" parent="." node_paths=PackedStringArray("pin", "bell", "rotatePivot", "armPos", "grabLine", "sprite", "letters", "body", "grabParticles", "pop")]
 position = Vector2(108, 100)
 collision_layer = 2
 script = ExtResource("4_v0jb4")
@@ -407,6 +419,7 @@ sprite = NodePath("Pivot/Sprite")
 letters = NodePath("../Letters")
 body = NodePath("Pivot/Sprite/RigidBody2D")
 grabParticles = NodePath("Pivot/Grab Effect")
+pop = NodePath("Pivot/AudioStreamPlayer2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
 shape = SubResource("CircleShape2D_24oiw")
@@ -457,7 +470,7 @@ freeze = true
 freeze_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Pivot/Sprite/RigidBody2D"]
-position = Vector2(-30.644, 209.242)
+position = Vector2(-351.076, 209.242)
 shape = SubResource("RectangleShape2D_kqywb")
 
 [node name="Circle" type="Sprite2D" parent="Hand/Pivot/Sprite/RigidBody2D"]
@@ -466,6 +479,13 @@ position = Vector2(-36.4921, 834.355)
 rotation = -0.107136
 scale = Vector2(1.33459, 1.33459)
 texture = ExtResource("4_dtkrh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Hand/Pivot"]
+position = Vector2(75, -194)
+rotation = 0.107136
+scale = Vector2(0.151392, 0.151392)
+stream = ExtResource("53_iruyh")
+volume_db = -15.0
 
 [node name="Basket" type="StaticBody2D" parent="."]
 position = Vector2(541, 862)

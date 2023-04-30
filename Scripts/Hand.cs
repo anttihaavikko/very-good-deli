@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using AnttiStarter.Extensions;
 using Godot;
 using Godot.Collections;
 
@@ -19,6 +20,7 @@ public partial class Hand : StaticBody2D
 	[Export] private Letters letters;
 	[Export] private RigidBody2D body;
 	[Export] private CpuParticles2D grabParticles;
+	[Export] private AudioStreamPlayer2D pop;
 
 	private Vector2 offset;
 	private Node2D grabbed;
@@ -45,6 +47,11 @@ public partial class Hand : StaticBody2D
 
 	public void Release()
 	{
+		if (grabbed != default)
+		{
+			pop.PlayWithVariation();	
+		}
+		
 		sprite.Texture = handOpen;
 		grabbed = null;
 		grabLine.Hide();
@@ -71,13 +78,19 @@ public partial class Hand : StaticBody2D
 			bell.Cancel();
 			grabbed = (Node2D)coll;
 			pin.NodeB = grabbed.GetPath();
-
+			
 			offset = grabbed.ToLocal(GlobalPosition);
 
 			grabLine.Show();
 			sprite.Texture = handGrab;
 
 			grabParticles.Emitting = true;
+
+			if (grabbed != default)
+			{
+				pop.PlayWithVariation();
+				grabbed.GetNode<Letter>(".").Grab();
+			}
 		}
 	}
 

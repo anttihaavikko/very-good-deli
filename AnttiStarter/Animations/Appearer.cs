@@ -1,4 +1,5 @@
 using System.Linq;
+using AnttiStarter.Extensions;
 using Godot;
 
 namespace AnttiStarter.Animations;
@@ -16,6 +17,8 @@ public partial class Appearer : Node
 
     [Export] private bool isOneSized;
     [Export] private Vector2 closedSize = Vector2.Zero;
+
+    [Export] private AudioStreamPlayer2D sound;
 
     private bool shown;
     private Vector2 size;
@@ -51,6 +54,12 @@ public partial class Appearer : Node
     public void Toggle(bool state, float delay = 0f)
     {
         if (shown == state) return;
+
+        if (state && sound != default)
+        {
+            sound.GlobalPosition = Get("global_position").AsVector2();
+            sound.PlayWithVariation();
+        }  
         
         shown = state;
         
