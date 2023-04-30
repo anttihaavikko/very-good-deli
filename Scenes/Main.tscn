@@ -137,13 +137,6 @@ _data = {
 _data = [Vector2(0, 0), 0.0, 0.0449259, 0, 0, Vector2(1, 1), 1.72907, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vymed"]
-size = Vector2(8.71129, 8.38046)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rh2gy"]
-shader = ExtResource("54_5lj7v")
-shader_parameter/lod = 2.0
-
 [sub_resource type="Curve" id="Curve_400xt"]
 _data = [Vector2(0.0006603, 1), 0.0, 0.0, 0, 0, Vector2(0.516203, 0.637051), 0.0364874, 0.0364874, 0, 0, Vector2(1, 0.870038), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -152,6 +145,13 @@ point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqywb"]
 size = Vector2(941.111, 2449.87)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vymed"]
+size = Vector2(8.71129, 8.38046)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rh2gy"]
+shader = ExtResource("54_5lj7v")
+shader_parameter/lod = 2.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -226,28 +226,6 @@ blurLayer = NodePath("../CanvasLayer/Eval Blur")
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
 
-[node name="Basket" type="StaticBody2D" parent="."]
-position = Vector2(541, 862)
-scale = Vector2(0.827924, 0.827924)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Basket"]
-polygon = PackedVector2Array(-510, -106, -477, 8, -433, 20, -426, 109, 425, 109, 436, 18, 478, 5, 511, -108, 447, -108, 423, -30, 371, -3, 363, 40, -383, 41, -388, -19, -436, -36, -457, -106)
-
-[node name="Basket" type="Sprite2D" parent="Basket"]
-position = Vector2(2.08165e-12, 2.08165e-12)
-texture = ExtResource("10_rmolq")
-
-[node name="Plate" type="StaticBody2D" parent="."]
-position = Vector2(1366, 912)
-scale = Vector2(0.660269, 0.660269)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plate"]
-polygon = PackedVector2Array(-510.917, -64.0154, -404.627, -65.2233, -375.639, -2.41565, 379.262, -2.41565, 423.952, -67.639, 512.124, -67.639, 477.097, 8.45496, 432.406, 22.9491, 420.328, 56.7686, -422.745, 55.5608, -434.823, 19.3256, -477.097, 7.24719)
-
-[node name="Plate" type="Sprite2D" parent="Plate"]
-position = Vector2(2.08165e-12, -7.57275)
-texture = ExtResource("10_3c44a")
-
 [node name="Bell" type="Node2D" parent="." node_paths=PackedStringArray("letters", "timeLabel", "timeLabelAppearer", "particles", "anim")]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
 position = Vector2(2006, 941)
@@ -311,6 +289,131 @@ scale_amount_min = 0.1
 scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_vrdjw")
 color = Color(1, 1, 1, 0.0784314)
+
+[node name="Line Outline" type="Line2D" parent="."]
+position = Vector2(1128, -1082)
+points = PackedVector2Array(2.08165e-12, 2.08165e-12, -64, 677, -1018, 846)
+width = 250.0
+width_curve = SubResource("Curve_400xt")
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("44_m0qxs")
+targetPath = NodePath("../Hand/Pivot/Sprite/Arm Spot")
+length = 1000.0
+flip = true
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(1128, -1082)
+points = PackedVector2Array(2.08165e-12, 2.08165e-12, -64, 677, -1018, 846)
+width = 200.0
+width_curve = SubResource("Curve_400xt")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("44_m0qxs")
+targetPath = NodePath("../Hand/Pivot/Sprite/Arm Spot")
+length = 1000.0
+flip = true
+
+[node name="Hand" type="StaticBody2D" parent="." node_paths=PackedStringArray("pin", "bell", "rotatePivot", "armPos", "grabLine", "sprite", "letters", "body", "grabParticles")]
+position = Vector2(108, 100)
+collision_layer = 2
+script = ExtResource("4_v0jb4")
+pin = NodePath("PinJoint2D")
+target = NodePath("")
+bell = NodePath("../Bell")
+rotatePivot = NodePath("Pivot")
+armPos = NodePath("../Line2D")
+grabLine = NodePath("../Grab Line")
+handOpen = ExtResource("42_l8nyf")
+handGrab = ExtResource("4_gajw3")
+sprite = NodePath("Pivot/Sprite")
+letters = NodePath("../Letters")
+body = NodePath("Pivot/Sprite/RigidBody2D")
+grabParticles = NodePath("Pivot/Grab Effect")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
+shape = SubResource("CircleShape2D_24oiw")
+
+[node name="Circle" type="Sprite2D" parent="Hand"]
+visible = false
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("4_dtkrh")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Hand"]
+node_a = NodePath("..")
+softness = 2.0
+
+[node name="Pivot" type="Node2D" parent="Hand"]
+
+[node name="Grab Effect" type="CPUParticles2D" parent="Hand/Pivot"]
+position = Vector2(1, -1)
+emitting = false
+amount = 50
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.75
+randomness = 0.23
+texture = ExtResource("38_bnqt3")
+direction = Vector2(2.08165e-12, 2.08165e-12)
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+scale_amount_min = 0.05
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_vrdjw")
+color = Color(1, 1, 1, 0.0784314)
+
+[node name="Sprite" type="Sprite2D" parent="Hand/Pivot"]
+modulate = Color(1, 0.886275, 0.87451, 1)
+position = Vector2(75, -194)
+rotation = 0.107136
+scale = Vector2(0.151392, 0.151392)
+texture = ExtResource("42_l8nyf")
+
+[node name="Arm Spot" type="Node2D" parent="Hand/Pivot/Sprite"]
+position = Vector2(-125.502, -977.593)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Hand/Pivot/Sprite"]
+collision_layer = 8
+collision_mask = 256
+gravity_scale = 2.66454e-15
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Pivot/Sprite/RigidBody2D"]
+position = Vector2(-30.644, 209.242)
+shape = SubResource("RectangleShape2D_kqywb")
+
+[node name="Circle" type="Sprite2D" parent="Hand/Pivot/Sprite/RigidBody2D"]
+visible = false
+position = Vector2(-36.4921, 834.355)
+rotation = -0.107136
+scale = Vector2(1.33459, 1.33459)
+texture = ExtResource("4_dtkrh")
+
+[node name="Basket" type="StaticBody2D" parent="."]
+position = Vector2(541, 862)
+scale = Vector2(0.827924, 0.827924)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Basket"]
+polygon = PackedVector2Array(-510, -106, -477, 8, -433, 20, -426, 109, 425, 109, 436, 18, 478, 5, 511, -108, 447, -108, 423, -30, 371, -3, 363, 40, -383, 41, -388, -19, -436, -36, -457, -106)
+
+[node name="Basket" type="Sprite2D" parent="Basket"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("10_rmolq")
+
+[node name="Plate" type="StaticBody2D" parent="."]
+position = Vector2(1366, 912)
+scale = Vector2(0.660269, 0.660269)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plate"]
+polygon = PackedVector2Array(-510.917, -64.0154, -404.627, -65.2233, -375.639, -2.41565, 379.262, -2.41565, 423.952, -67.639, 512.124, -67.639, 477.097, 8.45496, 432.406, 22.9491, 420.328, 56.7686, -422.745, 55.5608, -434.823, 19.3256, -477.097, 7.24719)
+
+[node name="Plate" type="Sprite2D" parent="Plate"]
+position = Vector2(2.08165e-12, -7.57275)
+texture = ExtResource("10_3c44a")
 
 [node name="Table" type="StaticBody2D" parent="."]
 modulate = Color(0.894118, 0.729412, 0.627451, 1)
@@ -818,109 +921,6 @@ offset_right = 38.0
 offset_bottom = 38.0
 texture = ExtResource("41_xxfky")
 expand_mode = 2
-
-[node name="Line Outline" type="Line2D" parent="."]
-position = Vector2(1128, -1082)
-points = PackedVector2Array(2.08165e-12, 2.08165e-12, -64, 677, -1018, 846)
-width = 250.0
-width_curve = SubResource("Curve_400xt")
-default_color = Color(0, 0, 0, 1)
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-script = ExtResource("44_m0qxs")
-targetPath = NodePath("../Hand/Pivot/Sprite/Arm Spot")
-length = 1000.0
-flip = true
-
-[node name="Line2D" type="Line2D" parent="."]
-position = Vector2(1128, -1082)
-points = PackedVector2Array(2.08165e-12, 2.08165e-12, -64, 677, -1018, 846)
-width = 200.0
-width_curve = SubResource("Curve_400xt")
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-script = ExtResource("44_m0qxs")
-targetPath = NodePath("../Hand/Pivot/Sprite/Arm Spot")
-length = 1000.0
-flip = true
-
-[node name="Hand" type="StaticBody2D" parent="." node_paths=PackedStringArray("pin", "bell", "rotatePivot", "armPos", "grabLine", "sprite", "letters", "body", "grabParticles")]
-position = Vector2(108, 100)
-collision_layer = 2
-script = ExtResource("4_v0jb4")
-pin = NodePath("PinJoint2D")
-target = NodePath("")
-bell = NodePath("../Bell")
-rotatePivot = NodePath("Pivot")
-armPos = NodePath("../Line2D")
-grabLine = NodePath("../Grab Line")
-handOpen = ExtResource("42_l8nyf")
-handGrab = ExtResource("4_gajw3")
-sprite = NodePath("Pivot/Sprite")
-letters = NodePath("../Letters")
-body = NodePath("Pivot/Sprite/RigidBody2D")
-grabParticles = NodePath("Pivot/Grab Effect")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
-shape = SubResource("CircleShape2D_24oiw")
-
-[node name="Circle" type="Sprite2D" parent="Hand"]
-visible = false
-position = Vector2(2.08165e-12, 2.08165e-12)
-scale = Vector2(0.176, 0.176)
-texture = ExtResource("4_dtkrh")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Hand"]
-node_a = NodePath("..")
-softness = 2.0
-
-[node name="Pivot" type="Node2D" parent="Hand"]
-
-[node name="Grab Effect" type="CPUParticles2D" parent="Hand/Pivot"]
-position = Vector2(1, -1)
-emitting = false
-amount = 50
-lifetime = 0.3
-one_shot = true
-explosiveness = 0.75
-randomness = 0.23
-texture = ExtResource("38_bnqt3")
-direction = Vector2(2.08165e-12, 2.08165e-12)
-gravity = Vector2(2.08165e-12, 2.08165e-12)
-scale_amount_min = 0.05
-scale_amount_max = 0.1
-scale_amount_curve = SubResource("Curve_vrdjw")
-color = Color(1, 1, 1, 0.0784314)
-
-[node name="Sprite" type="Sprite2D" parent="Hand/Pivot"]
-modulate = Color(1, 0.886275, 0.87451, 1)
-position = Vector2(75, -194)
-rotation = 0.107136
-scale = Vector2(0.151392, 0.151392)
-texture = ExtResource("42_l8nyf")
-
-[node name="Arm Spot" type="Node2D" parent="Hand/Pivot/Sprite"]
-position = Vector2(-125.502, -977.593)
-
-[node name="RigidBody2D" type="RigidBody2D" parent="Hand/Pivot/Sprite"]
-collision_layer = 8
-collision_mask = 256
-gravity_scale = 2.66454e-15
-freeze = true
-freeze_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/Pivot/Sprite/RigidBody2D"]
-position = Vector2(-30.644, 209.242)
-shape = SubResource("RectangleShape2D_kqywb")
-
-[node name="Circle" type="Sprite2D" parent="Hand/Pivot/Sprite/RigidBody2D"]
-visible = false
-position = Vector2(-36.4921, 834.355)
-rotation = -0.107136
-scale = Vector2(1.33459, 1.33459)
-texture = ExtResource("4_dtkrh")
 
 [node name="Scene Changer" parent="." instance=ExtResource("9_vqoue")]
 
