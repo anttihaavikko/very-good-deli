@@ -24,6 +24,24 @@ position = Vector2(532.4, 344.4)
 scale = Vector2(1461.7, 1098.2)
 texture = ExtResource("1_h4pmr")
 
+[node name="Pick" parent="." instance=ExtResource("2_xr6tp")]
+offset_left = 15.0
+offset_top = 263.0
+offset_right = 365.0
+offset_bottom = 823.0
+
+[node name="Pick2" parent="." instance=ExtResource("2_xr6tp")]
+offset_left = 366.0
+offset_top = 263.0
+offset_right = 716.0
+offset_bottom = 823.0
+
+[node name="Pick3" parent="." instance=ExtResource("2_xr6tp")]
+offset_left = 715.0
+offset_top = 263.0
+offset_right = 1065.0
+offset_bottom = 823.0
+
 [node name="Table" type="StaticBody2D" parent="."]
 modulate = Color(0.894118, 0.729412, 0.627451, 1)
 position = Vector2(-295.2, 1011.8)
@@ -43,24 +61,6 @@ modulate = Color(0, 0, 0, 1)
 position = Vector2(2.37008, -1.94087)
 scale = Vector2(2.18504, 0.0295629)
 texture = ExtResource("1_h4pmr")
-
-[node name="Pick" parent="." instance=ExtResource("2_xr6tp")]
-offset_left = 15.0
-offset_top = 263.0
-offset_right = 365.0
-offset_bottom = 823.0
-
-[node name="Pick2" parent="." instance=ExtResource("2_xr6tp")]
-offset_left = 366.0
-offset_top = 263.0
-offset_right = 716.0
-offset_bottom = 823.0
-
-[node name="Pick3" parent="." instance=ExtResource("2_xr6tp")]
-offset_left = 715.0
-offset_top = 263.0
-offset_right = 1065.0
-offset_bottom = 823.0
 
 [node name="Scene Changer" parent="." instance=ExtResource("3_3d4qj")]
 

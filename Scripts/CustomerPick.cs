@@ -1,4 +1,5 @@
 using System;
+using System.Runtime;
 using AnttiStarter.Extensions;
 using AnttiStarter.SceneChanger;
 using AnttiStarter.Utils;
@@ -9,8 +10,36 @@ namespace Scripts;
 public partial class CustomerPick : Control
 {
     [Export] private RichTextLabel textBubble;
+    [Export] private AnimationPlayer anim;
+    [Export] private Texture2D[] hairs;
+    [Export] private Sprite2D hair;
+    [Export] private Node2D head;
+    [Export] private Node2D bubble;
+    [Export] private Color[] colors, skinColors;
+    [Export] private Sprite2D sleeveLeft, sleeveRight, shirt;
+    [Export] private Sprite2D headSprite, neck, leftHand, rightHand;
+    [Export] private Sprite2D shirtDeco;
+    [Export] private Texture2D[] shirtDecorations;
 
     public Action onPick;
+
+    public override void _Ready()
+    {
+        hair.Texture = hairs.Random();
+        
+        anim.Play("Customer");
+        anim.SpeedScale = Rng.Range(0.8f, 1.2f);
+
+        var offset = Rng.Value * 40f * Vector2.Up;
+        head.Position += offset;
+        bubble.Position += offset * 1.5f;
+
+        hair.SelfModulate = colors.Random();
+        shirt.SelfModulate = sleeveLeft.SelfModulate = sleeveRight.SelfModulate = colors.Random();
+        headSprite.SelfModulate = neck.SelfModulate = leftHand.SelfModulate = rightHand.SelfModulate = skinColors.Random();
+        shirtDeco.SelfModulate = colors.Random();
+        shirtDeco.Texture = shirtDecorations.Random();
+    }
 
     public void Setup(string word, string adjective)
     {

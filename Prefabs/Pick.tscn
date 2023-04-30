@@ -1,16 +1,137 @@
-[gd_scene load_steps=10 format=3 uid="uid://7ambpmmfn7n0"]
+[gd_scene load_steps=25 format=3 uid="uid://7ambpmmfn7n0"]
 
 [ext_resource type="Script" path="res://Scripts/CustomerPick.cs" id="1_py8p7"]
 [ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="2_lbieo"]
 [ext_resource type="Texture2D" uid="uid://enme43dnja5y" path="res://Sprites/bubble.png" id="3_xgrm5"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/MovingNode.cs" id="4_2fapc"]
+[ext_resource type="Texture2D" uid="uid://dwx2lwtig6g41" path="res://Sprites/hair3.png" id="4_226qp"]
 [ext_resource type="Texture2D" uid="uid://c1bynviyu8x4l" path="res://Sprites/circle-outlined.svg" id="5_re7i5"]
+[ext_resource type="Texture2D" uid="uid://d3sga3air2j1v" path="res://Sprites/neck.png" id="5_rthlr"]
 [ext_resource type="Texture2D" uid="uid://da51roy4mumgr" path="res://Sprites/circle.svg" id="6_351ti"]
 [ext_resource type="Script" path="res://Scripts/RandomScale.cs" id="6_o6ywg"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/Face.cs" id="6_voebv"]
 [ext_resource type="Texture2D" uid="uid://djtx0lg0xw3kp" path="res://Sprites/mouth.svg" id="7_ew2hl"]
+[ext_resource type="Texture2D" uid="uid://d0uxl52i1q25" path="res://Sprites/shirt-dots.png" id="8_2s8fk"]
+[ext_resource type="Texture2D" uid="uid://b5olfte3crmug" path="res://Sprites/shirt-star.png" id="9_1su4l"]
+[ext_resource type="Texture2D" uid="uid://cq5kcqcstc36r" path="res://Sprites/hair1.png" id="11_6smdw"]
+[ext_resource type="Texture2D" uid="uid://dtk0j2yp5cdd6" path="res://Sprites/shirt-stripes-thin.png" id="11_12owk"]
+[ext_resource type="Texture2D" uid="uid://b8l70ubauxm3c" path="res://Sprites/shirt-stripes.png" id="11_mdbd2"]
+[ext_resource type="Texture2D" uid="uid://b2i2y4csk74xa" path="res://Sprites/hair2.png" id="11_tyegs"]
+[ext_resource type="Texture2D" uid="uid://bpryplq0k388j" path="res://Sprites/shirt.png" id="11_yjfe5"]
+[ext_resource type="Texture2D" uid="uid://cgij7q3pmx2i5" path="res://Sprites/hair4.png" id="12_falsu"]
+[ext_resource type="Texture2D" uid="uid://bepbqv68ms1hu" path="res://Sprites/customer-hand.png" id="12_lhji1"]
+[ext_resource type="Texture2D" uid="uid://nf7iplgk32b3" path="res://Sprites/sleeve.png" id="13_x2ne4"]
 
-[node name="Pick" type="Control" node_paths=PackedStringArray("textBubble")]
+[sub_resource type="Animation" id="Animation_pg63g"]
+resource_name = "Customer"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(172, 558), Vector2(172, 572), Vector2(172, 558)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Head Wrap:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4, -203), Vector2(4, -195), Vector2(4, -203)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hands/Sleeves:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 5), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Head Wrap/Scaler/Hair:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.0523599, 0.0523599, -0.0523599, 0.0523599, -0.0523599]
+}
+
+[sub_resource type="Animation" id="Animation_jwa7v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(172, 558)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Head Wrap:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, -203)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hands/Sleeves:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Head Wrap/Scaler/Hair:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0523599]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yo1x1"]
+_data = {
+"Customer": SubResource("Animation_pg63g"),
+"RESET": SubResource("Animation_jwa7v")
+}
+
+[node name="Pick" type="Control" node_paths=PackedStringArray("textBubble", "anim", "hair", "head", "bubble", "sleeveLeft", "sleeveRight", "shirt", "headSprite", "neck", "leftHand", "rightHand", "shirtDeco")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 29.0
@@ -18,40 +139,42 @@ offset_top = 268.0
 offset_right = 379.0
 offset_bottom = 828.0
 script = ExtResource("1_py8p7")
-textBubble = NodePath("Node2D/VBoxContainer/RichTextLabel")
+textBubble = NodePath("Bubble Wrap/Node2D/VBoxContainer/RichTextLabel")
+anim = NodePath("AnimationPlayer")
+hairs = Array[Texture2D]([ExtResource("11_6smdw"), ExtResource("11_tyegs"), ExtResource("4_226qp"), ExtResource("12_falsu")])
+hair = NodePath("Body/Head Wrap/Scaler/Hair")
+head = NodePath("Body/Head Wrap/Scaler")
+bubble = NodePath("Bubble Wrap")
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.301961, 0.235294, 1, 0.247059, 0.466667, 1, 1, 0.513726, 0.956863, 0.627451, 1, 0.160784, 0.160784, 0.160784, 1, 1, 1, 0, 1, 1, 0.662745, 0, 1, 0.576471, 0.576471, 0.576471, 1)
+skinColors = PackedColorArray(1, 0.886275, 0.87451, 1, 1, 0.941176, 0.933333, 1, 1, 0.776471, 0.756863, 1, 1, 0.847059, 0.486275, 1, 0.309804, 0.247059, 0, 1)
+sleeveLeft = NodePath("Hands/Sleeves/Sleeve Left")
+sleeveRight = NodePath("Hands/Sleeves/Sleeve Right")
+shirt = NodePath("Body/Shirt")
+headSprite = NodePath("Body/Head Wrap/Scaler/Head")
+neck = NodePath("Body/Neck")
+leftHand = NodePath("Hands/Customer-hand")
+rightHand = NodePath("Hands/Customer-hand2")
+shirtDeco = NodePath("Body/Shirt Deco")
+shirtDecorations = Array[Texture2D]([ExtResource("11_mdbd2"), ExtResource("11_12owk"), null, ExtResource("8_2s8fk"), ExtResource("9_1su4l")])
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -103.5
-offset_top = 325.0
-offset_right = 103.5
-offset_bottom = 421.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_lbieo")
-theme_override_font_sizes/font_size = 50
-text = "PICK"
+[node name="Bubble Wrap" type="Node2D" parent="."]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="Bubble Wrap"]
 script = ExtResource("4_2fapc")
 direction = Vector2(2.08165e-12, -15)
 speed = 0.2
 randomOffset = true
 
-[node name="TextureRect" type="TextureRect" parent="Node2D"]
+[node name="TextureRect" type="TextureRect" parent="Bubble Wrap/Node2D"]
 offset_left = 19.0
 offset_top = 72.0
 offset_right = 2476.0
 offset_bottom = 1552.0
 scale = Vector2(0.128, 0.128)
+pivot_offset = Vector2(0.328, 2.08165e-12)
 texture = ExtResource("3_xgrm5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Node2D"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Bubble Wrap/Node2D"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -63,7 +186,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Node2D/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Bubble Wrap/Node2D/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_lbieo")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -81,51 +204,135 @@ offset_top = 72.0
 offset_right = 328.0
 offset_bottom = 245.0
 
-[node name="Head" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.886275, 0.87451, 1)
-position = Vector2(176, 355)
+[node name="Body" type="Node2D" parent="."]
+position = Vector2(172, 558)
+
+[node name="Neck" type="Sprite2D" parent="Body"]
+position = Vector2(3, -156.5)
+scale = Vector2(0.512903, 0.512903)
+texture = ExtResource("5_rthlr")
+
+[node name="Shirt" type="Sprite2D" parent="Body"]
+position = Vector2(3, -10.4999)
+scale = Vector2(0.490554, 0.490554)
+texture = ExtResource("11_yjfe5")
+
+[node name="Shirt Deco" type="Sprite2D" parent="Body"]
+self_modulate = Color(0.843137, 0.258824, 0.258824, 1)
+position = Vector2(3, -10.4999)
+scale = Vector2(0.490554, 0.490554)
+texture = ExtResource("11_12owk")
+
+[node name="Head Wrap" type="Node2D" parent="Body"]
+position = Vector2(4, -203)
+
+[node name="Scaler" type="Node2D" parent="Body/Head Wrap"]
 scale = Vector2(0.480486, 0.480486)
+script = ExtResource("6_o6ywg")
+min = 0.7
+max = 1.3
+
+[node name="Head" type="Sprite2D" parent="Body/Head Wrap/Scaler"]
 texture = ExtResource("5_re7i5")
+
+[node name="Wrap" type="Node2D" parent="Body/Head Wrap/Scaler"]
 script = ExtResource("6_o6ywg")
 
-[node name="Wrap" type="Node2D" parent="Head"]
-script = ExtResource("6_o6ywg")
-
-[node name="Face" type="Sprite2D" parent="Head/Wrap" node_paths=PackedStringArray("wrapper", "leftEye", "rightEye")]
+[node name="Face" type="Sprite2D" parent="Body/Head Wrap/Scaler/Wrap" node_paths=PackedStringArray("wrapper", "leftEye", "rightEye")]
 scale = Vector2(0.711184, 0.711184)
 script = ExtResource("6_voebv")
 wrapper = NodePath("..")
 leftEye = NodePath("Left Eye")
 rightEye = NodePath("Right Eye")
 
-[node name="Left Eye" type="Sprite2D" parent="Head/Wrap/Face"]
+[node name="Left Eye" type="Sprite2D" parent="Body/Head Wrap/Scaler/Wrap/Face"]
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-27, -4.162)
 scale = Vector2(0.0835464, 0.0835464)
 texture = ExtResource("6_351ti")
 
-[node name="Right Eye" type="Sprite2D" parent="Head/Wrap/Face"]
+[node name="Right Eye" type="Sprite2D" parent="Body/Head Wrap/Scaler/Wrap/Face"]
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(27, -4.162)
 scale = Vector2(0.0835464, 0.0835464)
 texture = ExtResource("6_351ti")
 
-[node name="Right Blush" type="Sprite2D" parent="Head/Wrap/Face"]
+[node name="Right Blush" type="Sprite2D" parent="Body/Head Wrap/Scaler/Wrap/Face"]
 self_modulate = Color(1, 0.337255, 0.270588, 1)
 position = Vector2(66.5991, 12.4873)
 scale = Vector2(0.116697, 0.0835464)
 texture = ExtResource("6_351ti")
 
-[node name="Left Blush" type="Sprite2D" parent="Head/Wrap/Face"]
+[node name="Left Blush" type="Sprite2D" parent="Body/Head Wrap/Scaler/Wrap/Face"]
 self_modulate = Color(1, 0.337255, 0.270588, 1)
 position = Vector2(-66.5992, 12.4873)
 scale = Vector2(0.116697, 0.0835464)
 texture = ExtResource("6_351ti")
 
-[node name="Mouth" type="Sprite2D" parent="Head/Wrap/Face"]
+[node name="Mouth" type="Sprite2D" parent="Body/Head Wrap/Scaler/Wrap/Face"]
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(0, 14.6321)
 scale = Vector2(0.559632, 0.559632)
 texture = ExtResource("7_ew2hl")
+
+[node name="Hair" type="Sprite2D" parent="Body/Head Wrap/Scaler"]
+position = Vector2(0, 6.24353)
+rotation = -0.0523599
+scale = Vector2(1.1397, 1.1397)
+texture = ExtResource("11_tyegs")
+
+[node name="Hands" type="Node2D" parent="."]
+position = Vector2(172, 558)
+script = ExtResource("6_o6ywg")
+
+[node name="Sleeves" type="Node2D" parent="Hands"]
+
+[node name="Sleeve Left" type="Sprite2D" parent="Hands/Sleeves"]
+z_index = 1
+position = Vector2(-64.3572, -26)
+scale = Vector2(0.352899, 0.352899)
+texture = ExtResource("13_x2ne4")
+
+[node name="Sleeve Right" type="Sprite2D" parent="Hands/Sleeves"]
+z_index = 1
+position = Vector2(65.868, -24)
+scale = Vector2(0.373236, 0.373236)
+texture = ExtResource("13_x2ne4")
+
+[node name="Customer-hand" type="Sprite2D" parent="Hands"]
+z_index = 1
+position = Vector2(-60.3572, -3.00006)
+scale = Vector2(0.474359, 0.474359)
+texture = ExtResource("12_lhji1")
+
+[node name="Customer-hand2" type="Sprite2D" parent="Hands"]
+z_index = 1
+position = Vector2(65.868, -3.00006)
+rotation = 3.14159
+scale = Vector2(0.474, -0.474)
+texture = ExtResource("12_lhji1")
+
+[node name="Button" type="Button" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.5
+offset_top = 359.0
+offset_right = 103.5
+offset_bottom = 455.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lbieo")
+theme_override_font_sizes/font_size = 50
+text = "PICK"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yo1x1")
+}
 
 [connection signal="pressed" from="Button" to="." method="Pick"]
