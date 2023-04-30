@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dpd3okd1tsdw0"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dpd3okd1tsdw0"]
 
 [ext_resource type="FontFile" uid="uid://bdirygmrdap8l" path="res://BebasNeue-Regular.ttf" id="1_p4h3x"]
 
@@ -31,6 +31,18 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yo1f6"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1nn4"]
 content_margin_left = 5.0
@@ -65,6 +77,7 @@ Button/colors/font_hover_color = Color(0, 0, 0, 1)
 Button/styles/hover = SubResource("StyleBoxFlat_pafaf")
 Button/styles/normal = SubResource("StyleBoxFlat_e0svd")
 Button/styles/pressed = SubResource("StyleBoxFlat_p8vvs")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_yo1f6")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_g1nn4")
 TextEdit/colors/background_color = Color(1, 1, 1, 1)
 TextEdit/colors/caret_color = Color(0, 0, 0, 1)
