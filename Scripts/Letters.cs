@@ -123,6 +123,8 @@ public partial class Letters : Node2D
             }
         }
         
+        if (!OS.IsDebugBuild()) return;
+        
         if (Input.IsKeyPressed(Key.N))
         {
             sceneChanger.ChangeScene("res://Scenes/WordPick.tscn");
