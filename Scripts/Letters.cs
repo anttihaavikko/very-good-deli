@@ -168,7 +168,8 @@ public partial class Letters : Node2D
         var heightBonus = height * 4;
         var time = Mathf.RoundToInt(timeLeft);
         var timeBonus = time * State.Level;
-        var total = Mathf.Max(0, amount + breadnessBonus + timeBonus + heightBonus - penalty);
+        var ringPenalty = Mathf.RoundToInt((Mathf.Pow(1.2f, bell.ExtraRings) - 1) * amount);
+        var total = Mathf.Max(0, amount + breadnessBonus + timeBonus + heightBonus - penalty - ringPenalty);
         
         var totalDelay = 0f;
         
@@ -176,13 +177,19 @@ public partial class Letters : Node2D
         ShowEvaluationRow("Sandwichness", AsPercent(breadness), breadnessBonus.WithSign(), rowDelay * 1);
         ShowEvaluationRow("Height", height + " cm", heightBonus.WithSign(), rowDelay * 2);
         ShowEvaluationRow("Time left", time + " s", timeBonus.WithSign(), rowDelay * 3);
-
+        
         if (penalty > 0)
         {
-            ShowEvaluationRow("Missing ingredients", missing.ToString(), (-penalty).ToString(), rowDelay * 4);
+            ShowEvaluationRow("Missing ingredients", missing.ToString(), (-penalty).ToString(), rowDelay * 4 + totalDelay);
             totalDelay += rowDelay;
             lifeDisplay.Lose(missing);
             State.Lives -= missing;
+        }
+
+        if (ringPenalty > 0)
+        {
+            ShowEvaluationRow("Extra rings", bell.ExtraRings.ToString(), (-ringPenalty).ToString(), rowDelay * 4 + totalDelay);
+            totalDelay += rowDelay;
         }
         
         ShowEvaluationRow("Total", "", total.ToString(), rowDelay * 4 + totalDelay, true);

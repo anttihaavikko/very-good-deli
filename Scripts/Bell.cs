@@ -15,6 +15,9 @@ public partial class Bell : Node2D
 
     private readonly Timer timer = new();
     private bool done;
+    private int rings;
+
+    public int ExtraRings => rings - 1;
 
     public override void _Ready()
     {
@@ -43,6 +46,7 @@ public partial class Bell : Node2D
     public void Ring()
     {
         if (done) return;
+        rings++;
         sound.PlayWithVariation();
         letters.HideTutorial();
         anim.Play("BellRing");
