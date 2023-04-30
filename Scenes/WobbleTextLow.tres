@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://xfyd2vm00eur"]
+
+[ext_resource type="Shader" path="res://Shaders/WobblingText.gdshader" id="1_hyjxe"]
+
+[resource]
+shader = ExtResource("1_hyjxe")
+shader_parameter/height = 5.0
+shader_parameter/frequency = 3.0
+shader_parameter/speed = 5.0

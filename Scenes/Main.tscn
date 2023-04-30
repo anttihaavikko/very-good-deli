@@ -1,9 +1,10 @@
-[gd_scene load_steps=71 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=72 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="PackedScene" uid="uid://ccvnghy1k4xpe" path="res://Prefabs/Background.tscn" id="1_77qrv"]
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
 [ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="2_j874t"]
 [ext_resource type="PackedScene" uid="uid://buueadi041e58" path="res://Letters/B.tscn" id="3_ivoux"]
+[ext_resource type="Material" uid="uid://xfyd2vm00eur" path="res://Scenes/WobbleTextLow.tres" id="4_7alee"]
 [ext_resource type="Script" path="res://Scripts/Letters.cs" id="4_57g0e"]
 [ext_resource type="Texture2D" uid="uid://da51roy4mumgr" path="res://Sprites/circle.svg" id="4_dtkrh"]
 [ext_resource type="Texture2D" uid="uid://be5cdha1wakdv" path="res://Sprites/hand.png" id="4_gajw3"]
@@ -217,6 +218,7 @@ hideDuration = 0.6
 isOneSized = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Help Build"]
+material = ExtResource("4_7alee")
 layout_mode = 0
 offset_right = 1747.0
 offset_bottom = 221.0
@@ -249,6 +251,7 @@ hideDuration = 0.6
 isOneSized = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Help Bell"]
+material = ExtResource("4_7alee")
 layout_mode = 0
 offset_right = 1883.0
 offset_bottom = 221.0

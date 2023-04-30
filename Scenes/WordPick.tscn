@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d28beajmtnmv4"]
+[gd_scene load_steps=10 format=3 uid="uid://d28beajmtnmv4"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_h4pmr"]
 [ext_resource type="Script" path="res://Scripts/Picks.cs" id="1_tr313"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://7ambpmmfn7n0" path="res://Prefabs/Pick.tscn" id="2_xr6tp"]
 [ext_resource type="PackedScene" uid="uid://bi7sraec865yr" path="res://AnttiStarter/SceneChanger/SceneChanger.tscn" id="3_3d4qj"]
 [ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="4_w0b2h"]
+[ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="7_45kbu"]
+[ext_resource type="Material" uid="uid://wrh2jfty0xe" path="res://Scenes/WobbleText.tres" id="7_ud1gi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2q2b4"]
 size = Vector2(8.71129, 8.38046)
@@ -78,3 +80,17 @@ fileName = "res://enwords.txt"
 [node name="Adjectives" type="Node2D" parent="."]
 script = ExtResource("4_w0b2h")
 fileName = "res://adjectives.txt"
+
+[node name="Label" type="RichTextLabel" parent="."]
+material = ExtResource("7_ud1gi")
+offset_left = 220.0
+offset_top = -860.0
+offset_right = 2960.0
+offset_bottom = -452.0
+theme = ExtResource("7_45kbu")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/normal_font_size = 250
+text = "PICK YOUR CUSTOMER..."
