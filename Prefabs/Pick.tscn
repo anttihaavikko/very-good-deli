@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://7ambpmmfn7n0"]
+[gd_scene load_steps=26 format=3 uid="uid://7ambpmmfn7n0"]
 
 [ext_resource type="Script" path="res://Scripts/CustomerPick.cs" id="1_py8p7"]
 [ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="2_lbieo"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cgij7q3pmx2i5" path="res://Sprites/hair4.png" id="12_falsu"]
 [ext_resource type="Texture2D" uid="uid://bepbqv68ms1hu" path="res://Sprites/customer-hand.png" id="12_lhji1"]
 [ext_resource type="Texture2D" uid="uid://nf7iplgk32b3" path="res://Sprites/sleeve.png" id="13_x2ne4"]
+[ext_resource type="Texture2D" uid="uid://ctedpyw6wwg6i" path="res://Sprites/customer-shadow.png" id="22_m3f78"]
 
 [sub_resource type="Animation" id="Animation_pg63g"]
 resource_name = "Customer"
@@ -299,6 +300,13 @@ z_index = 1
 position = Vector2(65.868, -24)
 scale = Vector2(0.373236, 0.373236)
 texture = ExtResource("13_x2ne4")
+
+[node name="Shadows" type="Sprite2D" parent="Hands"]
+modulate = Color(0, 0, 0.27451, 0.101961)
+z_index = 1
+position = Vector2(2, 47.4073)
+scale = Vector2(0.165114, 0.153525)
+texture = ExtResource("22_m3f78")
 
 [node name="Customer-hand" type="Sprite2D" parent="Hands"]
 z_index = 1

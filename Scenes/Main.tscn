@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=73 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="PackedScene" uid="uid://ccvnghy1k4xpe" path="res://Prefabs/Background.tscn" id="1_77qrv"]
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
@@ -57,6 +57,7 @@
 [ext_resource type="Script" path="res://AnttiStarter/Utils/ListWrapper.cs" id="42_v05fh"]
 [ext_resource type="Script" path="res://AnttiStarter/Visuals/InverseKinematicsLine.cs" id="44_m0qxs"]
 [ext_resource type="Shader" path="res://Scenes/Blur.gdshader" id="54_5lj7v"]
+[ext_resource type="Texture2D" uid="uid://c4rwetqfqlcdx" path="res://Sprites/shadows.png" id="58_61ts4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0246d"]
 shader = ExtResource("54_5lj7v")
@@ -505,6 +506,12 @@ modulate = Color(0, 0, 0, 1)
 position = Vector2(2.37008, -1.94087)
 scale = Vector2(2.18504, 0.0295629)
 texture = ExtResource("1_qofwn")
+
+[node name="Shadows" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0.27451, 0.101961)
+position = Vector2(1134.25, 1043.95)
+scale = Vector2(0.474259, 0.352923)
+texture = ExtResource("58_61ts4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
