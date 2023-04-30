@@ -20,6 +20,7 @@ public partial class CustomerPick : Control
     [Export] private Sprite2D headSprite, neck, leftHand, rightHand;
     [Export] private Sprite2D shirtDeco;
     [Export] private Texture2D[] shirtDecorations;
+    [Export] private Color[] textColors;
 
     public Action onPick;
 
@@ -43,7 +44,8 @@ public partial class CustomerPick : Control
 
     public void Setup(string word, string adjective)
     {
-        textBubble.Text = $"[center]{GetStart()} {WithPrefix(adjective, word)} [b]{word}[/b] {GetBread()}! {GetExtras()}[/center]";
+        var hex = textColors.Random().ToHtml();
+        textBubble.Text = $"[center]{GetStart()} {WithPrefix(adjective, word)} [color={hex}][b]{word}[/b][/color] {GetBread()}! {GetExtras()}[/center]";
     }
 
     public void Pick()
