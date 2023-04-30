@@ -18,6 +18,7 @@ public partial class Hand : StaticBody2D
 	[Export] private Sprite2D sprite;
 	[Export] private Letters letters;
 	[Export] private RigidBody2D body;
+	[Export] private CpuParticles2D grabParticles;
 
 	private Vector2 offset;
 	private Node2D grabbed;
@@ -75,6 +76,8 @@ public partial class Hand : StaticBody2D
 
 			grabLine.Show();
 			sprite.Texture = handGrab;
+
+			grabParticles.Emitting = true;
 		}
 	}
 

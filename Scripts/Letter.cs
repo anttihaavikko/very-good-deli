@@ -8,7 +8,8 @@ namespace Scripts;
 public partial class Letter : RigidBody2D
 {
     [Export] private int score = 10;
-    
+    [Export] private CpuParticles2D splash;
+
     private CollisionPolygon2D polygon;
     private readonly List<Node> touches = new();
     
@@ -35,6 +36,11 @@ public partial class Letter : RigidBody2D
         touches.Remove(other);
     }
 
+    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+    {
+        // splash.Position = state.GetContactLocalPosition(0);
+    }
+
     private void Touch(Node other)
     {
         if (other.Name == "BellBody")
@@ -43,6 +49,11 @@ public partial class Letter : RigidBody2D
         }
         
         touches.Add(other);
+
+        if (LinearVelocity.Length() > 50f)
+        {
+            splash.Restart();
+        }
     }
 
     public int GetTouches()

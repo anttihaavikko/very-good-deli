@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvvkuhcaaujhw"]
+[gd_scene load_steps=5 format=3 uid="uid://cvvkuhcaaujhw"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://c2l0a86c5nxsc" path="res://Letters/Material.tres" id="1_a41uk"]
 [ext_resource type="Script" path="res://Scripts/Letter.cs" id="2_vjxtc"]
+[ext_resource type="PackedScene" uid="uid://d1o2t4oqrx5v8" path="res://Prefabs/Splash.tscn" id="3_fck83"]
 [ext_resource type="Texture2D" uid="uid://cwdafso5af7ry" path="res://Sprites/y.png" id="3_r8ex0"]
 
-[node name="Letter Y" type="RigidBody2D"]
+[node name="Letter Y" type="RigidBody2D" node_paths=PackedStringArray("splash")]
 position = Vector2(2.08165e-12, 2.08165e-12)
 mass = 3.0
 physics_material_override = ExtResource("1_a41uk")
@@ -14,6 +15,9 @@ contact_monitor = true
 can_sleep = false
 script = ExtResource("2_vjxtc")
 score = 20
+splash = NodePath("Splash")
+
+[node name="Splash" parent="." instance=ExtResource("3_fck83")]
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
