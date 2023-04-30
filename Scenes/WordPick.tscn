@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d28beajmtnmv4"]
+[gd_scene load_steps=8 format=3 uid="uid://d28beajmtnmv4"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_h4pmr"]
 [ext_resource type="Script" path="res://Scripts/Picks.cs" id="1_tr313"]
+[ext_resource type="PackedScene" uid="uid://ccvnghy1k4xpe" path="res://Prefabs/Background.tscn" id="2_bsdku"]
 [ext_resource type="PackedScene" uid="uid://7ambpmmfn7n0" path="res://Prefabs/Pick.tscn" id="2_xr6tp"]
 [ext_resource type="PackedScene" uid="uid://bi7sraec865yr" path="res://AnttiStarter/SceneChanger/SceneChanger.tscn" id="3_3d4qj"]
 [ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="4_w0b2h"]
@@ -18,33 +19,39 @@ wordDictionary = NodePath("Dictionary")
 adjectives = NodePath("Adjectives")
 sceneChanger = NodePath("Scene Changer")
 
-[node name="Background" type="Sprite2D" parent="."]
-modulate = Color(0.517647, 0.733333, 0.878431, 1)
-position = Vector2(532.4, 344.4)
-scale = Vector2(1461.7, 1098.2)
-texture = ExtResource("1_h4pmr")
+[node name="Background" parent="." instance=ExtResource("2_bsdku")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1130, 122)
+zoom = Vector2(0.48, 0.48)
 
 [node name="Pick" parent="." instance=ExtResource("2_xr6tp")]
-offset_left = 15.0
-offset_top = 263.0
-offset_right = 365.0
-offset_bottom = 823.0
+offset_left = 217.0
+offset_top = 178.053
+offset_right = 567.0
+offset_bottom = 738.053
+scale = Vector2(2.24117, 2.24117)
+pivot_offset = Vector2(175, 560)
 
 [node name="Pick2" parent="." instance=ExtResource("2_xr6tp")]
-offset_left = 366.0
-offset_top = 263.0
-offset_right = 716.0
-offset_bottom = 823.0
+offset_left = 942.0
+offset_top = 178.053
+offset_right = 1292.0
+offset_bottom = 738.053
+scale = Vector2(2.241, 2.241)
+pivot_offset = Vector2(175, 560)
 
 [node name="Pick3" parent="." instance=ExtResource("2_xr6tp")]
-offset_left = 715.0
-offset_top = 263.0
-offset_right = 1065.0
-offset_bottom = 823.0
+offset_left = 1671.0
+offset_top = 178.053
+offset_right = 2021.0
+offset_bottom = 738.053
+scale = Vector2(2.241, 2.241)
+pivot_offset = Vector2(175, 560)
 
 [node name="Table" type="StaticBody2D" parent="."]
 modulate = Color(0.894118, 0.729412, 0.627451, 1)
-position = Vector2(-295.2, 1011.8)
+position = Vector2(-295.2, 922)
 scale = Vector2(381, 97.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]

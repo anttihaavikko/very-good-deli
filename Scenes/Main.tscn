@@ -1,25 +1,17 @@
-[gd_scene load_steps=77 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=65 format=3 uid="uid://defaqmft8mbsr"]
 
+[ext_resource type="PackedScene" uid="uid://ccvnghy1k4xpe" path="res://Prefabs/Background.tscn" id="1_77qrv"]
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
 [ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="2_j874t"]
-[ext_resource type="Texture2D" uid="uid://c1hpp8r1ahnmv" path="res://Sprites/wall-board.png" id="2_lokxh"]
-[ext_resource type="Texture2D" uid="uid://b1vow58750ynk" path="res://Sprites/boards.png" id="2_lx2v4"]
 [ext_resource type="PackedScene" uid="uid://buueadi041e58" path="res://Letters/B.tscn" id="3_ivoux"]
 [ext_resource type="Script" path="res://Scripts/Letters.cs" id="4_57g0e"]
-[ext_resource type="Texture2D" uid="uid://bb6nwrl3m4gwk" path="res://Sprites/shelf.png" id="4_anoaj"]
 [ext_resource type="Texture2D" uid="uid://da51roy4mumgr" path="res://Sprites/circle.svg" id="4_dtkrh"]
 [ext_resource type="Texture2D" uid="uid://be5cdha1wakdv" path="res://Sprites/hand.png" id="4_gajw3"]
-[ext_resource type="Texture2D" uid="uid://btl6cpsp0ol1a" path="res://Sprites/hook.png" id="4_otihw"]
 [ext_resource type="Script" path="res://Scripts/Hand.cs" id="4_v0jb4"]
-[ext_resource type="Texture2D" uid="uid://b5yaa48roenlm" path="res://Sprites/knives.png" id="5_iy4jd"]
 [ext_resource type="PackedScene" uid="uid://nit2abnesagk" path="res://Letters/C.tscn" id="6_odhns"]
-[ext_resource type="Texture2D" uid="uid://c6ni4wocglfsu" path="res://Sprites/spoon1.png" id="7_vu258"]
 [ext_resource type="PackedScene" uid="uid://c3q57af4cd6es" path="res://Letters/D.tscn" id="8_du2ds"]
 [ext_resource type="PackedScene" uid="uid://j7ou0aytb4eh" path="res://Letters/E.tscn" id="8_gp5py"]
-[ext_resource type="Texture2D" uid="uid://ck04ew2hq3ei6" path="res://Sprites/spoon2.png" id="8_itpsw"]
-[ext_resource type="Script" path="res://Scripts/Nudger.cs" id="8_ugbcg"]
 [ext_resource type="PackedScene" uid="uid://57527eh070t3" path="res://Letters/F.tscn" id="9_4e1wc"]
-[ext_resource type="Texture2D" uid="uid://6kdk7krjgma2" path="res://Sprites/spoon3.png" id="9_lnqu6"]
 [ext_resource type="PackedScene" uid="uid://bi7sraec865yr" path="res://AnttiStarter/SceneChanger/SceneChanger.tscn" id="9_vqoue"]
 [ext_resource type="Texture2D" uid="uid://3rwocaycdkp1" path="res://Sprites/plate.png" id="10_3c44a"]
 [ext_resource type="Texture2D" uid="uid://ujxyxdlt7ua6" path="res://Sprites/basket.png" id="10_rmolq"]
@@ -60,18 +52,6 @@
 [ext_resource type="Texture2D" uid="uid://77w4dsvglf63" path="res://Sprites/hand-open.png" id="42_l8nyf"]
 [ext_resource type="Script" path="res://AnttiStarter/Utils/ListWrapper.cs" id="42_v05fh"]
 [ext_resource type="Script" path="res://AnttiStarter/Visuals/InverseKinematicsLine.cs" id="44_m0qxs"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4eww"]
-size = Vector2(756.5, 56)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttutc"]
-size = Vector2(53, 644)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kct8n"]
-size = Vector2(148, 485.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_86vtx"]
-size = Vector2(148, 594.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4asle"]
 size = Vector2(4.28084, 69.3985)
@@ -165,169 +145,7 @@ size = Vector2(941.111, 2449.87)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Background" type="Node2D" parent="."]
-
-[node name="Color" type="Sprite2D" parent="Background"]
-modulate = Color(0.739301, 0.685582, 0.666553, 1)
-position = Vector2(1356.6, 469.6)
-scale = Vector2(1461.7, 1098.2)
-texture = ExtResource("1_qofwn")
-
-[node name="Walls" type="Node2D" parent="Background"]
-modulate = Color(0.784314, 0.67451, 0.670588, 1)
-
-[node name="Boards" type="Sprite2D" parent="Background/Walls"]
-texture_repeat = 2
-position = Vector2(1104, 1034.17)
-scale = Vector2(2, 14.0635)
-texture = ExtResource("2_lx2v4")
-region_enabled = true
-region_rect = Rect2(2.08165e-12, 2.08165e-12, 1500, 100)
-
-[node name="Wall-board" type="Sprite2D" parent="Background/Walls"]
-position = Vector2(1134, 320)
-scale = Vector2(1.99131, 1.71429)
-texture = ExtResource("2_lokxh")
-
-[node name="Wall-board2" type="Sprite2D" parent="Background/Walls"]
-position = Vector2(1134, -964)
-scale = Vector2(1.99131, 1.71429)
-texture = ExtResource("2_lokxh")
-
-[node name="Hook" type="Sprite2D" parent="Background"]
-position = Vector2(1483, -283)
-scale = Vector2(0.253765, 0.253765)
-texture = ExtResource("4_otihw")
-
-[node name="Hook2" type="Sprite2D" parent="Background"]
-position = Vector2(1689, -283)
-scale = Vector2(0.253765, 0.253765)
-texture = ExtResource("4_otihw")
-
-[node name="Hook3" type="Sprite2D" parent="Background"]
-position = Vector2(1921, -283)
-scale = Vector2(0.253765, 0.253765)
-texture = ExtResource("4_otihw")
-
-[node name="Shelf" type="Sprite2D" parent="Background"]
-position = Vector2(1693, -309)
-scale = Vector2(0.3101, 0.3101)
-texture = ExtResource("4_anoaj")
-
-[node name="Knives" type="Sprite2D" parent="Background"]
-position = Vector2(506, -107)
-scale = Vector2(0.326067, 0.326067)
-texture = ExtResource("5_iy4jd")
-
-[node name="Shelf Body" type="StaticBody2D" parent="Background"]
-position = Vector2(1685, -325)
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Shelf Body"]
-position = Vector2(4.75, 12)
-shape = SubResource("RectangleShape2D_b4eww")
-
-[node name="Spoon2" type="Node2D" parent="Background"]
-position = Vector2(1689, -253)
-
-[node name="Spoon2" type="RigidBody2D" parent="Background/Spoon2"]
-position = Vector2(-16, -4)
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Spoon2/Spoon2"]
-position = Vector2(16.5, 312)
-shape = SubResource("RectangleShape2D_ttutc")
-
-[node name="Spoon1" type="Sprite2D" parent="Background/Spoon2/Spoon2"]
-position = Vector2(16, 255)
-scale = Vector2(0.216406, 0.216406)
-texture = ExtResource("8_itpsw")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Background/Spoon2"]
-position = Vector2(-1, 10)
-node_a = NodePath("../../Shelf Body")
-node_b = NodePath("../Spoon2")
-
-[node name="Area2D" type="Area2D" parent="Background/Spoon2" node_paths=PackedStringArray("body")]
-collision_layer = 256
-collision_mask = 11
-script = ExtResource("8_ugbcg")
-body = NodePath("../Spoon2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Spoon2/Area2D"]
-position = Vector2(3, 310.25)
-shape = SubResource("RectangleShape2D_kct8n")
-debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
-
-[node name="Spoon" type="Node2D" parent="Background"]
-position = Vector2(1485, -253)
-
-[node name="Spoon2" type="RigidBody2D" parent="Background/Spoon"]
-position = Vector2(-16, -4)
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Spoon/Spoon2"]
-position = Vector2(16.5, 312)
-shape = SubResource("RectangleShape2D_ttutc")
-
-[node name="Spoon1" type="Sprite2D" parent="Background/Spoon/Spoon2"]
-position = Vector2(15.9999, 311)
-scale = Vector2(0.216406, 0.216406)
-texture = ExtResource("7_vu258")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Background/Spoon"]
-position = Vector2(-1, 10)
-node_a = NodePath("../../Shelf Body")
-node_b = NodePath("../Spoon2")
-
-[node name="Area2D2" type="Area2D" parent="Background/Spoon" node_paths=PackedStringArray("body")]
-position = Vector2(-3, 0)
-collision_layer = 256
-collision_mask = 11
-script = ExtResource("8_ugbcg")
-body = NodePath("../Spoon2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Spoon/Area2D2"]
-position = Vector2(3, 364.75)
-shape = SubResource("RectangleShape2D_86vtx")
-debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
-
-[node name="Spoon3" type="Node2D" parent="Background"]
-position = Vector2(1924, -253)
-
-[node name="Spoon2" type="RigidBody2D" parent="Background/Spoon3"]
-position = Vector2(-16, -4)
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Spoon3/Spoon2"]
-position = Vector2(16.5, 312)
-shape = SubResource("RectangleShape2D_ttutc")
-
-[node name="Spoon1" type="Sprite2D" parent="Background/Spoon3/Spoon2"]
-position = Vector2(15.9999, 311)
-scale = Vector2(0.216406, 0.216406)
-texture = ExtResource("9_lnqu6")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Background/Spoon3"]
-position = Vector2(-1, 10)
-node_a = NodePath("../../Shelf Body")
-node_b = NodePath("../Spoon2")
-
-[node name="Area2D3" type="Area2D" parent="Background/Spoon3" node_paths=PackedStringArray("body")]
-position = Vector2(-4, 0)
-collision_layer = 256
-collision_mask = 11
-script = ExtResource("8_ugbcg")
-body = NodePath("../Spoon2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Spoon3/Area2D3"]
-position = Vector2(3, 364.75)
-shape = SubResource("RectangleShape2D_86vtx")
-debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
+[node name="Background" parent="." instance=ExtResource("1_77qrv")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1130, 122)
