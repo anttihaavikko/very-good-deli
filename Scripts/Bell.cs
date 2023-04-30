@@ -41,6 +41,7 @@ public partial class Bell : Node2D
     public void Ring()
     {
         if (done) return;
+        letters.HideTutorial();
         anim.Play("BellRing");
         particles.Emitting = true;
         timeLabelAppearer.Toggle(true);

@@ -29,6 +29,7 @@ public partial class Letters : Node2D
     [Export] private Control paperRotator;
     [Export] private LifeDisplay lifeDisplay;
     [Export] private Control blurLayer;
+    [Export] private Appearer buildHelp, ringHelp;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
@@ -40,10 +41,17 @@ public partial class Letters : Node2D
     public bool TimeOver => timeLeft <= 0;
     public bool Evaluating => evaluating;
 
+    private bool tutorialDone;
+
     private GameState State => GetNode<GameState>("/root/GameState");
 
     public override void _Ready()
     {
+        if (State.Level == 1)
+        {
+            buildHelp.Toggle(true, 1.5f);    
+        }
+        
         Input.MouseMode = Input.MouseModeEnum.Hidden;
             
         UpdateScore();
@@ -61,6 +69,14 @@ public partial class Letters : Node2D
             SpawnLetter(Mathf.Max(index, 0), idx, idx == 0 || idx == word.Length - 1);
             idx++;
         }
+    }
+
+    public void ShowRingTutorial()
+    {
+        if (tutorialDone || State.Level > 1) return;
+        tutorialDone = true;
+        buildHelp.Toggle();
+        ringHelp.Toggle(true, 2f);
     }
 
     private void UpdateScore()
@@ -231,6 +247,12 @@ public partial class Letters : Node2D
         letter.Modulate = makeBread ? breadColor : colors.Random();
         letter.IsBread = makeBread;
         letter.ringBell += RingBell;
+        letter.placedOnPlate += ShowRingTutorial;
         ingredients.Add(letter);
+    }
+
+    public void HideTutorial()
+    {
+        ringHelp.Toggle(false);
     }
 }

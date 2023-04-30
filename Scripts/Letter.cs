@@ -22,7 +22,7 @@ public partial class Letter : RigidBody2D
 
     public int Score => score;
 
-    public Action ringBell;
+    public Action ringBell, placedOnPlate;
 
     public override void _Ready()
     {
@@ -43,6 +43,11 @@ public partial class Letter : RigidBody2D
 
     private void Touch(Node other)
     {
+        if (other.Name == "Plate")
+        {
+            placedOnPlate?.Invoke();
+        }
+        
         if (other.Name == "BellBody")
         {
             ringBell?.Invoke();
