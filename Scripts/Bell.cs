@@ -17,6 +17,8 @@ public partial class Bell : Node2D
     private bool done;
     private int rings;
 
+    private float cooldown;
+
     public int ExtraRings => rings - 1;
 
     public override void _Ready()
@@ -32,6 +34,7 @@ public partial class Bell : Node2D
 
     public override void _Process(double delta)
     {
+        cooldown -= (float)delta;
         timeLabel.Text = Mathf.CeilToInt(timer.TimeLeft).ToString();
     }
 
@@ -45,7 +48,8 @@ public partial class Bell : Node2D
 
     public void Ring()
     {
-        if (done) return;
+        if (done || cooldown > 0) return;
+        cooldown = 0.25f;
         rings++;
         sound.PlayWithVariation();
         letters.HideTutorial();
