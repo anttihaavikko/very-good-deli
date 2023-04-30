@@ -1,0 +1,127 @@
+[gd_scene load_steps=6 format=3 uid="uid://c41dicmhpw14s"]
+
+[ext_resource type="Texture2D" uid="uid://1l1asm7uh4tt" path="res://Sprites/triangle.png" id="1_ubu3j"]
+[ext_resource type="Script" path="res://Scripts/RandomAnimation.cs" id="2_koiku"]
+
+[sub_resource type="Animation" id="Animation_fdh8q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Branch1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Branch1/Branch2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Branch1/Branch2/Branch3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0523599]
+}
+
+[sub_resource type="Animation" id="Animation_kpfby"]
+resource_name = "Tree"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Branch1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0523599, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Branch1/Branch2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0523599, -0.0523599, 0.0523599]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Branch1/Branch2/Branch3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0523599, -0.0523599, 0.0523599]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_snsy0"]
+_data = {
+"RESET": SubResource("Animation_fdh8q"),
+"Tree": SubResource("Animation_kpfby")
+}
+
+[node name="Tree" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -76.7651
+offset_top = -325.0
+offset_right = 77.2349
+
+[node name="Branch1" type="Node2D" parent="."]
+position = Vector2(0, -400)
+
+[node name="Triangle" type="Sprite2D" parent="Branch1"]
+position = Vector2(-0.765076, -464)
+scale = Vector2(1.24356, 1.24356)
+texture = ExtResource("1_ubu3j")
+
+[node name="Branch2" type="Node2D" parent="Branch1"]
+position = Vector2(0, -404)
+
+[node name="Triangle2" type="Sprite2D" parent="Branch1/Branch2"]
+position = Vector2(-0.765076, -488)
+scale = Vector2(1.35315, 1.35315)
+texture = ExtResource("1_ubu3j")
+
+[node name="Branch3" type="Node2D" parent="Branch1/Branch2"]
+position = Vector2(0, -697)
+rotation = 0.0523599
+
+[node name="Triangle3" type="Sprite2D" parent="Branch1/Branch2/Branch3"]
+position = Vector2(-0.765076, -361)
+texture = ExtResource("1_ubu3j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_snsy0")
+}
+script = ExtResource("2_koiku")
+startWithAnimation = "Tree"

@@ -16,6 +16,7 @@ public partial class NameInput : Node2D
 
     public override void _Ready()
     {
+        Input.MouseMode = Input.MouseModeEnum.Visible;
         nameEdit.SelectAll();
         nameEdit.CaretColumn = nameEdit.Text.Length;
         nameEdit.GrabFocus();

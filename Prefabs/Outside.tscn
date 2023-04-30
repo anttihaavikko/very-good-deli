@@ -1,0 +1,160 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnhrluegxsv88"]
+
+[ext_resource type="Texture2D" uid="uid://didee3j8s4sdp" path="res://Sprites/mountains1.png" id="1_ys5rd"]
+[ext_resource type="PackedScene" uid="uid://c41dicmhpw14s" path="res://Prefabs/Tree.tscn" id="2_nn687"]
+
+[node name="Outside" type="Node2D"]
+
+[node name="Sky" type="ColorRect" parent="."]
+offset_left = -181.0
+offset_top = -1626.0
+offset_right = 2792.0
+offset_bottom = 1116.0
+color = Color(0.443137, 0.784314, 0.921569, 1)
+
+[node name="Mountains2" type="Sprite2D" parent="."]
+self_modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(1350, -127.125)
+rotation = 3.14159
+scale = Vector2(0.825, -0.825)
+texture = ExtResource("1_ys5rd")
+
+[node name="Mountains1" type="Sprite2D" parent="."]
+self_modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(1389, 298.875)
+texture = ExtResource("1_ys5rd")
+
+[node name="Back Tree" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(189, -387)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree2" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(62, -371)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree3" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(316, -391)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree4" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(432, -429)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree5" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(612, -463)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree6" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(699, -488)
+scale = Vector2(0.0812406, 0.0812406)
+
+[node name="Back Tree7" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(786, -480)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree8" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(1052, -399)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree9" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(1185, -339)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree10" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(1500, -398)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree11" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(1585, -459)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree12" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(1677, -504)
+scale = Vector2(0.0751433, 0.0751433)
+
+[node name="Back Tree13" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(1844, -472)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree14" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(1940, -461)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree15" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(2122, -464)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree16" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(2466, -432)
+scale = Vector2(0.124717, 0.124717)
+
+[node name="Back Tree17" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(2690, -387)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree18" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(2554, -399)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Back Tree19" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(2617, -392)
+scale = Vector2(0.10845, 0.10845)
+
+[node name="Tree" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(72, -34)
+scale = Vector2(0.179378, 0.179378)
+
+[node name="Tree2" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(423, -92)
+scale = Vector2(0.214124, 0.214124)
+
+[node name="Tree3" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(786, -132)
+scale = Vector2(0.214124, 0.214124)
+
+[node name="Tree4" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(1302, 42)
+scale = Vector2(0.223448, 0.223448)
+
+[node name="Tree5" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(1562, 23)
+scale = Vector2(0.214124, 0.214124)
+
+[node name="Tree6" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(1728, -24)
+scale = Vector2(0.185826, 0.185826)
+
+[node name="Tree7" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(2288, -93)
+scale = Vector2(0.23332, 0.23332)
+
+[node name="Tree8" parent="." instance=ExtResource("2_nn687")]
+modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(2594, -32)
+scale = Vector2(0.214124, 0.214124)

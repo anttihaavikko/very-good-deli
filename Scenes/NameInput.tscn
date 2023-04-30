@@ -1,8 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://dom1qd2ot4uqn"]
 
-[ext_resource type="Texture2D" uid="uid://didee3j8s4sdp" path="res://Sprites/mountains1.png" id="1_ks51p"]
 [ext_resource type="Script" path="res://Scripts/NameInput.cs" id="1_qk6se"]
 [ext_resource type="Texture2D" uid="uid://dxkuhbn3sgcds" path="res://Sprites/sign.png" id="2_brcpq"]
+[ext_resource type="PackedScene" uid="uid://bnhrluegxsv88" path="res://Prefabs/Outside.tscn" id="2_wd14i"]
 [ext_resource type="FontFile" uid="uid://bdirygmrdap8l" path="res://BebasNeue-Regular.ttf" id="3_f1tse"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/PulsatingNode.cs" id="4_k2dw6"]
 [ext_resource type="Shader" path="res://Scenes/Blur.gdshader" id="4_ubra3"]
@@ -43,23 +43,7 @@ sceneChanger = NodePath("Scene Changer")
 position = Vector2(1130, 122)
 zoom = Vector2(0.48, 0.48)
 
-[node name="Sky" type="ColorRect" parent="."]
-offset_left = -181.0
-offset_top = -1626.0
-offset_right = 2792.0
-offset_bottom = 1116.0
-color = Color(0.443137, 0.784314, 0.921569, 1)
-
-[node name="Mountains2" type="Sprite2D" parent="."]
-self_modulate = Color(0.435294, 0.847059, 0.819608, 1)
-position = Vector2(1350, -127.125)
-scale = Vector2(-0.825, 0.825)
-texture = ExtResource("1_ks51p")
-
-[node name="Mountains1" type="Sprite2D" parent="."]
-self_modulate = Color(0.388235, 0.796078, 0.607843, 1)
-position = Vector2(1389, 298.875)
-texture = ExtResource("1_ks51p")
+[node name="Outside" parent="." instance=ExtResource("2_wd14i")]
 
 [node name="Sign" type="Sprite2D" parent="."]
 position = Vector2(1759, 200)
