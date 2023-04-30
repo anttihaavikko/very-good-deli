@@ -16,7 +16,6 @@ public partial class StartView : Node2D
     [Export] private AudioStream[] letterSounds;
     [Export] private ListWrapper breads, others;
     [Export] private Label adjectiveLabel;
-    [Export] private WordDictionary adjectives;
     [Export] private Control paper;
     [Export] private Appearer prevButton, nextButton;
     [Export] private Control backBlur, frontBlur;
@@ -26,14 +25,14 @@ public partial class StartView : Node2D
     private bool boardShown;
 
     public bool LookingBoard => boardShown;
+    
+    private GameState State => GetNode<GameState>("/root/GameState");
 
     public override void _Ready()
     {
         breads.Get<Letter>().ForEach(b => Init(b, true));
         others.Get<Letter>().ForEach(o => Init(o, false));
 
-        adjectiveLabel.Text = adjectives.GetRandomWord();
-        
         paper.Rotation = Rng.Range(-Angle, Angle);
     }
 
@@ -47,7 +46,8 @@ public partial class StartView : Node2D
 
     public void Play()
     {
-        sceneChanger.ChangeScene("res://Scenes/Main.tscn");
+        var scene = State.NameSaved ? "Main" : "NameInput";
+        sceneChanger.ChangeScene($"res://Scenes/{scene}.tscn");
     }
 
     public void Quit()

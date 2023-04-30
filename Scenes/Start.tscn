@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://olji8y42yue7"]
+[gd_scene load_steps=56 format=3 uid="uid://olji8y42yue7"]
 
 [ext_resource type="Script" path="res://Scripts/StartView.cs" id="1_a6bre"]
 [ext_resource type="Shader" path="res://Scenes/Blur.gdshader" id="1_cgk15"]
@@ -28,6 +28,7 @@
 [ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="8_qivpn"]
 [ext_resource type="Texture2D" uid="uid://cscu5qkuf7ki7" path="res://Sprites/dotted-circle.png" id="9_hyw2l"]
 [ext_resource type="FontFile" uid="uid://bdirygmrdap8l" path="res://BebasNeue-Regular.ttf" id="9_v2got"]
+[ext_resource type="Script" path="res://Scripts/NameChanger.cs" id="10_gxfej"]
 [ext_resource type="AudioStream" uid="uid://ckc1scm0d1cy1" path="res://Sounds/pop.wav" id="10_qln6k"]
 [ext_resource type="PackedScene" uid="uid://o2ekcoob637e" path="res://Letters/L.tscn" id="17_davjs"]
 [ext_resource type="Texture2D" uid="uid://dgfv6plxj51c8" path="res://Sprites/plate-shadow.png" id="25_5xc30"]
@@ -88,7 +89,7 @@ shader_parameter/lod = 2.0
 shader = ExtResource("1_cgk15")
 shader_parameter/lod = 2.0
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("leaderboards", "sceneChanger", "breads", "others", "adjectiveLabel", "adjectives", "paper", "prevButton", "nextButton", "backBlur", "frontBlur")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("leaderboards", "sceneChanger", "breads", "others", "adjectiveLabel", "paper", "prevButton", "nextButton", "backBlur", "frontBlur")]
 script = ExtResource("1_a6bre")
 leaderboards = NodePath("CanvasLayer/Paper Wrap/Evaluation Paper")
 sceneChanger = NodePath("Scene Changer")
@@ -98,7 +99,6 @@ letterSounds = Array[AudioStream]([ExtResource("2_r5ki6"), ExtResource("3_2iwxi"
 breads = NodePath("Breads")
 others = NodePath("Demo Letters")
 adjectiveLabel = NodePath("Sign/Label2")
-adjectives = NodePath("Adjectives")
 paper = NodePath("CanvasLayer/Paper Wrap")
 prevButton = NodePath("CanvasLayer/Prev Page")
 nextButton = NodePath("CanvasLayer/Next Page")
@@ -111,7 +111,7 @@ zoom = Vector2(0.48, 0.48)
 
 [node name="Score Manager" type="Node2D" parent="."]
 script = ExtResource("40_d2xdh")
-game = "wowie"
+game = "deli"
 pageSize = 14
 
 [node name="Sky" type="ColorRect" parent="."]
@@ -173,7 +173,7 @@ text = "VERY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Sign"]
+[node name="Label2" type="Label" parent="Sign" node_paths=PackedStringArray("adjectives")]
 offset_left = -901.0
 offset_top = -728.0
 offset_right = 916.0
@@ -185,6 +185,8 @@ text = "GOOD"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
+script = ExtResource("10_gxfej")
+adjectives = NodePath("../../Adjectives")
 
 [node name="Label3" type="Label" parent="Sign"]
 offset_left = -901.0

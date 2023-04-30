@@ -4,6 +4,7 @@ using System.Linq;
 using AnttiStarter.Animations;
 using Godot;
 using AnttiStarter.Extensions;
+using AnttiStarter.Leaderboards;
 using AnttiStarter.SceneChanger;
 using AnttiStarter.Utils;
 using Range = Godot.Range;
@@ -33,7 +34,8 @@ public partial class Letters : Node2D
     [Export] private Appearer buildHelp, ringHelp;
     [Export] private Appearer quitButton, againButton;
     [Export] private AudioStream[] letterSounds;
-
+    [Export] private ScoreManager scoreManager;
+    
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
     private float timeLeft = 120f;
@@ -51,6 +53,7 @@ public partial class Letters : Node2D
 
     public override void _Ready()
     {
+        GD.Print($"Hello {State.PlayerName}, {State.PlayerId}");
         Music.Lowpass(false);
         
         if (State.Level == 1)
@@ -251,6 +254,8 @@ public partial class Letters : Node2D
                     quitButton.Toggle(true, 0.8f);
                     againButton.Toggle(true, 0.4f);
                     
+                    scoreManager.Submit(State.PlayerName, State.PlayerId, State.Score, State.Level);
+                    
                     return;
                 }
                 
@@ -295,6 +300,6 @@ public partial class Letters : Node2D
     {
         Music.Lowpass(false);
         State.Reset();
-        GD.Print("Go to menu");
+        sceneChanger.ChangeScene("res://Scenes/Start.tscn");
     }
 }

@@ -21,7 +21,7 @@ public partial class CustomerPick : Control
     [Export] private Sprite2D shirtDeco;
     [Export] private Texture2D[] shirtDecorations;
     [Export] private Color[] textColors;
-    [Export] private bool demo;
+    [Export] private bool demo, nameDemo;
     [Export] private Control button;
 
     public Action onPick;
@@ -47,6 +47,13 @@ public partial class CustomerPick : Control
         {
             bubble.Hide();
             button.Hide();
+        }
+
+        if (nameDemo)
+        {
+            button.Hide();
+            var hex = textColors.Random().ToHtml();
+            textBubble.Text = $"[center]You should put your [color={hex}][b]name[/b][/color] here for [color={hex}][b]leaderboards[/b][/color] entry...[/center]";
         }
     }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://defaqmft8mbsr"]
+[gd_scene load_steps=80 format=3 uid="uid://defaqmft8mbsr"]
 
 [ext_resource type="PackedScene" uid="uid://ccvnghy1k4xpe" path="res://Prefabs/Background.tscn" id="1_77qrv"]
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_qofwn"]
@@ -64,6 +64,7 @@
 [ext_resource type="AudioStream" uid="uid://ckc1scm0d1cy1" path="res://Sounds/pop.wav" id="53_iruyh"]
 [ext_resource type="Shader" path="res://Scenes/Blur.gdshader" id="54_5lj7v"]
 [ext_resource type="Texture2D" uid="uid://c4rwetqfqlcdx" path="res://Sprites/shadows.png" id="58_61ts4"]
+[ext_resource type="Script" path="res://AnttiStarter/Leaderboards/ScoreManager.cs" id="65_kjvgl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0246d"]
 shader = ExtResource("54_5lj7v")
@@ -278,7 +279,7 @@ script = ExtResource("6_s58m1")
 direction = Vector2(2.08165e-12, -50)
 speed = 0.3
 
-[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton", "bell", "scoreLabel", "hand", "paperRotator", "lifeDisplay", "blurLayer", "buildHelp", "ringHelp", "quitButton", "againButton")]
+[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton", "bell", "scoreLabel", "hand", "paperRotator", "lifeDisplay", "blurLayer", "buildHelp", "ringHelp", "quitButton", "againButton", "scoreManager")]
 script = ExtResource("4_57g0e")
 letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds"), ExtResource("8_gp5py"), ExtResource("9_4e1wc"), ExtResource("10_tw725"), ExtResource("11_6m062"), ExtResource("12_ludwc"), ExtResource("13_3sqmj"), ExtResource("14_kiraw"), ExtResource("15_fwo0e"), ExtResource("16_lnyqm"), ExtResource("17_qwyo6"), ExtResource("18_f0b65"), ExtResource("19_6fw2v"), ExtResource("20_msf06"), ExtResource("21_mq8lr"), ExtResource("22_5k8cv"), ExtResource("24_70vfp"), ExtResource("25_wonye"), ExtResource("26_rbvx0"), ExtResource("27_pb723"), ExtResource("28_f4d0n"), ExtResource("29_teune"), ExtResource("30_4ypvt")])
 spawn = NodePath("Spawn")
@@ -303,6 +304,7 @@ ringHelp = NodePath("../Help Bell")
 quitButton = NodePath("../CanvasLayer/Quit Wrap")
 againButton = NodePath("../CanvasLayer/Again Wrap")
 letterSounds = Array[AudioStream]([ExtResource("37_1vibs"), ExtResource("38_ne6gk"), ExtResource("37_olvyj"), ExtResource("39_l8tb6"), ExtResource("39_l8tb6")])
+scoreManager = NodePath("../Score Manager")
 
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
@@ -1128,6 +1130,11 @@ theme_override_constants/shadow_offset_y = 7
 theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/normal_font_size = 175
 text = "0"
+
+[node name="Score Manager" type="Node2D" parent="."]
+script = ExtResource("65_kjvgl")
+game = "deli"
+pageSize = 0
 
 [connection signal="pressed" from="Bell/Button" to="Bell" method="Ring"]
 [connection signal="pressed" from="CanvasLayer/Next Wrap/Next Button" to="Letters" method="NextLevel"]

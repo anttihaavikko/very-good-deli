@@ -1,0 +1,255 @@
+[gd_scene load_steps=22 format=3 uid="uid://dom1qd2ot4uqn"]
+
+[ext_resource type="Texture2D" uid="uid://didee3j8s4sdp" path="res://Sprites/mountains1.png" id="1_ks51p"]
+[ext_resource type="Script" path="res://Scripts/NameInput.cs" id="1_qk6se"]
+[ext_resource type="Texture2D" uid="uid://dxkuhbn3sgcds" path="res://Sprites/sign.png" id="2_brcpq"]
+[ext_resource type="FontFile" uid="uid://bdirygmrdap8l" path="res://BebasNeue-Regular.ttf" id="3_f1tse"]
+[ext_resource type="Script" path="res://AnttiStarter/Animations/PulsatingNode.cs" id="4_k2dw6"]
+[ext_resource type="Shader" path="res://Scenes/Blur.gdshader" id="4_ubra3"]
+[ext_resource type="Script" path="res://Scripts/NameChanger.cs" id="4_uerhb"]
+[ext_resource type="Texture2D" uid="uid://ds8v7nxhravyu" path="res://Sprites/spot.png" id="5_x5u7t"]
+[ext_resource type="Texture2D" uid="uid://b2v8h5blfo0la" path="res://Sprites/light.png" id="6_fgf3t"]
+[ext_resource type="Script" path="res://Scripts/Nudger.cs" id="7_ea3hb"]
+[ext_resource type="PackedScene" uid="uid://7ambpmmfn7n0" path="res://Prefabs/Pick.tscn" id="8_tu550"]
+[ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="9_5qqdh"]
+[ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="11_6fjq2"]
+[ext_resource type="PackedScene" uid="uid://bi7sraec865yr" path="res://AnttiStarter/SceneChanger/SceneChanger.tscn" id="13_4i0xv"]
+[ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="13_cwjsh"]
+[ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="16_a3chx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_laeiq"]
+shader = ExtResource("4_ubra3")
+shader_parameter/lod = 0.75
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx610"]
+size = Vector2(2400.5, 97)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aj01h"]
+size = Vector2(400, 282)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubprs"]
+size = Vector2(8.71129, 8.38046)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vqp6w"]
+shader = ExtResource("4_ubra3")
+shader_parameter/lod = 2.0
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("nameEdit", "sceneChanger")]
+script = ExtResource("1_qk6se")
+nameEdit = NodePath("CanvasLayer/LineEdit")
+sceneChanger = NodePath("Scene Changer")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1130, 122)
+zoom = Vector2(0.48, 0.48)
+
+[node name="Sky" type="ColorRect" parent="."]
+offset_left = -181.0
+offset_top = -1626.0
+offset_right = 2792.0
+offset_bottom = 1116.0
+color = Color(0.443137, 0.784314, 0.921569, 1)
+
+[node name="Mountains2" type="Sprite2D" parent="."]
+self_modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(1350, -127.125)
+scale = Vector2(-0.825, 0.825)
+texture = ExtResource("1_ks51p")
+
+[node name="Mountains1" type="Sprite2D" parent="."]
+self_modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(1389, 298.875)
+texture = ExtResource("1_ks51p")
+
+[node name="Sign" type="Sprite2D" parent="."]
+position = Vector2(1759, 200)
+scale = Vector2(0.248997, 0.248997)
+texture = ExtResource("2_brcpq")
+
+[node name="Label" type="Label" parent="Sign"]
+offset_left = -535.88
+offset_top = -1601.84
+offset_right = 527.12
+offset_bottom = -847.838
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_f1tse")
+theme_override_font_sizes/font_size = 500
+text = "VERY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Sign" node_paths=PackedStringArray("adjectives")]
+offset_left = -901.0
+offset_top = -728.0
+offset_right = 916.0
+offset_bottom = -78.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_f1tse")
+theme_override_font_sizes/font_size = 400
+text = "GOOD"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("4_uerhb")
+adjectives = NodePath("../../Adjectives")
+
+[node name="Label3" type="Label" parent="Sign"]
+offset_left = -901.0
+offset_top = 6.0
+offset_right = 916.0
+offset_bottom = 769.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_f1tse")
+theme_override_font_sizes/font_size = 600
+text = "DELI"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_laeiq")
+offset_left = -35.0
+offset_top = -1086.0
+offset_right = 2315.0
+offset_bottom = 1117.0
+
+[node name="Ceiling Body" type="StaticBody2D" parent="."]
+position = Vector2(0, -1860)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling Body"]
+position = Vector2(1187.75, 238)
+shape = SubResource("RectangleShape2D_rx610")
+
+[node name="Lamp" type="Node2D" parent="."]
+position = Vector2(476, -1227)
+rotation = -0.0958497
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Lamp"]
+position = Vector2(-1, 10)
+node_a = NodePath("../../Ceiling Body")
+node_b = NodePath("../Spoon2")
+
+[node name="Spoon2" type="RigidBody2D" parent="Lamp"]
+position = Vector2(-16, -4)
+collision_layer = 4
+collision_mask = 0
+center_of_mass_mode = 1
+center_of_mass = Vector2(16, 640)
+
+[node name="Light Wrap" type="Node2D" parent="Lamp/Spoon2"]
+position = Vector2(16, 640)
+script = ExtResource("4_k2dw6")
+amount = 0.03
+speed = 2.0
+
+[node name="Light Cone" type="Sprite2D" parent="Lamp/Spoon2/Light Wrap"]
+self_modulate = Color(1, 1, 1, 0.25098)
+position = Vector2(-24, 1021)
+scale = Vector2(1.48804, 1.20804)
+texture = ExtResource("5_x5u7t")
+
+[node name="Lamp" type="Sprite2D" parent="Lamp/Spoon2"]
+position = Vector2(16, 13.9999)
+scale = Vector2(1.20804, 1.20804)
+texture = ExtResource("6_fgf3t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lamp/Spoon2"]
+polygon = PackedVector2Array(-224, 771, 260, 771, 49, 540, 40, -154, -14, -158, -18, 537)
+
+[node name="Area2D" type="Area2D" parent="Lamp" node_paths=PackedStringArray("body")]
+position = Vector2(0, -114.232)
+collision_layer = 256
+collision_mask = 11
+script = ExtResource("7_ea3hb")
+body = NodePath("../Spoon2")
+nudgeAmount = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp/Area2D"]
+position = Vector2(3, 752)
+shape = SubResource("RectangleShape2D_aj01h")
+debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
+
+[node name="Pick" parent="." instance=ExtResource("8_tu550")]
+offset_left = 368.0
+offset_top = 149.984
+offset_right = 718.0
+offset_bottom = 709.984
+scale = Vector2(2.29819, 2.29819)
+pivot_offset = Vector2(175, 560)
+nameDemo = true
+
+[node name="Table" type="StaticBody2D" parent="."]
+modulate = Color(0.894118, 0.729412, 0.627451, 1)
+position = Vector2(529, 893.984)
+scale = Vector2(381, 97.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
+position = Vector2(2.36352, 2.18509)
+shape = SubResource("RectangleShape2D_ubprs")
+
+[node name="Square" type="Sprite2D" parent="Table"]
+position = Vector2(2.37008, 2.18252)
+scale = Vector2(2.18504, 2.09126)
+texture = ExtResource("9_5qqdh")
+
+[node name="Border" type="Sprite2D" parent="Table"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(2.37008, -1.94087)
+scale = Vector2(2.18504, 0.0295629)
+texture = ExtResource("9_5qqdh")
+
+[node name="Adjectives" type="Node2D" parent="."]
+script = ExtResource("11_6fjq2")
+fileName = "res://adjectives.txt"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Eval Blur" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_vqp6w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer"]
+offset_left = 238.0
+offset_top = 755.0
+offset_right = 813.0
+offset_bottom = 848.0
+theme = ExtResource("16_a3chx")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(1, 0.729412, 0, 1)
+theme_override_constants/caret_width = 10
+theme_override_font_sizes/font_size = 50
+alignment = 1
+max_length = 20
+caret_blink = true
+caret_blink_interval = 0.4
+
+[node name="Play" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 510.0
+offset_top = 951.0
+offset_right = 550.0
+offset_bottom = 991.0
+script = ExtResource("13_cwjsh")
+showAfter = 0.5
+isOneSized = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Play"]
+layout_mode = 0
+offset_left = -225.0
+offset_top = -68.0
+offset_right = 229.0
+offset_bottom = 64.0
+theme = ExtResource("16_a3chx")
+theme_override_font_sizes/font_size = 75
+text = "CONTINUE"
+
+[node name="Scene Changer" parent="." instance=ExtResource("13_4i0xv")]
+
+[connection signal="pressed" from="CanvasLayer/Play/Button" to="." method="SaveAndPlay"]
