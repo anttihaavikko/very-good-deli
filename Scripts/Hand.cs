@@ -81,7 +81,9 @@ public partial class Hand : StaticBody2D
 	public override void _Process(double delta)
 	{
 		// if (letters.Evaluating) return;
-		Position = GetGlobalMousePosition();
+		var mp = GetGlobalMousePosition();
+		Position = mp.Clamp(new Vector2(-500, -200), new Vector2(3000, 900));
+		Input.MouseMode = mp.Y > 900 ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Hidden;
 		var dir = armPos.GlobalPosition - GlobalPosition;
 		rotatePivot.Rotation = dir.Angle() + Mathf.Pi * 0.5f;
 
