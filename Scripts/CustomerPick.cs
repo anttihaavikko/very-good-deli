@@ -21,6 +21,8 @@ public partial class CustomerPick : Control
     [Export] private Sprite2D shirtDeco;
     [Export] private Texture2D[] shirtDecorations;
     [Export] private Color[] textColors;
+    [Export] private bool demo;
+    [Export] private Control button;
 
     public Action onPick;
 
@@ -40,6 +42,12 @@ public partial class CustomerPick : Control
         headSprite.SelfModulate = neck.SelfModulate = leftHand.SelfModulate = rightHand.SelfModulate = skinColors.Random();
         shirtDeco.SelfModulate = colors.Random();
         shirtDeco.Texture = shirtDecorations.Random();
+
+        if (demo)
+        {
+            bubble.Hide();
+            button.Hide();
+        }
     }
 
     public void Setup(string word, string adjective)

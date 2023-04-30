@@ -132,7 +132,7 @@ _data = {
 "RESET": SubResource("Animation_jwa7v")
 }
 
-[node name="Pick" type="Control" node_paths=PackedStringArray("textBubble", "anim", "hair", "head", "bubble", "sleeveLeft", "sleeveRight", "shirt", "headSprite", "neck", "leftHand", "rightHand", "shirtDeco")]
+[node name="Pick" type="Control" node_paths=PackedStringArray("textBubble", "anim", "hair", "head", "bubble", "sleeveLeft", "sleeveRight", "shirt", "headSprite", "neck", "leftHand", "rightHand", "shirtDeco", "button")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 29.0
@@ -158,6 +158,7 @@ rightHand = NodePath("Hands/Customer-hand2")
 shirtDeco = NodePath("Body/Shirt Deco")
 shirtDecorations = Array[Texture2D]([ExtResource("11_mdbd2"), ExtResource("11_12owk"), null, ExtResource("8_2s8fk"), ExtResource("9_1su4l")])
 textColors = PackedColorArray(0.862745, 0, 0, 1, 0.305882, 0.517647, 1, 1, 0, 0.678431, 0, 1)
+button = NodePath("Button")
 
 [node name="Bubble Wrap" type="Node2D" parent="."]
 

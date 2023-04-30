@@ -1,0 +1,794 @@
+[gd_scene load_steps=52 format=3 uid="uid://olji8y42yue7"]
+
+[ext_resource type="Script" path="res://Scripts/StartView.cs" id="1_a6bre"]
+[ext_resource type="Shader" path="res://Scenes/Blur.gdshader" id="1_cgk15"]
+[ext_resource type="Texture2D" uid="uid://3rwocaycdkp1" path="res://Sprites/plate.png" id="2_pwf46"]
+[ext_resource type="AudioStream" uid="uid://ctawxdn16d1nb" path="res://Sounds/meat.wav" id="2_r5ki6"]
+[ext_resource type="AudioStream" uid="uid://br05j5xqbmc3c" path="res://Sounds/tomato.wav" id="3_2iwxi"]
+[ext_resource type="PackedScene" uid="uid://c3q57af4cd6es" path="res://Letters/D.tscn" id="3_6qu61"]
+[ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="3_73ni3"]
+[ext_resource type="PackedScene" uid="uid://b3qjy8lewu8eb" path="res://Letters/U.tscn" id="3_rhnhd"]
+[ext_resource type="Script" path="res://AnttiStarter/Visuals/InverseKinematicsLine.cs" id="4_757uj"]
+[ext_resource type="AudioStream" uid="uid://bvv2mvcm5rr8v" path="res://Sounds/salad.wav" id="4_h4c7s"]
+[ext_resource type="AudioStream" uid="uid://cuow11iejsqo4" path="res://Sounds/bread.wav" id="5_aho5n"]
+[ext_resource type="PackedScene" uid="uid://7ambpmmfn7n0" path="res://Prefabs/Pick.tscn" id="5_byfrf"]
+[ext_resource type="PackedScene" uid="uid://b6tccu18obyxi" path="res://Letters/M.tscn" id="5_rn3uc"]
+[ext_resource type="Script" path="res://Scripts/Hand.cs" id="5_t0yok"]
+[ext_resource type="Texture2D" uid="uid://77w4dsvglf63" path="res://Sprites/hand-open.png" id="6_6yyur"]
+[ext_resource type="PackedScene" uid="uid://bjx87nbbusrt6" path="res://Letters/A.tscn" id="6_88jby"]
+[ext_resource type="Script" path="res://AnttiStarter/Animations/Appearer.cs" id="6_fw2gu"]
+[ext_resource type="Texture2D" uid="uid://didee3j8s4sdp" path="res://Sprites/mountains1.png" id="6_hrwb0"]
+[ext_resource type="PackedScene" uid="uid://bi7sraec865yr" path="res://AnttiStarter/SceneChanger/SceneChanger.tscn" id="6_nyamx"]
+[ext_resource type="Texture2D" uid="uid://bborbmaow43sl" path="res://Sprites/paper-lines.png" id="7_3fsn6"]
+[ext_resource type="Texture2D" uid="uid://be5cdha1wakdv" path="res://Sprites/hand.png" id="7_61jao"]
+[ext_resource type="PackedScene" uid="uid://vgeq1nvnbmtc" path="res://Letters/R.tscn" id="7_jh244"]
+[ext_resource type="Script" path="res://AnttiStarter/Utils/ListWrapper.cs" id="8_0tqos"]
+[ext_resource type="Texture2D" uid="uid://da51roy4mumgr" path="res://Sprites/circle.svg" id="8_g0f2u"]
+[ext_resource type="PackedScene" uid="uid://j7ou0aytb4eh" path="res://Letters/E.tscn" id="8_q6eo4"]
+[ext_resource type="Theme" uid="uid://dpd3okd1tsdw0" path="res://Prefabs/Theme.tres" id="8_qivpn"]
+[ext_resource type="Texture2D" uid="uid://cscu5qkuf7ki7" path="res://Sprites/dotted-circle.png" id="9_hyw2l"]
+[ext_resource type="FontFile" uid="uid://bdirygmrdap8l" path="res://BebasNeue-Regular.ttf" id="9_v2got"]
+[ext_resource type="AudioStream" uid="uid://ckc1scm0d1cy1" path="res://Sounds/pop.wav" id="10_qln6k"]
+[ext_resource type="PackedScene" uid="uid://o2ekcoob637e" path="res://Letters/L.tscn" id="17_davjs"]
+[ext_resource type="Texture2D" uid="uid://dgfv6plxj51c8" path="res://Sprites/plate-shadow.png" id="25_5xc30"]
+[ext_resource type="Texture2D" uid="uid://dxkuhbn3sgcds" path="res://Sprites/sign.png" id="31_mi8jk"]
+[ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="33_vrmm7"]
+[ext_resource type="Material" uid="uid://wrh2jfty0xe" path="res://Scenes/WobbleText.tres" id="34_j2u63"]
+[ext_resource type="Script" path="res://AnttiStarter/Animations/PulsatingNode.cs" id="35_47kfm"]
+[ext_resource type="Texture2D" uid="uid://ds8v7nxhravyu" path="res://Sprites/spot.png" id="36_y03qs"]
+[ext_resource type="Texture2D" uid="uid://b2v8h5blfo0la" path="res://Sprites/light.png" id="37_8mswu"]
+[ext_resource type="Script" path="res://Scripts/Nudger.cs" id="38_2al58"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4vt1"]
+size = Vector2(4.28084, 69.3985)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3huvd"]
+size = Vector2(7.12598, 9.50129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyk2k"]
+size = Vector2(4.80053, 69.3985)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_233y8"]
+shader = ExtResource("1_cgk15")
+shader_parameter/lod = 0.75
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cajsp"]
+size = Vector2(400, 282)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44msm"]
+size = Vector2(2400.5, 97)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1gvg"]
+size = Vector2(8.71129, 8.38046)
+
+[sub_resource type="Curve" id="Curve_r3ox1"]
+_data = [Vector2(0.0006603, 1), 0.0, 0.0, 0, 0, Vector2(0.516203, 0.637051), 0.0364874, 0.0364874, 0, 0, Vector2(1, 0.870038), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_ga6ww"]
+_data = [Vector2(0, 0.317265), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kb6xo"]
+
+[sub_resource type="Curve" id="Curve_6bjsg"]
+_data = [Vector2(0, 0), 0.0, 0.0449259, 0, 0, Vector2(1, 1), 1.72907, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddsl8"]
+size = Vector2(1339.84, 2449.87)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yb4ws"]
+shader = ExtResource("1_cgk15")
+shader_parameter/lod = 2.0
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("leaderboards", "sceneChanger", "breads", "others", "adjectiveLabel", "adjectives")]
+script = ExtResource("1_a6bre")
+leaderboards = NodePath("CanvasLayer/Paper Wrap/Evaluation Paper")
+sceneChanger = NodePath("Scene Changer")
+colors = PackedColorArray(1, 0.513726, 0.447059, 1, 1, 0.282353, 0.219608, 1, 0, 0.752941, 0, 1, 1, 1, 0.223529, 1)
+breadColor = Color(0.815686, 0.556863, 0.321569, 1)
+letterSounds = Array[AudioStream]([ExtResource("2_r5ki6"), ExtResource("3_2iwxi"), ExtResource("4_h4c7s"), ExtResource("5_aho5n"), ExtResource("5_aho5n")])
+breads = NodePath("Breads")
+others = NodePath("Demo Letters")
+adjectiveLabel = NodePath("Sign/Label2")
+adjectives = NodePath("Adjectives")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1130, 122)
+zoom = Vector2(0.48, 0.48)
+
+[node name="Sky" type="ColorRect" parent="."]
+offset_left = -181.0
+offset_top = -1626.0
+offset_right = 2792.0
+offset_bottom = 1116.0
+color = Color(0.443137, 0.784314, 0.921569, 1)
+
+[node name="Mountains2" type="Sprite2D" parent="."]
+self_modulate = Color(0.435294, 0.847059, 0.819608, 1)
+position = Vector2(1350, -127.125)
+scale = Vector2(-0.825, 0.825)
+texture = ExtResource("6_hrwb0")
+
+[node name="Mountains1" type="Sprite2D" parent="."]
+self_modulate = Color(0.388235, 0.796078, 0.607843, 1)
+position = Vector2(1389, 298.875)
+texture = ExtResource("6_hrwb0")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(529, 1137)
+scale = Vector2(381, 97.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(-3.47375, -3.85604)
+shape = SubResource("RectangleShape2D_k4vt1")
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2(529, 1137)
+scale = Vector2(381, 97.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(1.57087, -39.671)
+shape = SubResource("RectangleShape2D_3huvd")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(3036, 1134)
+scale = Vector2(381, 97.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(0.408136, -5.76478)
+shape = SubResource("RectangleShape2D_xyk2k")
+
+[node name="Sign" type="Sprite2D" parent="."]
+position = Vector2(1396, 132.063)
+scale = Vector2(0.33403, 0.33403)
+texture = ExtResource("31_mi8jk")
+
+[node name="Label" type="Label" parent="Sign"]
+offset_left = -535.88
+offset_top = -1601.84
+offset_right = 527.12
+offset_bottom = -847.838
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_v2got")
+theme_override_font_sizes/font_size = 500
+text = "VERY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Sign"]
+offset_left = -901.0
+offset_top = -728.0
+offset_right = 916.0
+offset_bottom = -78.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_v2got")
+theme_override_font_sizes/font_size = 400
+text = "GOOD"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Label3" type="Label" parent="Sign"]
+offset_left = -901.0
+offset_top = 6.0
+offset_right = 916.0
+offset_bottom = 769.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_v2got")
+theme_override_font_sizes/font_size = 600
+text = "DELI"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_233y8")
+offset_left = -35.0
+offset_top = -1086.0
+offset_right = 2315.0
+offset_bottom = 1117.0
+
+[node name="Lamp" type="Node2D" parent="."]
+position = Vector2(457, -1465)
+rotation = -0.0958497
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Lamp"]
+position = Vector2(-1, 10)
+node_a = NodePath("../../Ceiling Body")
+node_b = NodePath("../Spoon2")
+
+[node name="Spoon2" type="RigidBody2D" parent="Lamp"]
+position = Vector2(-16, -4)
+collision_layer = 4
+collision_mask = 0
+center_of_mass_mode = 1
+center_of_mass = Vector2(16, 640)
+
+[node name="Light Wrap" type="Node2D" parent="Lamp/Spoon2"]
+position = Vector2(16, 640)
+script = ExtResource("35_47kfm")
+amount = 0.03
+speed = 2.0
+
+[node name="Light Cone" type="Sprite2D" parent="Lamp/Spoon2/Light Wrap"]
+self_modulate = Color(1, 1, 1, 0.25098)
+position = Vector2(-24, 1021)
+scale = Vector2(1.48804, 1.20804)
+texture = ExtResource("36_y03qs")
+
+[node name="Lamp" type="Sprite2D" parent="Lamp/Spoon2"]
+position = Vector2(16, 13.9999)
+scale = Vector2(1.20804, 1.20804)
+texture = ExtResource("37_8mswu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Lamp/Spoon2"]
+polygon = PackedVector2Array(-224, 771, 260, 771, 49, 540, 40, -154, -14, -158, -18, 537)
+
+[node name="Area2D" type="Area2D" parent="Lamp" node_paths=PackedStringArray("body")]
+position = Vector2(0, -114.232)
+collision_layer = 256
+collision_mask = 11
+script = ExtResource("38_2al58")
+body = NodePath("../Spoon2")
+nudgeAmount = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp/Area2D"]
+position = Vector2(3, 752)
+shape = SubResource("RectangleShape2D_cajsp")
+debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
+
+[node name="Ceiling Body" type="StaticBody2D" parent="."]
+position = Vector2(0, -1860)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling Body"]
+position = Vector2(1187.75, 238)
+shape = SubResource("RectangleShape2D_44msm")
+
+[node name="Pick" parent="." instance=ExtResource("5_byfrf")]
+offset_left = 1637.0
+offset_top = 149.984
+offset_right = 1987.0
+offset_bottom = 709.984
+scale = Vector2(2.29819, 2.29819)
+pivot_offset = Vector2(175, 560)
+demo = true
+
+[node name="Breads" type="Node2D" parent="."]
+script = ExtResource("8_0tqos")
+
+[node name="Letter L" parent="Breads" instance=ExtResource("17_davjs")]
+position = Vector2(342, 586)
+rotation = -1.5708
+
+[node name="Letter M" parent="Breads" instance=ExtResource("5_rn3uc")]
+position = Vector2(351, -8)
+rotation = -1.5708
+
+[node name="Letter D" parent="Breads" instance=ExtResource("3_6qu61")]
+position = Vector2(653, 542)
+rotation = -1.5708
+
+[node name="Letter E" parent="Breads" instance=ExtResource("8_q6eo4")]
+position = Vector2(661, 7)
+rotation = -1.5708
+
+[node name="Demo Letters" type="Node2D" parent="."]
+position = Vector2(272, 659)
+script = ExtResource("8_0tqos")
+
+[node name="Letter U" parent="Demo Letters" instance=ExtResource("3_rhnhd")]
+position = Vector2(-8, -168)
+rotation = -1.5708
+
+[node name="Letter D2" parent="Demo Letters" instance=ExtResource("3_6qu61")]
+position = Vector2(-2, -336)
+rotation = -1.5708
+
+[node name="Letter U2" parent="Demo Letters" instance=ExtResource("3_rhnhd")]
+position = Vector2(14, -506)
+rotation = -1.5708
+
+[node name="Letter A" parent="Demo Letters" instance=ExtResource("6_88jby")]
+position = Vector2(388, -288)
+rotation = -1.67252
+
+[node name="Letter R" parent="Demo Letters" instance=ExtResource("7_jh244")]
+position = Vector2(325, -475)
+rotation = -1.5708
+
+[node name="Plate" type="StaticBody2D" parent="."]
+position = Vector2(463, 668.984)
+scale = Vector2(0.660269, 0.660269)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plate"]
+polygon = PackedVector2Array(-510.917, -64.0154, -404.627, -65.2233, -375.639, -2.41565, 379.262, -2.41565, 423.952, -67.639, 512.124, -67.639, 477.097, 8.45496, 432.406, 22.9491, 420.328, 56.7686, -422.745, 55.5608, -434.823, 19.3256, -477.097, 7.24719)
+
+[node name="Plate" type="Sprite2D" parent="Plate"]
+position = Vector2(2.08165e-12, -7.57275)
+texture = ExtResource("2_pwf46")
+
+[node name="Table" type="StaticBody2D" parent="."]
+modulate = Color(0.894118, 0.729412, 0.627451, 1)
+position = Vector2(529, 893.984)
+scale = Vector2(381, 97.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table"]
+position = Vector2(2.36352, 2.18509)
+shape = SubResource("RectangleShape2D_b1gvg")
+
+[node name="Square" type="Sprite2D" parent="Table"]
+position = Vector2(2.37008, 2.18252)
+scale = Vector2(2.18504, 2.09126)
+texture = ExtResource("3_73ni3")
+
+[node name="Border" type="Sprite2D" parent="Table"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(2.37008, -1.94087)
+scale = Vector2(2.18504, 0.0295629)
+texture = ExtResource("3_73ni3")
+
+[node name="Hand Wrap" type="Node2D" parent="."]
+z_index = 2
+
+[node name="Line Outline" type="Line2D" parent="Hand Wrap"]
+position = Vector2(1128, -1082)
+points = PackedVector2Array(2.08165e-12, 2.08165e-12, -64, 677, -1018, 846)
+width = 250.0
+width_curve = SubResource("Curve_r3ox1")
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("4_757uj")
+targetPath = NodePath("../Hand/Pivot/Sprite/Arm Spot")
+length = 1000.0
+flip = true
+
+[node name="Line2D" type="Line2D" parent="Hand Wrap"]
+position = Vector2(1128, -1082)
+points = PackedVector2Array(2.08165e-12, 2.08165e-12, -64, 677, -1018, 846)
+width = 200.0
+width_curve = SubResource("Curve_r3ox1")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("4_757uj")
+targetPath = NodePath("../Hand/Pivot/Sprite/Arm Spot")
+length = 1000.0
+flip = true
+
+[node name="Grab Line" type="Line2D" parent="Hand Wrap"]
+position = Vector2(108, 100)
+points = PackedVector2Array(0, 0, 0, 74)
+width = 30.0
+width_curve = SubResource("Curve_ga6ww")
+default_color = Color(1, 1, 1, 0.501961)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Hand" type="StaticBody2D" parent="Hand Wrap" node_paths=PackedStringArray("pin", "bell", "rotatePivot", "armPos", "grabLine", "sprite", "letters", "body", "grabParticles", "pop")]
+position = Vector2(108, 100)
+collision_layer = 2
+script = ExtResource("5_t0yok")
+pin = NodePath("PinJoint2D")
+target = NodePath("")
+bell = NodePath("../Bell")
+rotatePivot = NodePath("Pivot")
+armPos = NodePath("../Line2D")
+grabLine = NodePath("../Grab Line")
+handOpen = ExtResource("6_6yyur")
+handGrab = ExtResource("7_61jao")
+sprite = NodePath("Pivot/Sprite")
+letters = NodePath("../Letters")
+body = NodePath("Pivot/Sprite/RigidBody2D")
+grabParticles = NodePath("Pivot/Grab Effect")
+pop = NodePath("Pivot/AudioStreamPlayer2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand Wrap/Hand"]
+shape = SubResource("CircleShape2D_kb6xo")
+
+[node name="Circle" type="Sprite2D" parent="Hand Wrap/Hand"]
+visible = false
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.176, 0.176)
+texture = ExtResource("8_g0f2u")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Hand Wrap/Hand"]
+node_a = NodePath("..")
+softness = 2.0
+
+[node name="Pivot" type="Node2D" parent="Hand Wrap/Hand"]
+
+[node name="Grab Effect" type="CPUParticles2D" parent="Hand Wrap/Hand/Pivot"]
+position = Vector2(1, -1)
+emitting = false
+amount = 50
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.75
+randomness = 0.23
+texture = ExtResource("9_hyw2l")
+direction = Vector2(2.08165e-12, 2.08165e-12)
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+scale_amount_min = 0.05
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_6bjsg")
+color = Color(1, 1, 1, 0.0784314)
+
+[node name="Sprite" type="Sprite2D" parent="Hand Wrap/Hand/Pivot"]
+modulate = Color(1, 0.886275, 0.87451, 1)
+position = Vector2(75, -194)
+rotation = 0.107136
+scale = Vector2(0.151392, 0.151392)
+texture = ExtResource("6_6yyur")
+
+[node name="Arm Spot" type="Node2D" parent="Hand Wrap/Hand/Pivot/Sprite"]
+position = Vector2(-125.502, -977.593)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Hand Wrap/Hand/Pivot/Sprite"]
+collision_layer = 8
+collision_mask = 256
+gravity_scale = 2.66454e-15
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand Wrap/Hand/Pivot/Sprite/RigidBody2D"]
+position = Vector2(-351.076, 209.242)
+shape = SubResource("RectangleShape2D_ddsl8")
+
+[node name="Circle" type="Sprite2D" parent="Hand Wrap/Hand/Pivot/Sprite/RigidBody2D"]
+visible = false
+position = Vector2(-36.4921, 834.355)
+rotation = -0.107136
+scale = Vector2(1.33459, 1.33459)
+texture = ExtResource("8_g0f2u")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Hand Wrap/Hand/Pivot"]
+position = Vector2(75, -194)
+rotation = 0.107136
+scale = Vector2(0.151392, 0.151392)
+stream = ExtResource("10_qln6k")
+volume_db = -15.0
+
+[node name="Shadows" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0.27451, 0.101961)
+position = Vector2(465, 740)
+scale = Vector2(0.474259, 0.352923)
+texture = ExtResource("25_5xc30")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Eval Blur" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_yb4ws")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Paper Wrap" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -411.0
+offset_right = 325.0
+offset_bottom = 383.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(325, 397)
+
+[node name="Evaluation Paper" type="ColorRect" parent="CanvasLayer/Paper Wrap"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -464.0
+offset_right = 325.0
+offset_bottom = 331.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(325, 350)
+color = Color(1, 0.992157, 0.901961, 1)
+script = ExtResource("6_fw2gu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 3.0
+offset_right = -183.67
+offset_bottom = -637.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("7_3fsn6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 74.5
+offset_right = -183.67
+offset_bottom = -565.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("7_3fsn6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 145.5
+offset_right = -183.67
+offset_bottom = -494.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("7_3fsn6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 218.5
+offset_right = -182.67
+offset_bottom = -421.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("7_3fsn6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 289.5
+offset_right = -182.67
+offset_bottom = -350.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("7_3fsn6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 362.5
+offset_right = -182.67
+offset_bottom = -277.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("7_3fsn6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 433.5
+offset_right = -182.67
+offset_bottom = -206.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("7_3fsn6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect8" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 503.5
+offset_right = -182.67
+offset_bottom = -136.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("7_3fsn6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect9" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 574.5
+offset_right = -182.67
+offset_bottom = -65.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("7_3fsn6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect10" type="TextureRect" parent="CanvasLayer/Paper Wrap/Evaluation Paper"]
+modulate = Color(0.482353, 0.329412, 0, 0.223529)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 645.5
+offset_right = -182.67
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.364, 1)
+texture = ExtResource("7_3fsn6")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Play" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 879.0
+offset_top = 1002.0
+offset_right = 919.0
+offset_bottom = 1042.0
+script = ExtResource("6_fw2gu")
+showAfter = 0.5
+isOneSized = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Play"]
+layout_mode = 0
+offset_left = -177.0
+offset_top = -79.0
+offset_right = 174.0
+offset_bottom = 53.0
+theme = ExtResource("8_qivpn")
+theme_override_font_sizes/font_size = 75
+text = "PLAY"
+
+[node name="Leaderboards" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 453.0
+offset_top = 1001.0
+offset_right = 493.0
+offset_bottom = 1041.0
+script = ExtResource("6_fw2gu")
+showAfter = 0.7
+isOneSized = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Leaderboards"]
+layout_mode = 0
+offset_left = -177.0
+offset_top = -43.0
+offset_right = 203.0
+offset_bottom = 53.0
+theme = ExtResource("8_qivpn")
+theme_override_font_sizes/font_size = 50
+text = "LEADERBOARDS"
+
+[node name="Quit" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 127.0
+offset_top = 1010.0
+offset_right = 167.0
+offset_bottom = 1050.0
+script = ExtResource("6_fw2gu")
+showAfter = 1.1
+isOneSized = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Quit"]
+layout_mode = 0
+offset_left = -103.0
+offset_top = -38.0
+offset_right = 104.0
+offset_bottom = 42.0
+theme = ExtResource("8_qivpn")
+theme_override_font_sizes/font_size = 40
+text = "QUIT"
+
+[node name="Scene Changer" parent="." instance=ExtResource("6_nyamx")]
+
+[node name="Adjectives" type="Node2D" parent="."]
+script = ExtResource("33_vrmm7")
+fileName = "res://adjectives.txt"
+
+[node name="Label" type="RichTextLabel" parent="."]
+material = ExtResource("34_j2u63")
+offset_left = 252.0
+offset_top = -910.0
+offset_right = 2992.0
+offset_bottom = -502.0
+theme = ExtResource("8_qivpn")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/normal_font_size = 220
+text = "Antti Haavikko"
+
+[node name="Label2" type="RichTextLabel" parent="."]
+material = ExtResource("34_j2u63")
+offset_left = 627.0
+offset_top = -681.0
+offset_right = 3367.0
+offset_bottom = -273.0
+theme = ExtResource("8_qivpn")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/normal_font_size = 130
+text = "PRESENTS"
+
+[connection signal="pressed" from="CanvasLayer/Play/Button" to="." method="Play"]
+[connection signal="pressed" from="CanvasLayer/Leaderboards/Button" to="." method="ToggleLeaderboards"]
+[connection signal="pressed" from="CanvasLayer/Quit/Button" to="." method="Quit"]
