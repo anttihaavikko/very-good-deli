@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccvnghy1k4xpe"]
+[gd_scene load_steps=20 format=3 uid="uid://ccvnghy1k4xpe"]
 
 [ext_resource type="Texture2D" uid="uid://cw45ql1ub8ns4" path="res://Sprites/square.png" id="1_2wu80"]
 [ext_resource type="Texture2D" uid="uid://b1vow58750ynk" path="res://Sprites/boards.png" id="2_gq8nv"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://Scripts/Nudger.cs" id="8_chywh"]
 [ext_resource type="Texture2D" uid="uid://c6ni4wocglfsu" path="res://Sprites/spoon1.png" id="9_45h5d"]
 [ext_resource type="Texture2D" uid="uid://6kdk7krjgma2" path="res://Sprites/spoon3.png" id="10_wb6tn"]
+[ext_resource type="Texture2D" uid="uid://b2v8h5blfo0la" path="res://Sprites/light.png" id="11_h4868"]
+[ext_resource type="Texture2D" uid="uid://ds8v7nxhravyu" path="res://Sprites/spot.png" id="11_ps7k1"]
+[ext_resource type="Script" path="res://AnttiStarter/Animations/PulsatingNode.cs" id="12_q3lc5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4eww"]
 size = Vector2(756.5, 56)
@@ -22,6 +25,12 @@ size = Vector2(148, 485.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86vtx"]
 size = Vector2(148, 594.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx1n0"]
+size = Vector2(53, 644)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vocd"]
+size = Vector2(400, 282)
 
 [node name="Background" type="Node2D"]
 
@@ -185,4 +194,96 @@ body = NodePath("../Spoon2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spoon3/Area2D3"]
 position = Vector2(3, 364.75)
 shape = SubResource("RectangleShape2D_86vtx")
+debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
+
+[node name="Lamp" type="Node2D" parent="."]
+position = Vector2(456, -1227)
+
+[node name="Spoon2" type="RigidBody2D" parent="Lamp"]
+position = Vector2(-16, -4)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp/Spoon2"]
+position = Vector2(16.5, 312)
+shape = SubResource("RectangleShape2D_vx1n0")
+
+[node name="Light Wrap" type="Node2D" parent="Lamp/Spoon2"]
+position = Vector2(16, 640)
+script = ExtResource("12_q3lc5")
+amount = 0.03
+speed = 2.0
+
+[node name="Light Cone" type="Sprite2D" parent="Lamp/Spoon2/Light Wrap"]
+self_modulate = Color(1, 1, 1, 0.12549)
+position = Vector2(-24, 1021)
+scale = Vector2(1.48804, 1.20804)
+texture = ExtResource("11_ps7k1")
+
+[node name="Lamp" type="Sprite2D" parent="Lamp/Spoon2"]
+position = Vector2(16, 13.9999)
+scale = Vector2(1.20804, 1.20804)
+texture = ExtResource("11_h4868")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Lamp"]
+position = Vector2(-1, 10)
+node_a = NodePath("../../Shelf Body")
+node_b = NodePath("../Spoon2")
+
+[node name="Area2D" type="Area2D" parent="Lamp" node_paths=PackedStringArray("body")]
+position = Vector2(0, -114.232)
+collision_layer = 256
+collision_mask = 11
+script = ExtResource("8_chywh")
+body = NodePath("../Spoon2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp/Area2D"]
+position = Vector2(3, 752)
+shape = SubResource("RectangleShape2D_7vocd")
+debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
+
+[node name="Lamp2" type="Node2D" parent="."]
+position = Vector2(1703, -1328)
+
+[node name="Spoon2" type="RigidBody2D" parent="Lamp2"]
+position = Vector2(-16, -4)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp2/Spoon2"]
+position = Vector2(16.5, 312)
+shape = SubResource("RectangleShape2D_vx1n0")
+
+[node name="Light Wrap" type="Node2D" parent="Lamp2/Spoon2"]
+position = Vector2(16, 640)
+script = ExtResource("12_q3lc5")
+amount = 0.03
+speed = 2.0
+
+[node name="Light Cone" type="Sprite2D" parent="Lamp2/Spoon2/Light Wrap"]
+self_modulate = Color(1, 1, 1, 0.12549)
+position = Vector2(-24, 1021)
+scale = Vector2(1.48804, 1.20804)
+texture = ExtResource("11_ps7k1")
+
+[node name="Lamp" type="Sprite2D" parent="Lamp2/Spoon2"]
+position = Vector2(16, 13.9999)
+scale = Vector2(1.20804, 1.20804)
+texture = ExtResource("11_h4868")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Lamp2"]
+position = Vector2(-1, 10)
+node_a = NodePath("../../Shelf Body")
+node_b = NodePath("../Spoon2")
+
+[node name="Area2D" type="Area2D" parent="Lamp2" node_paths=PackedStringArray("body")]
+position = Vector2(0, -114.232)
+collision_layer = 256
+collision_mask = 11
+script = ExtResource("8_chywh")
+body = NodePath("../Spoon2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lamp2/Area2D"]
+position = Vector2(3, 752)
+shape = SubResource("RectangleShape2D_7vocd")
 debug_color = Color(0.831373, 0.333333, 0.533333, 0.419608)
