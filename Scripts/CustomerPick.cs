@@ -53,7 +53,7 @@ public partial class CustomerPick : Control
         {
             button.Hide();
             var hex = textColors.Random().ToHtml();
-            textBubble.Text = $"[center]You should put your [color={hex}][b]name[/b][/color] here for [color={hex}][b]leaderboards[/b][/color] entry...[/center]";
+            textBubble.Text = $"[center]You should put your [color={hex}][b]name[/b][/color] here for [color={hex}][b]leaderboards[/b][/color] score submission...[/center]";
         }
     }
 
