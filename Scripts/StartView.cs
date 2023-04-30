@@ -19,6 +19,7 @@ public partial class StartView : Node2D
     [Export] private Control paper;
     [Export] private Appearer prevButton, nextButton;
     [Export] private Control backBlur, frontBlur;
+    [Export] private AnttiStarter.Leaderboards.Leaderboards theLeaderboards;
 
     private const float Angle = 0.1f;
 
@@ -72,5 +73,15 @@ public partial class StartView : Node2D
         frontBlur.Visible = boardShown;
 
         Input.MouseMode = boardShown ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Hidden;
+    }
+
+    public void GoNextPage()
+    {
+        theLeaderboards.ChangePage(1);
+    }
+
+    public void GoPrevPage()
+    {
+        theLeaderboards.ChangePage(-1);
     }
 }

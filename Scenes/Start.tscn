@@ -89,7 +89,7 @@ shader_parameter/lod = 2.0
 shader = ExtResource("1_cgk15")
 shader_parameter/lod = 2.0
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("leaderboards", "sceneChanger", "breads", "others", "adjectiveLabel", "paper", "prevButton", "nextButton", "backBlur", "frontBlur")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("leaderboards", "sceneChanger", "breads", "others", "adjectiveLabel", "paper", "prevButton", "nextButton", "backBlur", "frontBlur", "theLeaderboards")]
 script = ExtResource("1_a6bre")
 leaderboards = NodePath("CanvasLayer/Paper Wrap/Evaluation Paper")
 sceneChanger = NodePath("Scene Changer")
@@ -104,6 +104,7 @@ prevButton = NodePath("CanvasLayer/Prev Page")
 nextButton = NodePath("CanvasLayer/Next Page")
 backBlur = NodePath("Blur")
 frontBlur = NodePath("Front Blur")
+theLeaderboards = NodePath("CanvasLayer/Paper Wrap/Evaluation Paper/Leaderboards")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1130, 122)
@@ -774,9 +775,9 @@ text = "LEADERBOARDS"
 [node name="Next Page" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 966.0
+offset_left = 967.0
 offset_top = 474.0
-offset_right = 1006.0
+offset_right = 1007.0
 offset_bottom = 514.0
 script = ExtResource("6_fw2gu")
 isOneSized = true
@@ -868,6 +869,6 @@ text = "PRESENTS"
 
 [connection signal="pressed" from="CanvasLayer/Play/Button" to="." method="Play"]
 [connection signal="pressed" from="CanvasLayer/Leaderboards/Button" to="." method="ToggleLeaderboards"]
-[connection signal="pressed" from="CanvasLayer/Next Page/Button" to="." method="ToggleLeaderboards"]
-[connection signal="pressed" from="CanvasLayer/Prev Page/Button" to="." method="ToggleLeaderboards"]
+[connection signal="pressed" from="CanvasLayer/Next Page/Button" to="." method="GoNextPage"]
+[connection signal="pressed" from="CanvasLayer/Prev Page/Button" to="." method="GoPrevPage"]
 [connection signal="pressed" from="CanvasLayer/Quit/Button" to="." method="Quit"]
