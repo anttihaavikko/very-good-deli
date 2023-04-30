@@ -272,7 +272,7 @@ script = ExtResource("6_s58m1")
 direction = Vector2(2.08165e-12, -50)
 speed = 0.3
 
-[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton", "bell", "scoreLabel", "hand", "paperRotator", "lifeDisplay", "blurLayer", "buildHelp", "ringHelp")]
+[node name="Letters" type="Node2D" parent="." node_paths=PackedStringArray("spawn", "sceneChanger", "wordDictionary", "paper", "evaluationContainer", "levelTimer", "nextButton", "bell", "scoreLabel", "hand", "paperRotator", "lifeDisplay", "blurLayer", "buildHelp", "ringHelp", "quitButton", "againButton")]
 script = ExtResource("4_57g0e")
 letters = Array[PackedScene]([ExtResource("2_j874t"), ExtResource("3_ivoux"), ExtResource("6_odhns"), ExtResource("8_du2ds"), ExtResource("8_gp5py"), ExtResource("9_4e1wc"), ExtResource("10_tw725"), ExtResource("11_6m062"), ExtResource("12_ludwc"), ExtResource("13_3sqmj"), ExtResource("14_kiraw"), ExtResource("15_fwo0e"), ExtResource("16_lnyqm"), ExtResource("17_qwyo6"), ExtResource("18_f0b65"), ExtResource("19_6fw2v"), ExtResource("20_msf06"), ExtResource("21_mq8lr"), ExtResource("22_5k8cv"), ExtResource("24_70vfp"), ExtResource("25_wonye"), ExtResource("26_rbvx0"), ExtResource("27_pb723"), ExtResource("28_f4d0n"), ExtResource("29_teune"), ExtResource("30_4ypvt")])
 spawn = NodePath("Spawn")
@@ -294,6 +294,8 @@ lifeDisplay = NodePath("../CanvasLayer/Lives")
 blurLayer = NodePath("../CanvasLayer/Eval Blur")
 buildHelp = NodePath("../Help Build")
 ringHelp = NodePath("../Help Bell")
+quitButton = NodePath("../CanvasLayer/Quit Wrap")
+againButton = NodePath("../CanvasLayer/Again Wrap")
 
 [node name="Spawn" type="Node2D" parent="Letters"]
 position = Vector2(540, 835)
@@ -748,10 +750,10 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="Time Left" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 18.0
-offset_top = 66.0
-offset_right = 418.0
-offset_bottom = 153.0
+offset_left = 20.0
+offset_top = 75.0
+offset_right = 420.0
+offset_bottom = 162.0
 theme = ExtResource("40_mawly")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 3
@@ -761,10 +763,10 @@ theme_override_font_sizes/normal_font_size = 50
 text = "1:23"
 
 [node name="Score" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 449.0
-offset_top = -5.0
-offset_right = 1070.0
-offset_bottom = 210.0
+offset_left = 451.0
+offset_top = 4.0
+offset_right = 1072.0
+offset_bottom = 219.0
 theme = ExtResource("40_mawly")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 7
@@ -787,20 +789,60 @@ isOneSized = true
 [node name="Next Button" type="Button" parent="CanvasLayer/Next Wrap"]
 layout_mode = 0
 offset_left = -177.0
-offset_top = -41.0
+offset_top = -43.0
 offset_right = 174.0
-offset_bottom = 47.0
+offset_bottom = 53.0
 theme = ExtResource("40_mawly")
 theme_override_font_sizes/font_size = 50
 text = "NEXT CUSTOMER"
 
+[node name="Again Wrap" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 885.0
+offset_top = 1009.0
+offset_right = 925.0
+offset_bottom = 1049.0
+script = ExtResource("38_mrn7r")
+isOneSized = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Again Wrap"]
+layout_mode = 0
+offset_left = -177.0
+offset_top = -43.0
+offset_right = 174.0
+offset_bottom = 53.0
+theme = ExtResource("40_mawly")
+theme_override_font_sizes/font_size = 50
+text = "TRY AGAIN"
+
+[node name="Quit Wrap" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 117.0
+offset_top = 1025.0
+offset_right = 157.0
+offset_bottom = 1065.0
+script = ExtResource("38_mrn7r")
+isOneSized = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Quit Wrap"]
+layout_mode = 0
+offset_left = -103.0
+offset_top = -38.0
+offset_right = 104.0
+offset_bottom = 42.0
+theme = ExtResource("40_mawly")
+theme_override_font_sizes/font_size = 40
+text = "QUIT"
+
 [node name="Lives" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("lives")]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 23.0
-offset_top = 20.0
-offset_right = 355.0
-offset_bottom = 89.0
+offset_left = 25.0
+offset_top = 29.0
+offset_right = 357.0
+offset_bottom = 98.0
 script = ExtResource("41_txdyc")
 lives = NodePath("Node2D")
 
@@ -1033,3 +1075,5 @@ text = "0"
 
 [connection signal="pressed" from="Bell/Button" to="Bell" method="Ring"]
 [connection signal="pressed" from="CanvasLayer/Next Wrap/Next Button" to="Letters" method="NextLevel"]
+[connection signal="pressed" from="CanvasLayer/Again Wrap/Button" to="Letters" method="PlayAgain"]
+[connection signal="pressed" from="CanvasLayer/Quit Wrap/Button" to="Letters" method="QuitToMenu"]

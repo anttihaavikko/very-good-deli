@@ -1,7 +1,43 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dpd3okd1tsdw0"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dpd3okd1tsdw0"]
 
 [ext_resource type="FontFile" uid="uid://bdirygmrdap8l" path="res://BebasNeue-Regular.ttf" id="1_p4h3x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r1kd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pafaf"]
+content_margin_bottom = 0.0
+bg_color = Color(1, 0.729412, 0, 1)
+skew = Vector2(2.08165e-12, 2.08165e-12)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0svd"]
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8vvs"]
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
 
 [resource]
 default_font = ExtResource("1_p4h3x")
 default_font_size = 20
+/styles/button = SubResource("StyleBoxFlat_6r1kd")
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_pafaf")
+Button/styles/normal = SubResource("StyleBoxFlat_e0svd")
+Button/styles/pressed = SubResource("StyleBoxFlat_p8vvs")

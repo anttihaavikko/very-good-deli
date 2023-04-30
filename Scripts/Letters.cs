@@ -30,6 +30,7 @@ public partial class Letters : Node2D
     [Export] private LifeDisplay lifeDisplay;
     [Export] private Control blurLayer;
     [Export] private Appearer buildHelp, ringHelp;
+    [Export] private Appearer quitButton, againButton;
 
     private readonly List<Letter> ingredients = new();
     private bool evaluating;
@@ -225,6 +226,10 @@ public partial class Letters : Node2D
                 if (State.Lives <= 0)
                 {
                     ShowEvaluationRow("You're fired...", "", "", 1f);
+                    
+                    quitButton.Toggle(true, 0.8f);
+                    againButton.Toggle(true, 0.4f);
+                    
                     return;
                 }
                 
@@ -254,5 +259,17 @@ public partial class Letters : Node2D
     public void HideTutorial()
     {
         ringHelp.Toggle(false);
+    }
+
+    public void PlayAgain()
+    {
+        State.Reset();
+        sceneChanger.ChangeScene("res://Scenes/Main.tscn");
+    }
+
+    public void QuitToMenu()
+    {
+        State.Reset();
+        GD.Print("Go to menu");
     }
 }
