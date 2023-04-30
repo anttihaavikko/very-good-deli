@@ -14,7 +14,6 @@ public partial class Nudger : Area2D
 
     private void OnBodyEntered(Node2D node)
     {
-        GD.Print("Pushing");
         var other = node.GetNode<RigidBody2D>(".");
         body.ApplyForce(-other.LinearVelocity * 50f * nudgeAmount);
     }
