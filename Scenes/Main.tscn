@@ -1027,7 +1027,7 @@ softness = 2.0
 
 [node name="Sprite" type="Sprite2D" parent="Hand/Pivot"]
 modulate = Color(1, 0.886275, 0.87451, 1)
-position = Vector2(25, -194)
+position = Vector2(75, -194)
 rotation = 0.107136
 scale = Vector2(0.151392, 0.151392)
 texture = ExtResource("42_l8nyf")
