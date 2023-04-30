@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://olji8y42yue7"]
+[gd_scene load_steps=55 format=3 uid="uid://olji8y42yue7"]
 
 [ext_resource type="Script" path="res://Scripts/StartView.cs" id="1_a6bre"]
 [ext_resource type="Shader" path="res://Scenes/Blur.gdshader" id="1_cgk15"]
@@ -35,9 +35,11 @@
 [ext_resource type="Script" path="res://Scripts/WordDictionary.cs" id="33_vrmm7"]
 [ext_resource type="Material" uid="uid://wrh2jfty0xe" path="res://Scenes/WobbleText.tres" id="34_j2u63"]
 [ext_resource type="Script" path="res://AnttiStarter/Animations/PulsatingNode.cs" id="35_47kfm"]
+[ext_resource type="PackedScene" uid="uid://n13ntcoklr72" path="res://AnttiStarter/Leaderboards/Leaderboards.tscn" id="35_qior8"]
 [ext_resource type="Texture2D" uid="uid://ds8v7nxhravyu" path="res://Sprites/spot.png" id="36_y03qs"]
 [ext_resource type="Texture2D" uid="uid://b2v8h5blfo0la" path="res://Sprites/light.png" id="37_8mswu"]
 [ext_resource type="Script" path="res://Scripts/Nudger.cs" id="38_2al58"]
+[ext_resource type="Script" path="res://AnttiStarter/Leaderboards/ScoreManager.cs" id="40_d2xdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4vt1"]
 size = Vector2(4.28084, 69.3985)
@@ -78,11 +80,15 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddsl8"]
 size = Vector2(1339.84, 2449.87)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s807e"]
+shader = ExtResource("1_cgk15")
+shader_parameter/lod = 2.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yb4ws"]
 shader = ExtResource("1_cgk15")
 shader_parameter/lod = 2.0
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("leaderboards", "sceneChanger", "breads", "others", "adjectiveLabel", "adjectives")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("leaderboards", "sceneChanger", "breads", "others", "adjectiveLabel", "adjectives", "paper", "prevButton", "nextButton", "backBlur", "frontBlur")]
 script = ExtResource("1_a6bre")
 leaderboards = NodePath("CanvasLayer/Paper Wrap/Evaluation Paper")
 sceneChanger = NodePath("Scene Changer")
@@ -93,10 +99,20 @@ breads = NodePath("Breads")
 others = NodePath("Demo Letters")
 adjectiveLabel = NodePath("Sign/Label2")
 adjectives = NodePath("Adjectives")
+paper = NodePath("CanvasLayer/Paper Wrap")
+prevButton = NodePath("CanvasLayer/Prev Page")
+nextButton = NodePath("CanvasLayer/Next Page")
+backBlur = NodePath("Blur")
+frontBlur = NodePath("Front Blur")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1130, 122)
 zoom = Vector2(0.48, 0.48)
+
+[node name="Score Manager" type="Node2D" parent="."]
+script = ExtResource("40_d2xdh")
+game = "wowie"
+pageSize = 14
 
 [node name="Sky" type="ColorRect" parent="."]
 offset_left = -181.0
@@ -368,7 +384,7 @@ default_color = Color(1, 1, 1, 0.501961)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Hand" type="StaticBody2D" parent="Hand Wrap" node_paths=PackedStringArray("pin", "bell", "rotatePivot", "armPos", "grabLine", "sprite", "letters", "body", "grabParticles", "pop")]
+[node name="Hand" type="StaticBody2D" parent="Hand Wrap" node_paths=PackedStringArray("pin", "bell", "rotatePivot", "armPos", "grabLine", "sprite", "letters", "body", "grabParticles", "pop", "startView")]
 position = Vector2(108, 100)
 collision_layer = 2
 script = ExtResource("5_t0yok")
@@ -385,6 +401,8 @@ letters = NodePath("../Letters")
 body = NodePath("Pivot/Sprite/RigidBody2D")
 grabParticles = NodePath("Pivot/Grab Effect")
 pop = NodePath("Pivot/AudioStreamPlayer2D")
+lowerLimit = 800.0
+startView = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand Wrap/Hand"]
 shape = SubResource("CircleShape2D_kb6xo")
@@ -457,6 +475,15 @@ modulate = Color(0, 0, 0.27451, 0.101961)
 position = Vector2(465, 740)
 scale = Vector2(0.474259, 0.352923)
 texture = ExtResource("25_5xc30")
+
+[node name="Front Blur" type="ColorRect" parent="."]
+visible = false
+z_index = 5
+material = SubResource("ShaderMaterial_s807e")
+offset_left = -35.0
+offset_top = -1086.0
+offset_right = 2315.0
+offset_bottom = 1117.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -692,6 +719,14 @@ texture = ExtResource("7_3fsn6")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="Leaderboards" parent="CanvasLayer/Paper Wrap/Evaluation Paper" node_paths=PackedStringArray("scoreManager") instance=ExtResource("35_qior8")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 28.0
+offset_right = 620.0
+offset_bottom = 767.0
+scoreManager = NodePath("../../../../Score Manager")
+
 [node name="Play" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
@@ -733,6 +768,46 @@ offset_bottom = 53.0
 theme = ExtResource("8_qivpn")
 theme_override_font_sizes/font_size = 50
 text = "LEADERBOARDS"
+
+[node name="Next Page" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 966.0
+offset_top = 474.0
+offset_right = 1006.0
+offset_bottom = 514.0
+script = ExtResource("6_fw2gu")
+isOneSized = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Next Page"]
+layout_mode = 0
+offset_left = -47.0
+offset_top = -47.0
+offset_right = 43.0
+offset_bottom = 49.0
+theme = ExtResource("8_qivpn")
+theme_override_font_sizes/font_size = 50
+text = ">"
+
+[node name="Prev Page" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 474.0
+offset_right = 140.0
+offset_bottom = 514.0
+script = ExtResource("6_fw2gu")
+isOneSized = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Prev Page"]
+layout_mode = 0
+offset_left = -47.0
+offset_top = -47.0
+offset_right = 43.0
+offset_bottom = 49.0
+theme = ExtResource("8_qivpn")
+theme_override_font_sizes/font_size = 50
+text = "<"
 
 [node name="Quit" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -791,4 +866,6 @@ text = "PRESENTS"
 
 [connection signal="pressed" from="CanvasLayer/Play/Button" to="." method="Play"]
 [connection signal="pressed" from="CanvasLayer/Leaderboards/Button" to="." method="ToggleLeaderboards"]
+[connection signal="pressed" from="CanvasLayer/Next Page/Button" to="." method="ToggleLeaderboards"]
+[connection signal="pressed" from="CanvasLayer/Prev Page/Button" to="." method="ToggleLeaderboards"]
 [connection signal="pressed" from="CanvasLayer/Quit/Button" to="." method="Quit"]

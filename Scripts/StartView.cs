@@ -17,6 +17,15 @@ public partial class StartView : Node2D
     [Export] private ListWrapper breads, others;
     [Export] private Label adjectiveLabel;
     [Export] private WordDictionary adjectives;
+    [Export] private Control paper;
+    [Export] private Appearer prevButton, nextButton;
+    [Export] private Control backBlur, frontBlur;
+
+    private const float Angle = 0.1f;
+
+    private bool boardShown;
+
+    public bool LookingBoard => boardShown;
 
     public override void _Ready()
     {
@@ -24,6 +33,8 @@ public partial class StartView : Node2D
         others.Get<Letter>().ForEach(o => Init(o, false));
 
         adjectiveLabel.Text = adjectives.GetRandomWord();
+        
+        paper.Rotation = Rng.Range(-Angle, Angle);
     }
 
     private void Init(Letter letter, bool makeBread)
@@ -46,6 +57,20 @@ public partial class StartView : Node2D
 
     public void ToggleLeaderboards()
     {
+        boardShown = !boardShown;
+        var tween = GetTree().CreateTween();
+        tween.TweenProperty(paper, "rotation", Rng.Range(-Angle, Angle), 0.5f)
+            .SetTrans(Tween.TransitionType.Elastic)
+            .SetEase(Tween.EaseType.Out);
+        
         leaderboards.Toggle();
+        
+        prevButton.Toggle(boardShown);
+        nextButton.Toggle(boardShown);
+
+        backBlur.Visible = !boardShown;
+        frontBlur.Visible = boardShown;
+
+        Input.MouseMode = boardShown ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Hidden;
     }
 }

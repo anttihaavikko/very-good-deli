@@ -21,6 +21,8 @@ public partial class Hand : StaticBody2D
 	[Export] private RigidBody2D body;
 	[Export] private CpuParticles2D grabParticles;
 	[Export] private AudioStreamPlayer2D pop;
+	[Export] private float lowerLimit = 900f;
+	[Export] private StartView startView;
 
 	private Vector2 offset;
 	private Node2D grabbed;
@@ -98,9 +100,9 @@ public partial class Hand : StaticBody2D
 	{
 		// if (letters.Evaluating) return;
 		var mp = GetGlobalMousePosition();
-		Position = mp.Clamp(new Vector2(-500, -900), new Vector2(3000, 900));
-		var evaluating = letters != default && letters.Evaluating;
-		Input.MouseMode = mp.Y > 900 || evaluating ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Hidden;
+		Position = mp.Clamp(new Vector2(-500, -900), new Vector2(3000, lowerLimit));
+		var evaluating = letters != default && letters.Evaluating || startView != default && startView.LookingBoard;
+		Input.MouseMode = mp.Y > lowerLimit || evaluating ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Hidden;
 		var dir = armPos.GlobalPosition - GlobalPosition;
 		rotatePivot.Rotation = dir.Angle() + Mathf.Pi * 0.5f;
 
